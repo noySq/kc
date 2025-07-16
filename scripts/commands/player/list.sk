@@ -1,0 +1,12 @@
+command /list:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/list
+	description: Elérhető játékosok számának lekérdezése
+	trigger:
+
+		# TODO: Account for Proxy
+		send ""
+		send server_feedback("casual", "&fJátékosok: ß%number of all players%")
+		send ""

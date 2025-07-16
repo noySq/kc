@@ -1,0 +1,16 @@
+import:
+	org.purpurmc.purpur.event.PlayerAFKEvent
+
+command /afk:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/afk
+	description: AFK kényszerítése, egyébként 5 perc után automatikus
+	cooldown: 1 minutes
+	cooldown message: %server_feedback("error", "&cEzt a parancsot csak &41 &cpercenként használhatod!")%
+	trigger:
+		if player.isAfk() = false:
+			player.setAfk(true)
+
+			play sound "block.note_block.pling" with volume 0.3 to player

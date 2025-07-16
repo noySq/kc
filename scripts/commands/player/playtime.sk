@@ -1,0 +1,28 @@
+command /jatekido [<offlineplayer>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/jatekido ß<játékos>
+	description: Játékidő megtekintése
+	trigger:
+
+		if arg-1 is not set:
+		
+			set {_time_played} to time played of player
+		
+			send ""
+			send server_feedback("casual", "&fElső csatlakozás: ß%player's first login%")
+			send server_feedback("casual", "&fUtolsó bejelentkezés: ß%player's last login%")
+			send server_feedback("casual", "&fJátékidő: ß%format_timespan({_time_played})%")
+			send ""
+
+		else:
+		
+			set {_time_played} to time played of arg-1
+		
+			send ""
+			send server_feedback("casual", "%display_name(arg-1)% &fjátékidő adatai:")
+			send server_feedback("casual", "&fElső csatlakozás: ß%arg-1's first login%")
+			send server_feedback("casual", "&fUtolsó bejelentkezés: ß%arg-1's last login%")
+			send server_feedback("casual", "&fJátékidő: ß%format_timespan({_time_played})%")
+			send ""
