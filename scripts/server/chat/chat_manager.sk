@@ -13,8 +13,9 @@ on async chat:
 		send feedback("warning", {@link-not-allowed})
 		cancel event
 
+	set {_rank} to {rank::%uuid of player%}
 	set {_display_name} to get_displayname(player)
-	set {_message_color} to "&f"
+	set {_message_color} to {ranks::%{_rank}%::chat_color}
 
 	set {_name_format} to colored join ({_display_name}, " &8> ") 
 	set {_message_format} to colored join ({_message_color}, async chat message)
