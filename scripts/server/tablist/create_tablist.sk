@@ -8,10 +8,10 @@ on load:
 		set {_online} to number of all players
 		set {_max} to max player count
 		set {_ping} to ping of {_p}
-		set {_tps} to tps from last 5 minutes
+		set {_mspt} to average tick time
 
 		set {_header} to "%nl% %{_server::name}% %nl% &7🕑 %now% %nl% "
-		set {_footer} to "%nl% ß%{_ping}% &8ms &r &7| &r %{_balance}% &r &7| &r ß%{_tps}% &8tps&r %nl% %nl% ß%{_online}% &7/ ß%{_max}% %nl% %{_server::domain}% %nl%"
+		set {_footer} to "%nl% ß%{_ping}% &8ms &r &7| &r %{_balance}% &r &7| &r ß%{_mspt}% &8tps&r %nl% %nl% ß%{_online}% &7/ ß%{_max}% %nl% %{_server::domain}% %nl%"
 
 		replace every "ß" in ({_header}, {_footer}) with "&3"
 
