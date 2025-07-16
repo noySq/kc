@@ -104,7 +104,7 @@ use player UUIDs in variable names: true
 # Please note that if this setting is changed old variables WILL NOT be renamed automatically.
 
 
-date format: yyyy. MM. dd.
+date format: yyyy. MM. dd. HH:mm
 # The date format to be used when dates should be displayed.
 # This can be 'default' to use Java's default date format for the system's language.
 # The format is that of Java's SimpleDateFormat as defined here: https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
