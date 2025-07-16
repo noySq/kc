@@ -13,11 +13,14 @@ on async chat:
 		send feedback("warning", {@link-not-allowed})
 		cancel event
 
-	set {_p} to player
-	set {_chat_color} to "&f"
+	set {_display_name} to get_displayname(player)
+	set {_message_color} to "&f"
 
-	set {_format::1} to text component from "%{_p}% &8> "
-	set {_format::2} to colored "%{_chat_color}%%async chat message%"
+	set {_name_format} to colored join ({_display_name}, " &8> ") 
+	set {_message_format} to colored join ({_message_color}, async chat message)
+
+	set {_format::1} to text component from {_name_format}
+	set {_format::2} to text component from {_message_format}
 	set {_format} to merge components {_format::*}
 
 	set async chat format to {_format}
