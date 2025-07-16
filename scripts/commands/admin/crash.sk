@@ -10,23 +10,14 @@ command /crash [<offline player>]:
 		if arg-1 is online:
 
 			send title "&cKöszönjük a játékot" with subtitle "&cNem várunk vissza! :)" with fadein 0 tick
-
 			wait 1 tick
-
-			add ip of arg-1 to {crash::*}
 			crash_player(arg-1)
 
 		else:
 			send feedback("error", "&4%arg-1% &cnem elérhető!")
 
-on join:
-	# Ha már ki volt valaki crasheltetve, az többé nem jöhet fel, újra eljátszuk az egészet :D
-	if {crash::*} contains ip of player:
-		crash_player(player)
-
 local function crash_player(p: player):
 
-	# Egy kevés particle küldése a játékosnak, ez az egész client-sided
 	loop 100 times:
 		draw 2147483647 flame at location of {_p} for {_p}
 		draw 2147483647 explosion at location of {_p} for {_p}
