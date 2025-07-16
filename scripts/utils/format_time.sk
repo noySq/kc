@@ -1,0 +1,10 @@
+function format_time(time: text) :: text:
+
+	replace all " and" with "" in {_time}
+	
+	replace all "seconds", "second" with "másodperc" in {_time}
+	replace all "minutes", "minute" with "perc" in {_time}    
+	replace all "hours", "hour" with "óra" in {_time}
+	replace all "days", "day" with "nap" in {_time}
+
+	return {_time}

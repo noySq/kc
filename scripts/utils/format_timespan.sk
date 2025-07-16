@@ -1,0 +1,10 @@
+import:
+	java.lang.String
+
+function format_timespan(input: timespan) :: string:
+
+	set {_h} to floor({_input}'s seconds / 3600)
+	set {_m} to floor(mod({_input}'s minutes, 60))
+	set {_s} to floor(mod({_input}'s seconds, 60))
+
+	return String.format("%%02d:%%02d:%%02d", {_h}, {_m}, {_s})
