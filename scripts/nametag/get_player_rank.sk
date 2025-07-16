@@ -1,0 +1,7 @@
+# TODO: rank system
+function get_player_rank(p: offlineplayer) :: text:
+
+	set {_rank} to {rank::%uuid of {_p}%} ? ""
+	set {_prefix} to {ranks::%{_rank}%::prefix}
+
+	return colored {_prefix}

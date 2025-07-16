@@ -1,0 +1,8 @@
+# TOOD: some kind of resourcepack?
+
+options:
+	icon: ""
+
+function get_admin_icon(p: offlineplayer) :: text:
+
+	return {@icon} if {_p} has permission "admin"
