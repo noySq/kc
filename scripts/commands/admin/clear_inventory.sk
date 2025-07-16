@@ -1,0 +1,25 @@
+command /clearinventory [<offlineplayer>]:
+
+	prefix: kockacraft
+	aliases: ci
+	executable by: console and players
+	usage: &f/clearinventory <játékos>
+	description: Leltár törlése
+	permission: clearinventory
+	trigger:
+	
+		if arg-1 is set:
+
+			if arg-1 is not online:
+				send feedback("error", "&4%arg-1% &cnem elérhető!")
+				stop
+
+			clear inventory of arg-1
+			server_log("admin", "%get_displayname(player)% &fkitörölte %get_displayname(arg-1)% &fleltárját!")
+
+		else:
+			clear inventory of player
+			send feedback("casual", "&fKitörölted a leltárad!")
+
+on tab complete of "/clearinventory" or "/ci":
+	set tab completions for position 1 to all players

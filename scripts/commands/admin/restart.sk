@@ -1,0 +1,65 @@
+command /restart [<integer>] [<text>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/restart <másodperc> <indok>
+	description: Szerver újraindítása visszaszámlálóval
+	permission: restart
+	trigger:
+
+		if arg-1 is not set:
+			send feedback("error", "&cNem adtál meg időtartamot!")
+			stop
+
+		if arg-2 is not set:
+			send feedback("error", "&cNem adtál meg indokot!")
+			stop		
+
+		if bossbar with id "restartCountDown" is not set:
+
+			set {_bar} to boss bar with id "restartCountDown" with title "&cSzerver újraindítás" with color red with progress 100
+			add all players to {_bar}
+
+			set {_progress} to bossbar progress of {_bar}
+			set {_progressLepes} to {_progress} / arg-1
+
+			set {_timespan} to arg-1 * second
+
+			broadcast ""
+			broadcast feedback("warning", "&6A szerver újra fog indulni!")
+			broadcast feedback("warning", "&fHátralévő idő az újraindításig: &6%format_timespan({_timespan})%")
+			broadcast ""
+			broadcast feedback("warning", "&6Indok: &r%colored arg-2%")
+			broadcast ""
+			broadcast feedback("warning", "&cNe lépj ki a szerverről mert a szerver nem tudja elmenteni a pozicíódat!")
+			broadcast ""
+
+			loop arg-1 times:
+
+				if bossbar with id "restartCountDown" is set:
+
+					set {_jelenlegiProgress} to bossbar progress of {_bar}
+					set bossbar progress of {_bar} to {_jelenlegiProgress} - {_progressLepes}
+
+					remove 1 from {_num}
+
+					if {_num} = 0:
+
+						delete bossbar with id "restartCountDown"
+
+						loop all players:
+							set {restartBack::%uuid of loop-player%} to location of loop-player
+							kick loop-player due to "&4Szerver újraindítás%nl%%nl%&c%{_indok}%"
+
+						restart server
+
+					wait 1 second
+
+				else:
+					stop loop
+		else:
+			delete bossbar with id "restartCountDown"
+			broadcast feedback("success", "ßÚjraindítás félbeszakítva!")
+
+on tab complete of "/restart":
+	set tab completions for position 1 to "<másodperc>"

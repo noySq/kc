@@ -8,5 +8,5 @@ command /list:
 
 		# TODO: Account for Proxy
 		send ""
-		send server_feedback("casual", "&fJátékosok: ß%number of all players%")
+		send feedback("casual", "&fJátékosok: ß%number of all players%")
 		send ""

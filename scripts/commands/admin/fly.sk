@@ -1,0 +1,39 @@
+command /fly [<offlineplayer>]:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/fly
+	description: Játékos repülési módjának kapcsolása
+	permission: fly
+	trigger:
+
+		if arg-1 is not set:
+
+			if player's flight mode is false:
+
+				set player's flight mode to true
+				send feedback("casual", "&fRepülés &abekapcsolva&f!")
+
+			else:
+
+				set player's flight mode to false
+				send feedback("casual", "&fRepülés &ckikapcsolva&f!")
+
+		else:
+			if arg-1 is not online:
+				send feedback("error", "&4%arg-1% &cnem elérhető!")
+				stop
+
+			if arg-1's flight mode is false:
+
+				set arg-1's flight mode to true
+
+				send feedback("casual", "&fRepülés &abekapcsolva&f!") to arg-1
+				server_log("admin", "%get_displayname(player)% &abekapcsolta %get_displayname(arg-1)% &frepülés módját!")
+
+			else:
+
+				set arg-1's flight mode to false
+
+				send feedback("casual", "&fRepülés &ckikapcsolva&f!") to arg-1
+				server_log("admin", "%get_displayname(player)% &ckikapcsolta %get_displayname(arg-1)% &frepülés módját!")

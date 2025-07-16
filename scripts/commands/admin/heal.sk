@@ -1,0 +1,23 @@
+command /heal [<offlineplayer>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/heal &a<játékos>
+	description: Játékos életének feltöltése
+	permission: heal
+	trigger:
+
+		if arg-1 is not set:
+
+			heal player
+			send feedback("casual", "&fAz életed ßfeltöltve&f!")
+
+		else:
+			if arg-1 is not online:
+				send feedback("error", "&4%arg-1% &cnem elérhető!")
+				stop
+				
+			heal arg-1
+
+			server_log("admin", "%get_displayname(player)% &ffeltöltötte %get_displayname(arg-1)% &féletét!")
+			send feedback("casual", "&fAz életedßfeltöltve&f!") to arg-1

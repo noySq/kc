@@ -8,12 +8,12 @@ command /helpop [<text>]:
 	
 		if arg-1 is not set:
 			cancel cooldown
-			send server_feedback("error", "&cHasználat: &c/helpop &4<üzenet>")
+			send feedback("error", "&cHasználat: &c/helpop &4<üzenet>")
 			stop
 		
 		# TODO: Discord hook
 		if size of all players where [input has permission "log"] = 0:
-			send server_feedback("warning", "&fNincs elérhető &c&lADMIN&f, értesítve lettek &9Discordon&f!")
+			send feedback("warning", "&fNincs elérhető &c&lADMIN&f, értesítve lettek &9Discordon&f!")
 			stop
 
 		server_log("HELPOP", "")

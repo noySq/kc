@@ -1,0 +1,67 @@
+command /gamemode [<text>] [<offlineplayer>]:
+
+	prefix: kockacraft
+	aliases: gm
+	executable by: players
+	usage: &f/gamemode <mód>
+	description: Játékosmódok változtatása
+	permission: gamemode
+	trigger:
+
+		if arg-2 is not set:
+
+			if arg-1 is "0" or "survival" or "s":
+
+				set player's gamemode to survival
+				send feedback("casual", "&fÁtváltottál &atúlélő &fmódba!")
+
+			if arg-1 is "1" or "creative" or "c":
+
+				set player's gamemode to creative
+				send feedback("casual", "&fÁtváltottál &bkreatív &fmódba!")
+
+			if arg-1 is "2" or "adventure":
+
+				set player's gamemode to adventure
+				send feedback("casual", "&fÁtváltottál &ekaland &fmódba!")
+
+			if arg-1 is "3" or "spectator":
+
+				set player's gamemode to spectator
+				send feedback("casual", "&fÁtváltottál &7szemlélő &fmódba!")
+
+		else:
+			if arg-2 is not online:
+				send feedback("error", "&4%arg-1% &cnem elérhető!")
+				stop
+
+			if arg-1 is "0" or "survival" or "s":
+
+				set arg-2's gamemode to survival
+
+				send feedback("casual", "%get_displayname(player)% &fátváltott téged &atúlélő &fmódba!")
+				server_log("admin", "%get_displayname(player)% &fátváltotta %get_displayname(arg-2)% &fmódját &2túlélőbe&f!")
+
+			if arg-1 is "1" or "creative" or "c":
+
+				set arg-2's gamemode to creative
+
+				send feedback("casual", "%get_displayname(player)% &fátváltott téged &bkreatív &fmódba!")
+				server_log("admin", "%get_displayname(player)% &fátváltotta %get_displayname(arg-2)% &fmódját &bkreatívba&f!")
+
+			if arg-1 is "2" or "adventure":
+
+				set arg-2's gamemode to adventure
+
+				send feedback("casual", "%get_displayname(player)% &fátváltott téged &ekaland &fmódba!")
+				server_log("admin", "%get_displayname(player)% &fátváltotta %get_displayname(arg-2)% &fmódját &ekalandba&f!")
+
+			if arg-1 is "3" or "spectator":
+
+				set arg-2's gamemode to spectator
+
+				send feedback("casual", "%get_displayname(player)% &fátváltott téged &7szemlélő &fmódba!")
+				server_log("admin", "%get_displayname(player)% &fátváltotta %get_displayname(arg-2)% &fmódját &7szemlélőbe&f!")
+
+on tab complete of "/gamemode" or "/gm":
+	set tab completions for position 1 to "survival", "creative", "adventure", "spectator"

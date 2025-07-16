@@ -1,0 +1,27 @@
+command /vanish:
+
+	prefix: kockacraft
+	aliases: v
+	executable by: players
+	usage: &f/vanish
+	description: Eltünés a játékosok elől
+	permission: vanish
+	trigger:
+
+		if (metadata "vanish" of player) is not set:
+
+			hide player from all players where [input doesn't have permission "vanish"]
+			apply infinite invisibility without any particles whilst hiding the potion icon to player
+			
+			set (metadata "vanish" of player) to true
+
+			server_log("admin", "%get_displayname(player)% &celtünt a játékosok elől!")
+
+		else:
+
+			reveal player from all players
+			remove invisibility from player
+			
+			delete (metadata "vanish" of player)
+
+			server_log("admin", "%get_displayname(player)% &amegjelent a játékosok előtt!")

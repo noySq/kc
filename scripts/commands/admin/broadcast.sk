@@ -1,0 +1,20 @@
+command /broadcast [<text>]:
+
+	prefix: kockacraft
+	aliases: bc
+	executable by: console and players
+	usage: &f/bc <üzenet>
+	description: Globális üzenet küldése a chatre
+	permission: broadcast
+	trigger:
+
+		if arg-1 is set:
+			broadcast ""
+			broadcast feedback("warning", colored arg-1)
+			broadcast ""
+
+		else:
+			send feedback("error", "&c/broadcast <szöveg>")
+
+on tab complete of "/broadcast" or "/bc":
+	set tab completions for position 1 to "<szöveg>"

@@ -1,0 +1,19 @@
+command /commandspy:
+
+	aliases: cmdspy
+	prefix: kockacraft
+	executable by: players
+	usage: &f/cmdspy
+	description: Játékosok által küldött parancsok kiiratása
+	permission: commandspy
+	trigger:
+
+		if (metadata "cmdSpy" of player) is not set:
+
+			set (metadata "cmdSpy" of player) to true
+			server_log("cmdspy", "&aBekapcsolva %get_displayname(player)% &fszámára!")
+
+		else:
+
+			delete (metadata "cmdSpy" of player)
+			server_log("cmdspy", "&cKikapcsolva %get_displayname(player)% &fszámára!")

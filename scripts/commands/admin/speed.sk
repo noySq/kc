@@ -1,0 +1,37 @@
+command /speed [<number>] [<offlineplayer>]:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/speed <0-1>
+	description: Sebesség állítása
+	permission: speed
+	trigger:
+	
+		if arg-1 is not set:
+			send feedback("error", "&cAdj meg egy számot 0 és 1 között!")
+			stop
+	
+		if arg-2 is not set:
+			if player is on ground:
+				set player's walk speed to arg-1
+				send feedback("casual", "&fSétálási sebességed beállítva erre: ß%arg-1%")
+				
+			else:
+				set player's flight speed to arg-1
+				send feedback("casual", "&fRepülési sebességed beállítva erre: ß%arg-1%")
+		
+		else:
+			if arg-2 is not online:
+				send feedback("error", "&4%arg-1% &cnem elérhető!")
+				stop
+
+			if arg-2 is on ground:
+				set arg-2's walk speed to arg-1
+				server_log("admin", "%get_displayname(player)% &fmegváltoztatta %get_displayname(arg-2)% &fséta sebességét erre: ß%arg-1%")
+	
+			else:
+				set arg-2's flight speed to arg-1
+				server_log("admin", "%get_displayname(player)% &fmegváltoztatta %get_displayname(arg-2)% &frepülési sebességét erre: ß%arg-1%")
+
+on tab complete of "/speed":
+	set tab completions for position 1 to "<0-1>"

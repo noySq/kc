@@ -32,15 +32,15 @@ on tab complete of "/message", "/m", "/msg", "/tell", "/whisper", "/w":
 local function private_message(p: player, target: offlineplayer, message: text):
 
 	if {_message} is not set:
-		send server_feedback("error", {@no-message}) to {_p}
+		send feedback("error", {@no-message}) to {_p}
 		stop
 	
 	if {_target} is not online:
-		send server_feedback("error", {@target-offline}) to {_p}
+		send feedback("error", {@target-offline}) to {_p}
 		stop
 		
-	send server_feedback("casual", {@sending-format}) to {_p}
-	send server_feedback("casual", {@receive-format}) to {_target}
+	send feedback("casual", {@sending-format}) to {_p}
+	send feedback("casual", {@receive-format}) to {_target}
 
 	set (metadata "reply" of {_p}) to {_target}
 	set (metadata "reply" of {_target}) to {_p}

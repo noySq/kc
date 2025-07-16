@@ -1,0 +1,24 @@
+command /clearchat [<text>]:
+
+	prefix: kockacraft
+	aliases: cc
+	executable by: console and players
+	usage: &f/clearchat
+	description: Chat kitörlése
+	permission: clearchat
+	trigger:
+
+		if arg-1 = "all":
+			loop 100 times:
+				broadcast ""
+
+		else:
+			loop {-signatures::*}:
+				set {_s} to loop-value
+				remove all players where [input does not have permission "chat"] from {_s}
+
+			delete {-signatures::*}
+			server_log("admin", "%get_displayname(player)% &fkitörölte a játékosok chatjét!")
+
+on tab complete of "/clearchat" or "/cc":
+	set tab completions for position 1 to "all"
