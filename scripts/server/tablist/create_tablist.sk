@@ -2,8 +2,8 @@ on load:
 	create new section with arguments variables {_p} stored in {-section::tablist}:
 
 		# Data to be showed on the tablist
-		set {_server::name} to mini message from "test"
-		set {_server::domain} to "&7&otest.hu"
+		set {_server::name} to mini message from {config::server::motd}
+		set {_server::domain} to {config::server::domain}
 		set {_balance} to 123
 		set {_online} to number of all players
 		set {_max} to max player count
