@@ -1,0 +1,17 @@
+function anti_spam(p: player, limit: timespan) :: boolean:
+
+	if {_p} has permission "admin":
+		stop
+
+	set {_time} to (metadata "chat_cooldown" of {_p})
+	set {_time_diff} to difference between now and {_time} ? {_limit}
+
+	set (metadata "chat_cooldown" of {_p}) to now
+
+	if {_time_diff} < {_limit}:
+		return true
+
+	return false
+
+on quit:
+	delete (metadata "chat_cooldown" of player)

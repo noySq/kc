@@ -1,0 +1,24 @@
+options:
+	unknown-command: "&6Ismeretlen parancs! &7&o[/%command%]"
+
+on load:
+	loop all script commands:
+		if permission of command loop-value is "":
+			add loop-value to {-command_list::*}
+
+on send command list:
+	if player has permission "admin":
+		stop
+
+	set command list to {-command_list::*}
+
+on command:
+	if executor is console:
+		stop
+
+	if executor has permission "admin":
+		stop
+
+	if {-command_list::*} doesn't contain command:
+		send feedback("warning", {@unknown-command})
+		cancel event
