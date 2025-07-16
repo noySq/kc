@@ -34,4 +34,7 @@ function feedback(type: text, message: text, silent: boolean = false) :: text:
 	if {_silent} = false:
 		play sound {_sound} with volume 0.2 to {_p}
 
+	# Replace special character with color code
+	replace every "ß" in {_message} with {config::color::main}
+
 	return "%{_prefix}% &8| &r%colored {_message}%"
