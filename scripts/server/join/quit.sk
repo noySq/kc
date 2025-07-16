@@ -1,0 +1,6 @@
+options:
+	quit-message: "%player% &clecsatlakozott!"
+
+on quit:
+	set quit message to ""
+	send action bar feedback("casual", {@quit-message}, true) to all players

@@ -1,0 +1,42 @@
+on load:
+	create new section with arguments variables {_p} stored in {-section::tablist}:
+
+		# Data to be showed on the tablist
+		set {_server::name} to mini message from {config::server::motd}
+		set {_server::domain} to {config::server::domain}
+		set {_balance} to 123
+		set {_online} to number of all players
+		set {_max} to max player count
+		set {_ping} to ping of {_p}
+		set {_mspt} to average tick time
+
+		# Header
+		add "%nl%" to {_header::*}
+		add "%{_server::name}%" to {_header::*}
+		add nl to {_header::*}
+		add "&7🕑 %now%" to {_header::*}
+		add nl to {_header::*}
+
+		# Footer
+		add "%nl%" to {_footer::*}
+		add "     &8Ping: ß%{_ping}% &7| &8MSPT: ß%{_mspt}%     " to {_footer::*}
+		add nl to {_footer::*}
+		add nl to {_footer::*}
+		add "&2%{_balance}%$" to {_footer::*}
+		add nl to {_footer::*}
+		add nl to {_footer::*}
+		add "ß%{_online}% &7/ ß%{_max}%" to {_footer::*}
+		add nl to {_footer::*}
+		add "%{_server::domain}%" to {_footer::*}
+		add nl to {_footer::*}
+
+		# Merge lists
+		set {_header} to (join {_header::*})
+		set {_footer} to (join {_footer::*})
+
+		# Replace special character with color code
+		replace every "ß" in ({_header}, {_footer}) with {config::color::main}
+
+		# Set tablist
+		set tablist header of {_p} to colored {_header}
+		set tablist footer of {_p} to colored {_footer}

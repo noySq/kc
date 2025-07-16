@@ -1,0 +1,3 @@
+function set_tablist(p: player):
+
+	run section {-section::tablist} async with arguments {_p} and wait
