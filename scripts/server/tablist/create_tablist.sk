@@ -11,14 +11,14 @@ on load:
 		set {_mspt} to average tick time
 
 		# Header
-		add "%nl%" to {_header::*}
+		add nl to {_header::*}
 		add "%{_server::name}%" to {_header::*}
 		add nl to {_header::*}
 		add "&7🕑 %now%" to {_header::*}
 		add nl to {_header::*}
 
 		# Footer
-		add "%nl%" to {_footer::*}
+		add nl to {_footer::*}
 		add "     &8Ping: ß%{_ping}% &7| &8MSPT: ß%{_mspt}%     " to {_footer::*}
 		add nl to {_footer::*}
 		add nl to {_footer::*}

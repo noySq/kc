@@ -5,7 +5,7 @@ options:
 on async chat:
 
 	if async chat message matches {@anti-url-regex}:
-		send server_feedback("warning", {@link-not-allowed})
+		send feedback("warning", {@link-not-allowed})
 		cancel event
 
 	set {_p} to player
