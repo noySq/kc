@@ -35,7 +35,7 @@ on load:
 		set {_footer} to (join {_footer::*})
 
 		# Replace special character with color code
-		replace every "ß" in ({_header}, {_footer}) with "&3"
+		replace every "ß" in ({_header}, {_footer}) with {config::color::main}
 
 		# Set tablist
 		set tablist header of {_p} to colored {_header}
