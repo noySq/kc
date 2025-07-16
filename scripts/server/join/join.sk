@@ -1,0 +1,6 @@
+options:
+	join-message: "%player% &acsatlakozott!"
+
+on join:
+	set join message to ""
+	send action bar feedback("casual", {@join-message}, true) to all players
