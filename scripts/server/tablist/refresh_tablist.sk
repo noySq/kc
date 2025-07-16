@@ -1,0 +1,10 @@
+on join:
+
+	# TODO: guarded while loop
+	# To prevent multiple loops running at once because of rapid reconnects
+
+	while player is online:
+
+		set_tablist(player)
+
+		wait 1 second
