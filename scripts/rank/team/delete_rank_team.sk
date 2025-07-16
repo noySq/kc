@@ -1,0 +1,6 @@
+function delete_rank_team(rank: text):
+
+	set {_weight} to {ranks::%{_rank}%::weight}
+	set {_team} to "%{_weight}%-%{_rank}%"
+	
+	delete team named {_team}

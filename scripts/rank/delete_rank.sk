@@ -1,0 +1,21 @@
+options:
+	not-exist: "&4%{_rank}% &cnem létezik!"
+	rank-deleted: "%get_displayname({_p})% &fkitörölte a(z) ß%{_rank}% &frangot!"
+
+function delete_rank(p: player, rank: text):
+
+	if {ranks::%{_rank}%::name} is not set:
+		send feedback("error", {@not-exist}) to {_p}
+		stop
+
+	loop indices of {rank::*}:
+		set {_target_uuid} to loop-value
+		set {_rank} to {rank::%{_target_uuid}%}
+
+		remove_rank({_target})
+
+	delete_rank_team({_rank})
+	delete {ranks::%{_rank}%::*}
+	delete {ranks::%{_rank}%}
+
+	server_log("RANK", {@rank-deleted})

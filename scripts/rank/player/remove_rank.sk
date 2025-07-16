@@ -1,0 +1,16 @@
+options:
+	has-no-rank: "&4%get_displayname({_target})% &cnem rendelkezik ranggal!"
+	rank-removed-from: "%get_displayname({_p})% &felvette %get_displayname({_target})% &frangját!"
+	rank-removed: "%get_displayname({_p})% &felvette a rangod!"
+
+function remove_rank(target: offlineplayer):
+
+	if {rank::%uuid of {_target}%} is not set:
+		stop
+
+	remove_rank_team({_target})
+	delete {rank::%uuid of {_target}%}
+	set_tablist_name({_target})
+
+	server_log("rank", {@rank-removed-from})
+	send feedback("warning", {@rank-removed}) to {_target}
