@@ -1,0 +1,6 @@
+options:
+	first-join-message: "%player% ßelőször jár itt! &8[#%number of offline players%&8]"
+
+on first join:
+	set join message to ""
+	send action bar feedback("casual", {@first-join-message}, true) to all players
