@@ -1,0 +1,15 @@
+command /tpadeny:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/tpadeny
+	description: Teleport kérelmek letíltása
+	trigger:
+
+		if (metadata "tpaOff" of player) is not set:
+			set (metadata "tpaOff" of player) to true
+			send feedback("success", "&fLetíltottad a teleport kérelmeket!")
+
+		else:
+			delete (metadata "tpaOff" of player)
+			send feedback("success", "&fMost már újra lehet teleport kérelmet küldeni neked!")

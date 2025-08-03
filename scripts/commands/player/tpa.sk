@@ -1,0 +1,42 @@
+command /tpa [<offlineplayer>]:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/tpa <játékos>
+	description: Teleport kérelem küldése egy játékos felé
+	trigger:
+
+		if arg-1 is not set:
+			send feedback("casual", "/tpa ß<játékos>")
+			stop
+
+		# if arg-1 = player:
+		# 	send feedback("error", "&cSaját magadnak nem küldhetsz teleport kérelmet!")
+		# 	stop
+
+		if arg-1 is not online:
+			send feedback("error", "&4%arg-1% &cnem elérhető!")
+			stop
+
+		if (metadata "tpa" of arg-1) is set:
+			send feedback("error", "&cMár kérvényeztek teleportálást &4%arg-1% &cfelé!")
+			stop
+
+		if (metadata "tpaOff" of arg-1) is set:
+			send feedback("error", "&4%arg-1% &cletíltotta a teleport kérelmeket!")
+			stop
+
+		set (metadata "tpa" of arg-1) to player
+		send feedback("casual", "&fTeleportálást kérvényeztél %get_displayname(arg-1)% &ffelé!")
+
+		send feedback("casual", "%get_displayname(player)% &frád szeretne teleportálni!") to arg-1
+		send feedback("casual", "ß/tpaccept &fparanccsal elfogadhatod.") to arg-1
+
+		wait 15 seconds
+
+		if (metadata "tpa" of arg-1) is set:
+
+			delete (metadata "tpa" of arg-1)
+
+			send feedback("warning", "&6Lejárt a(z) %get_displayname(arg-1)% felé küldött kérelem")
+			send feedback("warning", "&6Lejárt a teleport kérelem.") to arg-1

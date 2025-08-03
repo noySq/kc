@@ -1,0 +1,19 @@
+command /tpaccept:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/tpaccept 
+	description: Teleport kérelem elfogadása
+	trigger:
+
+		if (metadata "tpa" of player) is not set:
+			send feedback("error", "&cNem kaptál senkitől teleport kérelmet!")
+			stop
+			
+		set {_tpa_requester} to (metadata "tpa" of player)
+
+		teleport {_tpa_requester} to player
+		delete (metadata "tpa" of player)
+		
+		send feedback("success", "&aElfogadtad %get_displayname({_tpa_requester})% &akérelmét!")
+		send feedback("success", "%get_displayname(player)% &aelfogadta a kérelmed, teleportálás...") to {_tpa_requester}
