@@ -1,0 +1,12 @@
+function get_paginated_objects(page: number, elementsPerPage: number, objects: objects) :: objects:
+	
+	set {_page} to floor({_page})-1
+	set {_elementsPerPage} to floor({_elementsPerPage})
+	
+	set {_start} to ({_page} * {_elementsPerPage})
+	set {_end} to ({_start} + {_elementsPerPage})
+	
+	loop integers from ({_start} + 1) to {_end}:
+		add (loop-value)th element of {_objects::*} to {_objs::*}
+
+	return {_objs::*}

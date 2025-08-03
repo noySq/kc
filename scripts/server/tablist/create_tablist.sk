@@ -4,7 +4,7 @@ on load:
 		# Data to be showed on the tablist
 		set {_server::name} to mini message from {config::server::motd}
 		set {_server::domain} to {config::server::domain}
-		set {_balance} to {egyenleg::%uuid of {_p}%}
+		set {_balance} to format_balance({egyenleg::%uuid of {_p}%})
 		set {_online} to number of all players
 		set {_max} to max player count
 		set {_ping} to ping of {_p}
@@ -22,7 +22,7 @@ on load:
 		add "     &8Ping: ß%{_ping}% &7| &8MSPT: ß%{_mspt}%     " to {_footer::*}
 		add nl to {_footer::*}
 		add nl to {_footer::*}
-		add "&2%{_balance}%$" to {_footer::*}
+		add "%{_balance}%" to {_footer::*}
 		add nl to {_footer::*}
 		add nl to {_footer::*}
 		add "ß%{_online}% &7/ ß%{_max}%" to {_footer::*}

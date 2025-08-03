@@ -1,0 +1,13 @@
+options:
+	formatted-balance: "&2&l$&a%{_text::1}%%{_text::2}%"
+
+function format_balance_k(n: number) :: string:
+
+	set {_s::*} to split "k,M,B,T,Q,QI,S,Sp,O,N,D,U,Du,Td,Qa,Qi,Sx" at ","
+
+	set {_div} to floor( log( max( abs( {_n} ), 1 ), 1000 ))
+
+	set {_text::1} to {_n} / (1000 ^ {_div})
+	set {_text::2} to {_s::%{_div}%} ? ""
+
+	return {@formatted-balance}

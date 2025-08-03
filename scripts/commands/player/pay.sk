@@ -4,20 +4,27 @@ command /pay [<offlineplayer>] [<number>]:
 	description: Pénz küldése más játékosnak
 	trigger:
 
+		if arg-1 = player:
+			send feedback("error", "&cNem küldhetsz magadnak pénzt!")
+			stop
+
 		if arg-1 is not online:
 			send feedback("error", "&4%arg-1% &cnem elérhető!")
+			stop
 
 		if arg-2 <= 0:
 			send feedback("error", "&cNem küldhetsz kevesebbet mint 0$!")
+			stop
 
 		if {egyenleg::%uuid of player%} < arg-2:
 			send feedback("error", "&cNincs elég pénzed!")
+			stop
 
 		add arg-2 to {egyenleg::%uuid of arg-1%}
 		remove arg-2 from {egyenleg::%uuid of player%}
 
-		set {_display::sender} to rangReturnText(player)
-		set {_display::receiver} to rangReturnText(arg-1)
+		set {_display::sender} to get_displayname(player)
+		set {_display::receiver} to get_displayname(arg-1)
 		set {_formatted_money} to format_balance(arg-2)
 
 		send feedback("casual", "&fElküldtél %{_formatted_money}%&f-t %{_display::receiver}% számára")

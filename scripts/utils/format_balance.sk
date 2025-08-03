@@ -1,0 +1,8 @@
+options:
+	formatted-balance: "&2&l$&a%regex_format({_n})%"
+
+function regex_format(n: number) :: string:
+	return join (regex split "%{_n} ? 0%" by "\B(?=(\d{3})+(?!\d))") by ","
+	
+function format_balance(n: number) :: string:
+	return {@formatted-balance}

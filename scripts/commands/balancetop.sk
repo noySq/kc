@@ -25,7 +25,7 @@ command /balancetop:
 
 				set {-top::balance::%loop-index%} to loop-value
 
-				send feedback("casual", "ß%loop-index%&f. - %display_name({_target})%&f: %format_balance({_target_balance})%", true)
+				send feedback("casual", "ß%loop-index%&f. - %get_displayname({_target})%&f: %format_balance({_target_balance})%", true)
 
 				if {_num} = 10:
 					stop loop
@@ -46,6 +46,6 @@ command /balancetop:
 
 				add loop-value to {-top::balance::*}
 
-				send feedback("casual", "ß%loop-index%&f. - %display_name({_target})%&f: %format_balance({_target_balance})%", true)
+				send feedback("casual", "ß%loop-index%&f. - %get_displayname({_target})%&f: %format_balance({_target_balance})%", true)
 
 		send ""
