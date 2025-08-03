@@ -4,7 +4,7 @@ on load:
 		# Data to be showed on the tablist
 		set {_server::name} to mini message from {config::server::motd}
 		set {_server::domain} to {config::server::domain}
-		set {_balance} to 123
+		set {_balance} to {egyenleg::%uuid of {_p}%}
 		set {_online} to number of all players
 		set {_max} to max player count
 		set {_ping} to ping of {_p}

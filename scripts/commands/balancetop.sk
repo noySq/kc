@@ -1,0 +1,51 @@
+command /balancetop:
+
+	prefix: kockacraft
+	aliases: baltop
+	executable by: console and players
+	usage: &f/balancetop
+	description: Egyenleg toplista megtekintése
+	trigger:
+
+		if difference between now and {-top::balance::renewed} <= 10 minutes:
+
+			send ""
+			send feedback("warning", "&fUtoljára frissítve: ß%{-top::balance::renewed}%")
+			send ""
+
+			loop {-top::balance::*}:
+
+				# Egy kis hack, mert nem lehet ellenőrízni, hogy az index egy szám-e XD
+				loop-index != "renewed"
+
+				add 1 to {_num}
+
+				set {_target} to (loop-value parsed as offlineplayer)
+				set {_target_balance} to {egyenleg::%loop-value%}
+
+				set {-top::balance::%loop-index%} to loop-value
+
+				send feedback("casual", "ß%loop-index%&f. - %display_name({_target})%&f: %format_balance({_target_balance})%", true)
+
+				if {_num} = 10:
+					stop loop
+
+		else:
+
+			send ""
+			send feedback("warning", "&fUtoljára frissítve: ßMOST")
+			send ""
+
+			set {-top::balance::renewed} to now
+			set {_top::*} to get_paginated_objects(1, 10, sorted indices of {egyenleg::*} in descending order)
+
+			loop {_top::*}:
+
+				set {_target} to (loop-value parsed as offlineplayer)
+				set {_target_balance} to {egyenleg::%loop-value%}
+
+				add loop-value to {-top::balance::*}
+
+				send feedback("casual", "ß%loop-index%&f. - %display_name({_target})%&f: %format_balance({_target_balance})%", true)
+
+		send ""

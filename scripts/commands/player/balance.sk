@@ -1,0 +1,22 @@
+command /balance [<offlineplayer>]:
+
+	prefix: kockacraft
+	aliases: bal, money, penz, egyenleg
+	executable by: console and players
+	usage: &f/balance &a<játékos>
+	description: Egyenleg megtekintése
+	trigger:
+
+		if arg-1 is not set:
+
+			set {_bal} to {egyenleg::%uuid of player%} ? 0
+			send feedback("casual", "&fEgyenleged: %format_balance({_bal})%")
+			
+		else:
+			
+			if arg-1 did not played before:
+				send feedback("warning", "&6%arg-1% még nem járt a szerveren!")
+				stop
+			
+			set {_bal} to {egyenleg::%uuid of arg-1%} ? 0
+			send feedback("casual", "%display_name(arg-1)% &fegyenlege: %format_balance({_bal})%")
