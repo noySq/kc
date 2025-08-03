@@ -2,6 +2,10 @@ options:
 	wait: "&6Várj egy kicsit!"
 
 on command:
+
+	if executor is console:
+		stop
+
 	if anti_spam(player, 1 second) = true:
 		send feedback("warning", {@wait})
 		cancel event
