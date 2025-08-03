@@ -1,0 +1,21 @@
+command /delhome [<text>]:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/delhome &a<otthon neve>
+	description: Otthonod törlése
+	trigger:
+	
+		if arg-1 is not set:
+			send feedback("error", "&cAdd meg az otthonod nevét amit törölni szeretnél!")
+			stop
+
+		if {home::%uuid of player%::%arg-1%} is not set:
+			send feedback("error", "&cNincsen otthonod &4%arg-1% &cnéven!")
+			stop
+
+		delete {home::%uuid of player%::%arg-1%}
+		send feedback("success", "ß%arg-1% &fnevű otthonod kitörölve!")
+
+on tab complete of "/delhome":
+	set tab completions for position 1 to indices of {home::%uuid of player%::*}

@@ -1,0 +1,6 @@
+function get_maximum_homes(p: player) :: integer:
+
+	if {_p} has permission "home.more-max-home":
+		return 10
+	else:
+		return 3

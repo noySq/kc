@@ -1,0 +1,29 @@
+command /sethome [<text>]:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/sethome <otthon neve>
+	description: Otthon lerakása a pozicíódra
+	trigger:
+	
+		if arg-1 is not set:
+			send feedback("error", "&cAdj egy nevet az otthonodnak!")
+			stop
+
+		if {home::%uuid of player%::%arg-1%} is set:
+			send feedback("error", "&cMár van otthonod &4%arg-1% &cnéven!")
+			stop
+
+		if (size of {home::%uuid of player%::*}) >= get_maximum_homes(player):
+			send feedback("error", "&cElérted a maximum otthonok számát! &8(%get_maximum_homes(player)%)")
+			stop
+			
+		if arg-1 contains " ":
+			send feedback("error", "&cAz otthonod neve nem tartalmazhat szóközt!")
+			stop
+
+		set {home::%uuid of player%::%arg-1%} to location of player
+		send feedback("success", "ß%arg-1% &fnevű otthonod elmentve a pozíciódra!")
+
+on tab complete of "/sethome":
+	set tab completions for position 1 to "<otthon neve>"	
