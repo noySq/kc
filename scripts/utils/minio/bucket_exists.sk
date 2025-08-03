@@ -1,0 +1,9 @@
+import:
+	io.minio.BucketExistsArgs
+
+function bucket_exists(bucketName: text) :: boolean:
+
+	if {minio::client}.bucketExists(BucketExistsArgs.builder().bucket({_bucketName}).build()):
+		return true
+
+	return false

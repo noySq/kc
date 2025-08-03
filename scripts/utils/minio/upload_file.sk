@@ -1,0 +1,14 @@
+import:
+	io.minio.UploadObjectArgs
+
+function upload_file(bucketName: text, objectName: text):
+
+	if bucket_exists({_bucketName}) = true:
+
+		broadcast "Upload started..."
+
+		set {_path} to "%{_bucketName}%/%{_objectName}%"
+		set {_args} to UploadObjectArgs.builder().bucket({_bucketName}).object({_objectName}).filename({_path}).build()
+		{minio::client}.uploadObject({_args})
+
+		broadcast "Upload ended..."
