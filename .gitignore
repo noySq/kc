@@ -5,3 +5,4 @@ features.sk
 variables.csv
 config.sk
 test.sk
+scripts/utils/minio/initialize.sk
