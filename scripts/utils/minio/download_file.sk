@@ -5,10 +5,9 @@ function download_file(bucketName: text, objectName: text, path: text):
 
 	if bucket_exists({_bucketName}) = true:
 
-		broadcast "Download started..."
+		debug("Letöltés megkezdődött", script)
 
-		set {_path} to "%{_bucketName}%/%{_objectName}%"
 		set {_args} to DownloadObjectArgs.builder().bucket({_bucketName}).object({_objectName}).filename({_path}).build()
 		{minio::client}.downloadObject({_args})
 
-		broadcast "Download ended..."
+		debug("Letöltés befejeződött", script)

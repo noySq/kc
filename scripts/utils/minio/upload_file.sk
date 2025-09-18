@@ -1,14 +1,13 @@
 import:
 	io.minio.UploadObjectArgs
 
-function upload_file(bucketName: text, objectName: text):
+function upload_file(bucketName: text, objectName: text, path: text):
 
 	if bucket_exists({_bucketName}) = true:
 
-		broadcast "Upload started..."
+		debug("Feltöltés megkezdődött", script)
 
-		set {_path} to "%{_bucketName}%/%{_objectName}%"
 		set {_args} to UploadObjectArgs.builder().bucket({_bucketName}).object({_objectName}).filename({_path}).build()
 		{minio::client}.uploadObject({_args})
 
-		broadcast "Upload ended..."
+		debug("Feltöltés befejeződött", script)
