@@ -1,0 +1,9 @@
+import:
+	io.minio.StatObjectArgs
+
+function object_exists(bucketName: text, objectName: text) :: boolean:
+
+	if {minio::client}.statObject(StatObjectArgs.builder().bucket({_bucketName}).object({_objectName}).build()):
+		return true
+
+	return false
