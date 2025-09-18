@@ -1,0 +1,7 @@
+function increment_island_id():
+
+	set {_current_ID} to {island::ID}
+	debug("%{_current_ID}% -> %{_current_ID} + 1%", script)
+
+	set {island::ID} to ({_current_ID} + 1)
+	debug("%{island::ID}%", script)

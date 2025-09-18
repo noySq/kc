@@ -1,0 +1,6 @@
+function get_next_island_id() :: integer:
+
+	set {_current_ID} to {island::ID}
+	debug("%{_current_ID}% -> %{_current_ID} + 1%", script)
+
+	return {_current_ID} + 1
