@@ -1,0 +1,9 @@
+function create_void_world(ID: integer):
+
+	set {_world} to world creator named "%{_ID}%"
+	set world type option of {_world} to flat
+	set generator settings option of {_world} to "{""biome"": ""minecraft:plains"",""layers"": []}}"
+	set should generate structures option of {_world} to false
+	load world from {_world}
+
+	debug("betöltve", script) if world("%{_ID}%") is loaded

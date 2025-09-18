@@ -1,0 +1,9 @@
+function delete_world(ID: integer):
+
+	set {_world} to world("%{_ID}%")
+
+	if {_world} is not set:
+		stop
+
+	unload world {_world}
+	delete world file for {_world}
