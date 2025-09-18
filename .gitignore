@@ -6,4 +6,4 @@ variables.csv
 config.sk
 test.sk
 scripts/island/schematics/
-scripts/utils/minio/
+scripts/utils/minio/initialize.sk
