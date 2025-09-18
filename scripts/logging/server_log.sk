@@ -13,4 +13,4 @@ function server_log(type: text, message: text):
 	replace every "ß" in {_message} with {config::color::main}
 
 	loop {_sendTo}:
-		send {@message-format} to loop-player
+		send {@message-format} to loop-value
