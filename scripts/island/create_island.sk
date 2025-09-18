@@ -16,3 +16,4 @@ function create_island(p: player):
 	set_island_data({_p}, {_ID})
 	set_player_data({_p})
 	paste_island_schematic({_ID})
+	teleport_player({_p}, {_ID})

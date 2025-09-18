@@ -1,9 +1,13 @@
 function delete_island(ID: integer, deleteData: boolean = false):
 
+	if {_deleteData} = false:
+		save_island_schematic({_ID})
+
+	loop get_all_player_on_island({_ID}):
+		spawn(loop-value)
+
 	delete_bound({_ID})
 	delete_world({_ID})
-
-	save_island_schematic({_ID})
 
 	if {_deleteData} = true:
 

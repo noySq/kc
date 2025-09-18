@@ -1,0 +1,7 @@
+function get_all_player_on_island(ID: integer) :: players:
+
+    set {_bound} to get_bound({_ID})
+    loop bound players in {_bound}:
+        add loop-value to {_players::*}
+
+    return {_players::*}

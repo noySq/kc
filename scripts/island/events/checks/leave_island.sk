@@ -1,0 +1,7 @@
+on bound exit:
+
+	set {_ID} to (id of event-bound) parsed as integer
+	set {_middle} to get_island_middle({_ID})
+
+	teleport player to {_middle}
+	debug("Kilépés", script)
