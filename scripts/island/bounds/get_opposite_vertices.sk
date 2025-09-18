@@ -1,0 +1,8 @@
+function get_opposite_vertices(ID: integer) :: locations:
+
+    set {_bound} to get_bound({_ID})
+
+    set {_location::1} to bound lesser corner of {_bound}
+    set {_location::2} to bound greater corner of {_bound}
+
+    return {_location::*}
