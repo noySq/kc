@@ -10,6 +10,7 @@ command /afk:
 	cooldown: 1 minutes
 	cooldown message: %feedback("error", "&cEzt a parancsot csak &41 &cpercenként használhatod!")%
 	trigger:
+
 		if player.isAfk() = false:
 			player.setAfk(true)
 

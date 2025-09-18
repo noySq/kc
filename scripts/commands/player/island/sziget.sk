@@ -1,0 +1,31 @@
+command /sziget [<text>] [<text>]:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/sziget
+	description: Sziget rendszer
+	trigger:
+
+		set {_ID} to get_player_island_id(player)
+
+		if arg-1 = "letrehoz":
+			create_island(player)
+
+		else if arg-1 = "torol":
+			delete_island({_ID})
+
+		else if arg-1 = "teleport":
+			set {_island} to (arg-2 ? {_ID}) parsed as integer
+			teleport_player(player, {_island})
+
+		else:
+			send feedback("casual", "/sziget letrehoz - létrehoz egy szigetet")
+			send feedback("casual", "/sziget torol - ideiglenesen törlöd a szigeted")
+			send feedback("casual", "/sziget teleport <ID> - tpzel a szigetedre vagy más szigetre")
+
+on tab complete of "/sziget":
+
+	set tab completions for position 1 to "letrehoz", "torol", "teleport"
+
+	if tab arg-1 = "teleport":
+		set tab completions for position 2 to "<Sziget ID>"
