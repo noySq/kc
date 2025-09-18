@@ -1,0 +1,18 @@
+function create_island(p: player):
+
+	set {_ID} to get_next_island_id()
+
+	if player_has_island({_p}) = true:
+		stop
+
+	if player_has_island_cooldown({_p}) = true:
+		stop
+
+	increment_island_id()
+	#set_player_island_cooldown({_p})
+
+	create_void_world({_ID})
+	create_bound({_ID})
+	set_island_data({_p}, {_ID})
+	set_player_data({_p})
+	paste_island_schematic({_ID})

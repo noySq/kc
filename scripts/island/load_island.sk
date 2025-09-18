@@ -1,0 +1,6 @@
+function load_island(ID: integer):
+
+    create_void_world({_ID})
+    create_bound({_ID})
+
+    paste_island_schematic({_ID})

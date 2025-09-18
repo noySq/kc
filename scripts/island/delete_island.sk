@@ -1,0 +1,13 @@
+function delete_island(ID: integer, deleteData: boolean = false):
+
+	delete_bound({_ID})
+	delete_world({_ID})
+
+	save_island_schematic({_ID})
+
+	if {_deleteData} = true:
+
+		loop get_island_members({_ID}):
+			delete_player_data(loop-value parsed as offlineplayer)
+
+		delete_island_data({_ID})
