@@ -1,0 +1,8 @@
+function player_has_island_cooldown(p: player) :: boolean:
+
+	if (metadata "island_generation" of {_p}) is set:
+		debug("true", script)
+		return true
+
+	debug("false", script)
+	return false

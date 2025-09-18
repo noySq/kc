@@ -1,0 +1,4 @@
+function delete_player_data(p: player):
+
+	delete {island::player::%uuid of {_p}%::*}
+	debug("%{island::player::%uuid of {_p}%::*}%", script)

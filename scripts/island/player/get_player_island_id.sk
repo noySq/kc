@@ -1,0 +1,3 @@
+function get_player_island_id(p: player) :: integer:
+
+	return {island::player::%uuid of {_p}%::ID}
