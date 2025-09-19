@@ -1,0 +1,8 @@
+function set_border_effect(p: player, ID: integer):
+
+	set {_middle} to get_island_middle({_ID})
+
+	set worldborder of {_p} to a virtual worldborder:
+		set worldborder radius to {config::island::size}
+		set worldborder center of event-worldborder to {_middle}
+		set worldborder warning distance of event-worldborder to -1
