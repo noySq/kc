@@ -1,0 +1,38 @@
+import:
+	com.sk89q.worldedit.bukkit.BukkitWorld
+	com.sk89q.worldedit.extent.clipboard.Clipboard
+	com.sk89q.worldedit.extent.clipboard.io.ClipboardFormats
+	com.sk89q.worldedit.math.BlockVector3
+	com.sk89q.worldedit.regions.CuboidRegion
+	java.io.File
+	java.nio.file.Files
+	java.nio.file.Paths
+
+
+on load:
+	create new section with arguments variables {_ID} stored in {-section::paste_island_schematic}:
+
+		set {_file_name} to "%{_ID}%.schem"
+
+		if object_exists("islands", {_file_name}) = false:
+			set {_file_name} to "1.schem"
+
+		set {_file_location} to {config::island::save_location}
+		set {_absolute_path} to join {_file_location} and {_file_name}
+
+		Files.deleteIfExists(Paths.get({_absolute_path}))
+		download_file("islands", {_file_name}, {_absolute_path})
+
+		set {_middle} to get_island_middle({_ID})
+
+		set {_file} to new File({_absolute_path})
+		set {_location} to BlockVector3.at({_middle}.getBlockX(), {_middle}.getBlockY(), {_middle}.getBlockZ())
+		set {_world} to new BukkitWorld({_middle}.getWorld())
+
+		debug("File path: ß%{_file_location}%", script)
+		debug("Absolute path: ß%{_absolute_path}%", script)
+		debug("File: ß%{_file}%", script)
+		debug("Location: ß%{_location}%", script)
+		debug("World: ß%{_world}%", script)
+
+		ClipboardFormats.findByFile({_file}).load({_file}).paste({_world}, {_location}, false, false, false, null)
