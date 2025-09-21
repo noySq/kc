@@ -1,0 +1,73 @@
+on load:
+
+	set {_gui} to chest inventory with 6 rows named "Sziget"
+	set slot (integers between 0 and 8) of {_gui} to black stained glass pane
+	set slot (integers between 45 and 53) of {_gui} to black stained glass pane
+
+	set slot 19 of {_gui} to island_create_button()
+	set slot 21 of {_gui} to island_teleport_button()
+	set slot 23 of {_gui} to island_list_button()
+	set slot 25 of {_gui} to island_setting_button()
+	set slot 29 of {_gui} to island_members_button()
+	set slot 53 of {_gui} to island_leave_button()
+
+	set {island::gui::main} to {_gui}
+
+local function island_create_button() :: item:
+
+	set {_item} to grass block
+	set name of {_item} to "&2Sziget létrehozás"
+
+	add "&7Kattints ide egy sziget létrehozásáért" to lore of {_item}
+
+	return {_item}
+
+local function island_teleport_button() :: item:
+
+	set {_item} to ender pearl item
+	set name of {_item} to "&bTeleportálás a szigetre"
+
+	add "&7Kattints ide, hogy elteleportálj a szigetedre" to lore of {_item}
+
+	return {_item}
+
+local function island_list_button() :: item:
+
+	set {_item} to paper
+	set name of {_item} to "&6Szigetek listája"
+
+	add "&7Kattints ide a szigetek kilistázásáért" to lore of {_item}
+
+	return {_item}
+
+local function island_setting_button() :: item:
+
+	set {_item} to repeater
+	set name of {_item} to "&cSziget beállítások"
+
+	add "&7Kattints ide a sziget beállításokhoz" to lore of {_item}
+
+	return {_item}
+
+local function island_members_button() :: item:
+
+	set {_item} to player head
+	set name of {_item} to "&3Sziget tagok kezelése"
+
+	add "&7Kattints ide a sziget tagok kezeléséhez" to lore of {_item}
+
+	return {_item}
+
+local function island_leave_button() :: item:
+
+	set {_item} to barrier
+	set name of {_item} to "&4Sziget elhagyása"
+
+	add "&7Kattints ide a sziget elhagyásához" to lore of {_item}
+	add nl to lore of {_item}
+	add "&cFigyelem!" to lore of {_item}
+	add nl to lore of {_item}
+	add "&cHa a saját szigetedről lépsz ki, az törléssel jár!" to lore of {_item}
+	add "&cA sziget kitörlés nem visszavonható!" to lore of {_item}
+
+	return {_item}

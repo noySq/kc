@@ -7,25 +7,18 @@ command /sziget [<text>] [<text>]:
 	trigger:
 
 		set {_ID} to get_player_island_id(player)
+		if arg-1 = "meghiv":
+			invite_player({_ID}, (arg-2 parsed as offlineplayer), player)
 
-		if arg-1 = "letrehoz":
-			create_island(player)
+		else if arg-1 = "elfogad":
+			accept_invite(player)
 
-		else if arg-1 = "torol":
-			delete_island({_ID})
+		else if arg-1 = "kilep":
+			leave_island(player)
 
-		else if arg-1 = "teleport":
-			set {_island} to (arg-2 ? {_ID}) parsed as integer
-			teleport_player(player, {_island})
+		else if arg-1 = "kirug":
+			if is_player_island_admin({_ID}, player) = true:
+				kick_player({_ID}, (arg-2 parsed as offlineplayer))
 
 		else:
-			send feedback("casual", "/sziget letrehoz - létrehoz egy szigetet")
-			send feedback("casual", "/sziget torol - ideiglenesen törlöd a szigeted")
-			send feedback("casual", "/sziget teleport <ID> - tpzel a szigetedre vagy más szigetre")
-
-on tab complete of "/sziget":
-
-	set tab completions for position 1 to "letrehoz", "torol", "teleport"
-
-	if tab arg-1 = "teleport":
-		set tab completions for position 2 to "<Sziget ID>"
+			open {island::gui::main} for player
