@@ -1,0 +1,47 @@
+command /help [<integer = 1>]:
+	executable by: players
+	usage: &f/help <oldal szám>
+	description: Parancs lista megtekintése
+	trigger:
+
+		if player is op:
+			set {_cmds::*} to all script commands
+		else:
+			set {_cmds::*} to {-command_list::*}
+
+		send ""
+		send "&7&lPARANCS LISTA [%arg-1%]"
+		send "&7&o(húzd rá a kurzort a parancsokra további információért)"
+
+		loop get_paginated_objects(arg-1, 5, {_cmds::*}):
+
+			# command's informations
+			set {_description} to description of command loop-value
+			set {_aliases::*} to "%aliases of command loop-value ? "&c-"%"
+			set {_usage} to usage of command loop-value
+
+			# tooltip
+			add "%{_description}%" to {_tooltip::*}
+			add nl to {_tooltip::*}
+			add nl to {_tooltip::*}
+			add "&fRövídítés(ek): &a%{_aliases::*}%" to {_tooltip::*}
+			add nl to {_tooltip::*}
+			add "&fHasználat: &f%{_usage}%" to {_tooltip::*}
+
+			# removing english things
+			set {_tooltip} to "%{_tooltip::*}%"
+			replace all ("," and " and") with "" in {_tooltip}
+
+			# sending the command
+			set {_format} to "<tooltip:%{_tooltip}%>/ß%loop-value%"
+			send formatted feedback("casual", {_format})
+
+			# reset the tooltip
+			delete {_tooltip::*}
+
+			# send command for next page for ease of use
+			if loop-counter = 5:
+				set {_next_page} to (arg-1 + 1)
+				send ""
+				send formatted feedback("casual", "<command:/%command% %{_next_page}%>ßKattints ide a következő oldalért")
+

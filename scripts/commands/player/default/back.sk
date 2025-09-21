@@ -1,0 +1,23 @@
+command /back:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/afk
+	description: Visszatérés a halálod helyszínére
+	trigger:
+
+		if (metadata "back_death" of player) is set:
+			teleport player to (metadata "back_death" of player)
+			delete (metadata "back_death" of player)
+
+		else if (metadata "back_periodical" of player) is set:
+			teleport player to (metadata "back_periodical" of player)
+			delete (metadata "back_periodical" of player)
+
+on death:
+    set (metadata "back_death" of victim) to location of victim
+
+every 5 minutes:
+	loop all players:
+		if (metadata "back_periodical" of loop-player) isn't set:
+			set (metadata "back_periodical" of loop-player) to location of loop-player
