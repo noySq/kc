@@ -1,0 +1,21 @@
+options:
+	excluded-worlds: "Spawn" or "Main"
+
+function check_interact(p: player, obj: object) :: boolean:
+
+	if world of {_obj} contains {@excluded-worlds}:
+		stop
+
+	set {_ID} to id of first element of bounds at {_obj}
+	debug("ID: %{_ID}%", script)
+
+	if {_ID} is not set:
+		debug("Result: false", script)
+		return false
+
+	set {_members::*} to {island::data::%{_ID}%::members::*}
+	debug("Members: %{_members::*}%", script)
+
+	if {_members::*} does not contain {_p}:
+		debug("Result: true", script)
+		return true

@@ -1,3 +1,0 @@
-function get_island_middle(ID: integer) :: location:
-
-	return location(0, 64, 0, world("%{_ID}%"))

@@ -1,0 +1,4 @@
+function remove_island_member(p: player, ID: integer):
+
+    delete {island::player::%uuid of {_p}%::ID}
+    remove {_p} from {island::data::%{_ID}%::members::*}

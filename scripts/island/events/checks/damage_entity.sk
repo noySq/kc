@@ -1,0 +1,6 @@
+on damage:
+
+	attacker is player
+
+	if check_interact(attacker, victim) = true:
+		cancel event

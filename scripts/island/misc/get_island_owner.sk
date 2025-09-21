@@ -1,3 +1,0 @@
-function get_island_data(ID: integer) :: offlineplayer:
-
-    return {island::data::%{_ID}%::owner}

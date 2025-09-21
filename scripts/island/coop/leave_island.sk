@@ -1,0 +1,13 @@
+function leave_island(p: player):
+
+	if get_player_island_id({_p}) is not set:
+		stop
+	set {_ID} to get_player_island_id({_p})
+
+	if get_island_members({_ID}) does not contain {_p}:
+		stop
+
+	remove_island_member({_ID}, {_p})
+
+	send feedback("warning", "kilépett a szigetről") to {_p}
+	send feedback("warning", "%{_p}% kilépett a szigetről") to get_island_members({_ID})

@@ -13,7 +13,7 @@ function create_island(p: player):
 
 	create_void_world({_ID})
 	create_bound({_ID})
-	set_island_data({_p}, {_ID})
-	set_player_data({_p})
+	create_island_data({_ID}, {_p})
+	create_player_data({_p})
 	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
 	teleport_player({_p}, {_ID})

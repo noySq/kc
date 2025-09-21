@@ -1,0 +1,6 @@
+function is_island_loaded(ID: integer) :: boolean:
+
+    if get_island_world({_ID}) is loaded:
+        return true
+    
+    return false

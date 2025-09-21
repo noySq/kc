@@ -1,0 +1,9 @@
+function is_player_island_admin(ID: integer, p: player) :: boolean:
+
+    set {_admins::*} to get_island_admins({_ID})
+    add get_island_owner({_ID}) to {_admins::*}
+
+    if {_admins::*} contains {_p}:
+        return true
+
+    return false

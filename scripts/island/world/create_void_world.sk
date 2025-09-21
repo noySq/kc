@@ -6,4 +6,12 @@ function create_void_world(ID: integer):
 	set should generate structures option of {_world} to false
 	load world from {_world}
 
-	debug("betöltve", script) if world("%{_ID}%") is loaded
+	set {_world} to get_island_world({_ID})
+
+	set gamerule announceAdvancements of {_world} to false
+	set gamerule disablePlayerMovementCheck of {_world} to true
+	set gamerule doImmediateRespawn of {_world} to true
+	set gamerule locatorBar of {_world} to false
+	set gamerule showDeathMessages of {_world} to false
+
+	debug("betöltve", script) if {_world} is loaded

@@ -1,0 +1,11 @@
+function create_island_data(ID: integer, p: player):
+
+	set {island::data::%{_ID}%::size} to {config::island::size}
+	set {island::data::%{_ID}%::creation_date} to now
+	set {island::data::%{_ID}%::owner} to {_p}
+	add {_p} to {island::data::%{_ID}%::members::*}
+
+	debug("Size: %{island::data::%{_ID}%::size}%", script)
+	debug("Date: %{island::data::%{_ID}%::creation_date}%", script)
+	debug("Owner: %{island::data::%{_ID}%::owner}%", script)
+	debug("Members: %{island::data::%{_ID}%::members::*}%", script)

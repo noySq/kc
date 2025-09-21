@@ -1,0 +1,3 @@
+function get_island_admins(ID: integer) :: offlineplayers:
+
+    return {island::data::%{_ID}%::admins::*}

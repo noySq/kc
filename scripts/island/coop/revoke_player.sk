@@ -1,0 +1,9 @@
+function revoke_player(ID: integer, target: player):
+
+	if get_player_island_id({_p}) is not set:
+		stop
+
+	if get_island_members({_ID}) does not contain {_p}:
+		stop
+
+	remove {_target} from {island::data::%{_ID}%::admins::*}

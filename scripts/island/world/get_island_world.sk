@@ -1,0 +1,3 @@
+function get_island_world(ID: integer) :: world:
+
+    return world("%{_ID}%")

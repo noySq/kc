@@ -1,0 +1,4 @@
+function add_island_member(p: player, ID: integer):
+
+	set {island::player::%uuid of {_p}%::ID} to {_ID}
+	add {_p} to {island::data::%{_ID}%::members::*}

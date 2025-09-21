@@ -1,0 +1,12 @@
+function kick_player(ID: integer, target: player):
+
+	if get_player_island_id({_target}) is not set:
+		stop
+
+	if get_island_members({_ID}) does not contain {_target}:
+		stop
+
+	remove_island_member({_target}, {_ID})
+
+	send feedback("warning", "ki lettél rúgva a szigetről") to {_target}
+	send feedback("warning", "%{_target}% ki lett rúgva a szigetről") to get_island_members({_ID})

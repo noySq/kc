@@ -1,0 +1,3 @@
+on drop:
+	if check_interact(player, event-dropped item) = true:
+		cancel event
