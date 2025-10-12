@@ -8,6 +8,12 @@ import:
     java.nio.file.Files
     java.nio.file.Paths
 
+#
+# Sziget schematic mentése
+#
+#    Args:
+#        ID (integer): A sziget azonosítója
+#
 on load:
 	create new section with arguments variables {_ID} stored in {-section::save_island_schematic}:
 

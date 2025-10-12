@@ -1,3 +1,9 @@
+#
+# Szigetre meghívás elfogadása
+#
+#    Args:
+#        p (Player): A meghívott játékos
+#
 function accept_invite(p: player):
 
 	if (metadata "island_invite" of {_p}) is not set:

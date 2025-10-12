@@ -1,3 +1,10 @@
+#
+# Vizuális effekt a sziget körül
+#
+#    Args:
+#        p (Player): A játékos
+#        id (integer): A sziget azonosítója
+#
 function set_border_effect(p: player, ID: integer):
 
 	set {_middle} to get_island_middle({_ID})

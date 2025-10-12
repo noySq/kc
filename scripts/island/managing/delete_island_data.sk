@@ -1,3 +1,9 @@
+#
+# Szigettel kapcsolatos adatok törlése
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#
 function delete_island_data(ID: integer):
 
     delete {island::data::%{_ID}%::*}

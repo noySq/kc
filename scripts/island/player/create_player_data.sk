@@ -1,3 +1,9 @@
+#
+# Játékos összekapcsolása egy szigettel
+#
+#    Args:
+#        p (Player): A játékos
+#
 function create_player_data(p: player):
 
 	set {island::player::%uuid of {_p}%::ID} to {island::ID}

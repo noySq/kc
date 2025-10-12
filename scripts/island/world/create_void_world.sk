@@ -1,3 +1,9 @@
+#
+# Üres világ létrehozása
+#
+#    Args:
+#        ID (integer): A sziget azonosítója
+#
 function create_void_world(ID: integer):
 
 	set {_world} to world creator named "%{_ID}%"

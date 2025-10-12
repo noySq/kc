@@ -1,3 +1,6 @@
+#
+# A sziget azonosító számláló megnövelése
+#
 function increment_island_id():
 
 	set {_current_ID} to {island::ID}

@@ -1,3 +1,9 @@
+#
+# A következő használható sziget azonosító lekérdezése
+#    
+#    Returns:
+#        id (integer): A következő használható sziget azonosító
+#
 function get_next_island_id() :: integer:
 
 	set {_current_ID} to {island::ID}

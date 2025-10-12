@@ -1,3 +1,9 @@
+#
+# Sziget létrehozása után beállított türelmi idő
+#
+#    Args:
+#        p (Player): A játékos
+#
 function set_player_island_cooldown(p: player):
 
 	set {_time} to {config::island::cooldown} from now

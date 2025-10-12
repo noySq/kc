@@ -1,3 +1,12 @@
+#
+# Sziget Admin jogosultsággal rendelkező tagjainak lekérdezése
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#    
+#    Returns:
+#        players (Offilneplayer[]): Egy lista a játékosokról
+#
 function get_island_admins(ID: integer) :: offlineplayers:
 
     return {island::data::%{_ID}%::admins::*}

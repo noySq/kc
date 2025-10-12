@@ -1,3 +1,12 @@
+#
+# A sziget tagjainak lekérdezése
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#    
+#    Returns:
+#        players (Offlineplayer[]): Egy lista a játékosokról
+#
 function get_island_members(ID: integer) :: offlineplayers:
 
     return {island::data::%{_ID}%::members::*}

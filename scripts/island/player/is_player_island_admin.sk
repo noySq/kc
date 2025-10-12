@@ -1,3 +1,13 @@
+#
+# Játékos ellenörzése, hogy rendelkezik-e Admin jogosultságokkal az adott szigeten
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#        p (Player): A játékos
+#    
+#    Returns:
+#        boolean: Rendelkezi-e jogosultságokkal vagy nem
+#
 function is_player_island_admin(ID: integer, p: player) :: boolean:
 
     set {_admins::*} to get_island_admins({_ID})

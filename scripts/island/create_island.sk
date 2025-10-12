@@ -1,12 +1,29 @@
+options:
+	creating-island: "&7Szigeted létrehozása folyamatban..."
+	island-created: "&aSzigeted sikeresen létrehozva!"
+
+	already-have-island: "&cA szigeted nincs betöltve!"
+	created-island-recently: "&cA szigeted nincs betöltve!"
+
+#
+# Sziget létrehozása
+#
+#    Args:
+#        p (player): A játékos akinek létre kell hozni egy szigetet
+# 
 function create_island(p: player):
 
 	set {_ID} to get_next_island_id()
 
 	if player_has_island({_p}) = true:
+		send feedback("error", {@already-have-island})
 		stop
 
 	if player_has_island_cooldown({_p}) = true:
+		send feedback("error", {@created-island-recently})
 		stop
+
+	send feedback("casual", {@creating-island})
 
 	increment_island_id()
 	#set_player_island_cooldown({_p})
@@ -17,3 +34,5 @@ function create_island(p: player):
 	create_player_data({_p})
 	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
 	teleport_player({_p}, {_ID})
+
+	send feedback("success", {@island-created})

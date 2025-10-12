@@ -1,4 +1,10 @@
-function delete_player_data(p: player):
+#
+# Szigettel kapcsolatos adatok törlése
+#
+#    Args:
+#        p (Offlineplayer): A játékos (akár lehet offline is)
+#
+function delete_player_data(p: offlineplayer):
 
 	delete {island::player::%uuid of {_p}%::*}
 	debug("%{island::player::%uuid of {_p}%::*}%", script)

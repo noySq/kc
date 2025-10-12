@@ -1,3 +1,12 @@
+#
+# Sziget betöltésének lekérdezése
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#    
+#    Returns:
+#        boolean: Be van-e töltve a sziget vagy nem
+#
 function is_island_loaded(ID: integer) :: boolean:
 
     if get_island_world({_ID}) is loaded:

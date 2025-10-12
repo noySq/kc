@@ -1,3 +1,9 @@
+#
+# Sziget világ törlése
+#
+#    Args:
+#        ID (integer): A sziget azonosítója
+#
 function delete_world(ID: integer):
 
 	set {_world} to get_island_world({_ID})

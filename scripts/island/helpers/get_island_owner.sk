@@ -1,3 +1,12 @@
+#
+# A sziget tulajdonosának lekérdezése
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#    
+#    Returns:
+#        player (Offlineplayer): A sziget tulajdonosa
+#
 function get_island_owner(ID: integer) :: offlineplayer:
 
     return {island::data::%{_ID}%::owner}

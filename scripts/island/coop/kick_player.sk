@@ -1,3 +1,10 @@
+#
+# Játékos kirúgása a sziget tagjai közül
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#        player (Player): A kirúgandó játékos
+#
 function kick_player(ID: integer, target: player):
 
 	if get_player_island_id({_target}) is not set:

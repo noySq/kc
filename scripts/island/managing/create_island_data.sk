@@ -1,3 +1,10 @@
+#
+# Szigettel kapcsolatos adatok létrehozása
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#        p (Player): A játékosó
+#
 function create_island_data(ID: integer, p: player):
 
 	set {island::data::%{_ID}%::size} to {config::island::size}

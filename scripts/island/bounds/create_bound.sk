@@ -1,3 +1,9 @@
+#
+# Bound létrehozása a sziget körül
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#
 function create_bound(ID: integer):
 
 	set {_middle} to get_island_middle({_ID})

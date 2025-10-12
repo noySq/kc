@@ -1,3 +1,9 @@
+#
+# Sziget bound törlése
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#
 function delete_bound(ID: integer):
 
     set {_bound} to get_bound({_ID})

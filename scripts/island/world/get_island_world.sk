@@ -1,3 +1,12 @@
+#
+# Sziget világának lekérdezése
+#
+#    Args:
+#        id (int): A sziget azonosítója
+#    
+#    Returns:
+#        world (BukkitWorld): A sziget világát
+#
 function get_island_world(ID: integer) :: world:
 
     return world("%{_ID}%")

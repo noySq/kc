@@ -1,6 +1,15 @@
 options:
 	excluded-worlds: "Spawn" or "Main"
-
+#
+# Szigeten történt játékos interakciójának ellenőrzése
+#
+#    Args:
+#        p (Player): Az ellenőrizni kívánt játékos
+#        obj (Object): egy objektum
+#    
+#    Returns:
+#        boolean: Engedélyehető az interakció vagy nem
+#
 function check_interact(p: player, obj: object) :: boolean:
 
 	if world of {_obj} contains {@excluded-worlds}:

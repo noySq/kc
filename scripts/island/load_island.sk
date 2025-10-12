@@ -1,3 +1,9 @@
+#
+# Sziget betöltése
+#
+#    Args:
+#        ID (integer): A sziget azonosítója
+#
 function load_island(ID: integer):
 
     create_void_world({_ID})

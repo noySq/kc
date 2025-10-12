@@ -1,3 +1,10 @@
+#
+# Admin jogosultság elvétele a játékostól
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#        target (Player): A cél játékos
+#
 function revoke_player(ID: integer, target: player):
 
 	if get_player_island_id({_p}) is not set:

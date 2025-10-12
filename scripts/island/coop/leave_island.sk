@@ -1,3 +1,9 @@
+#
+# Kilépés a szigetről
+#
+#    Args:
+#        p (Player): A játékos
+#
 function leave_island(p: player):
 
 	if get_player_island_id({_p}) is not set:

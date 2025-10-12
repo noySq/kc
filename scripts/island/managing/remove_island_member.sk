@@ -1,3 +1,10 @@
+#
+# Játékos eltávolítása a sziget tagjai közül
+#
+#    Args:
+#        p (Player): A hozzáadni kívánt játékos
+#        id (integer): A sziget azonosítója
+#
 function remove_island_member(p: player, ID: integer):
 
     delete {island::player::%uuid of {_p}%::ID}

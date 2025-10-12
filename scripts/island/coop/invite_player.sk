@@ -1,3 +1,11 @@
+#
+# Játékos meghívása a sziget tagjai közé
+#
+#    Args:
+#        id (integer): A sziget azonosítója
+#        target (Player): A meghívott játékos
+#        sender (Player): A meghívót küldő játékos
+#
 function invite_player(ID: integer, target: player, sender: player):
 
 	if get_player_island_id({_target}) is set:
