@@ -1,5 +1,5 @@
 options:
-	quit-message: "%player% &clecsatlakozott!"
+	quit-message: "%get_displayname(player)% &clecsatlakozott!"
 
 on quit:
 	set quit message to ""

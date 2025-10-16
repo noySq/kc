@@ -1,6 +1,6 @@
 options:
 	not-exist: "&4%{_rank}% &cnem létezik!"
-	never-played: "&4%{_target}% &cmég nem járt a szerveren!"
+	never-played: "&4%get_displayname({_target})% &cmég nem járt a szerveren!"
 
 	rank-given-to: "%get_displayname({_p})% &fadott egy ß%{_rank}% &frangot neki: %get_displayname({_target})%&f!"
 	got-rank: "%get_displayname({_p})% &fadott neked egy ß%{_rank}% &frangot!"

@@ -16,4 +16,4 @@ function kick_player(ID: integer, target: player):
 	remove_island_member({_target}, {_ID})
 
 	send feedback("warning", "ki lettél rúgva a szigetről") to {_target}
-	send feedback("warning", "%{_target}% ki lett rúgva a szigetről") to get_island_members({_ID})
+	send feedback("warning", "%get_displayname({_target})% ki lett rúgva a szigetről") to get_island_members({_ID})

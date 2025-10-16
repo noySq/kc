@@ -16,4 +16,4 @@ function leave_island(p: player):
 	remove_island_member({_ID}, {_p})
 
 	send feedback("warning", "kilépett a szigetről") to {_p}
-	send feedback("warning", "%{_p}% kilépett a szigetről") to get_island_members({_ID})
+	send feedback("warning", "%get_displayname({_p})% kilépett a szigetről") to get_island_members({_ID})

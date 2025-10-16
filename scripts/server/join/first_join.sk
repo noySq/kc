@@ -1,5 +1,5 @@
 options:
-	first-join-message: "%player% ßelőször jár itt! &8[#%number of offline players%&8]"
+	first-join-message: "%get_displayname(player)% ßelőször jár itt! &8[#%number of offline players%&8]"
 
 on first join:
 

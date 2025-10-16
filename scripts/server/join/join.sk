@@ -1,5 +1,5 @@
 options:
-	join-message: "%player% &acsatlakozott!"
+	join-message: "%get_displayname(player)% &acsatlakozott!"
 
 on join:
 
