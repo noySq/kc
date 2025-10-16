@@ -8,12 +8,12 @@ command /commandspy:
 	permission: commandspy
 	trigger:
 
-		if (metadata "cmdSpy" of player) is not set:
+		if {-cmdspy::%uuid of player%} is not set:
 
-			set (metadata "cmdSpy" of player) to true
+			set {-cmdspy::%uuid of player%}) to true
 			server_log("cmdspy", "&aBekapcsolva %get_displayname(player)% &fszámára!")
 
 		else:
 
-			delete (metadata "cmdSpy" of player)
+			delete {-cmdspy::%uuid of player%}
 			server_log("cmdspy", "&cKikapcsolva %get_displayname(player)% &fszámára!")

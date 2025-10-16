@@ -7,4 +7,4 @@
 function set_player_island_cooldown(p: player):
 
 	set {_time} to {config::island::cooldown} from now
-	set (metadata "island_generation" of {_p}) to unix timestamp of {_time}
+	set {-island::%uuid of {_p}%::cooldown} to unix timestamp of {_time}

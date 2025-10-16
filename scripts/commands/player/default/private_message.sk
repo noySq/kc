@@ -1,6 +1,6 @@
 options:
 	no-message: "&cNem adtál meg üzenetet!"
-	target-offline: "&4%{_target}% &cnem elérhető!"
+	target-offline: "&4%get_displayname({_target})% &cnem elérhető!"
 
 	sending-format: "ßTE &f→ ß%get_displayname({_target})%&8: &r%colored {_message}%"
 	receive-format: "%get_displayname({_p})% &f→ ßTE&8: &r%colored {_message}%"
@@ -23,7 +23,7 @@ command /reply [<text>]:
 	usage: &f/r <üzenet>
 	description: Gyors válaszolás a privát üzenetre
 	trigger:
-		private_message(player, (metadata "reply" of player), arg-1)
+		private_message(player, {-private_message::%uuid of player%::reply}, arg-1)
 
 on tab complete of "/message", "/m", "/msg", "/tell", "/whisper", "/w":
 	set tab completions for position 1 to all players
@@ -42,5 +42,5 @@ local function private_message(p: player, target: offlineplayer, message: text):
 	send feedback("casual", {@sending-format}) to {_p}
 	send feedback("casual", {@receive-format}) to {_target}
 
-	set (metadata "reply" of {_p}) to {_target}
-	set (metadata "reply" of {_target}) to {_p}
+	set {-private_message::%uuid of {_p}%::reply} to {_target}
+	set {-private_message::%uuid of {_target}%::reply} to {_p}

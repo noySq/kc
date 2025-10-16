@@ -9,7 +9,7 @@
 #
 function player_has_island_cooldown(p: player) :: boolean:
 
-	if (metadata "island_generation" of {_p}) is set:
+	if {-island::%uuid of {_p}%::cooldown} is set:
 		debug("true", script)
 		return true
 

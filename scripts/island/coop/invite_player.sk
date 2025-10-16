@@ -14,21 +14,21 @@ function invite_player(ID: integer, target: player, sender: player):
 	if get_island_members({_ID}) contains {_target}:
 		stop
 
-	if (metadata "island_invite" of {_target}) is set:
+	if {-island::%uuid of {_target}%::invite} is set:
 		stop
 
-	set (metadata "island_invite" of {_target}) to {_ID}
+	set {-island::%uuid of {_target}%::invite} to {_ID}
 
 	send "" to {_target}
 	send feedback("casual", "%{_sender}% meghívott a(z) %{_ID}% szigetre") to {_target}
 	send feedback("casual", "fogadd el a ß/sziget elfogad &fparanccsal") to {_target}
 	send "" to {_target}
 
-	send feedback("casual", "%{_target}% meg lett hívva a szigetre") to get_island_members({_ID})
+	send feedback("casual", "%get_displayname({_target})% meg lett hívva a szigetre") to get_island_members({_ID})
 
 	wait 30 seconds
 
-	if (metadata "island_invite" of {_target}) is set:
+	if {-island::%uuid of {_target}%::invite} is set:
 
 		send feedback("warning", "lejárt a meghívó") to {_target}
-		delete (metadata "island_invite" of {_target})
+		delete {-island::%uuid of {_target}%::invite}

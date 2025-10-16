@@ -6,9 +6,9 @@
 #
 function accept_invite(p: player):
 
-	if (metadata "island_invite" of {_p}) is not set:
+	if {-island::%uuid of {_p}%::invite} is not set:
 		stop
-	set {_ID} to (metadata "island_invite" of {_p})
+	set {_ID} to {-island::%uuid of {_p}%::invite}
 
 	if get_player_island_id({_p}) is set:
 		stop
@@ -16,7 +16,7 @@ function accept_invite(p: player):
 	if get_island_members({_ID}) contains {_p}:
 		stop
 
-	delete (metadata "island_invite" of {_p})
+	delete {-island::%uuid of {_p}%::invite}
 
 	add_island_member({_p}, {_ID})
-	send feedback("success", "%{_p}% csatlakozott a szigethez") to get_island_members({_ID})
+	send feedback("success", "%get_displayname({_p})% csatlakozott a szigethez") to get_island_members({_ID})

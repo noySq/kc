@@ -6,18 +6,18 @@ command /back:
 	description: Visszatérés a halálod helyszínére
 	trigger:
 
-		if (metadata "back_death" of player) is set:
-			teleport player to (metadata "back_death" of player)
-			delete (metadata "back_death" of player)
+		if {-back::%uuid of player%::death} is set:
+			teleport player to {-back::%uuid of player%::death}
+			delete {-back::%uuid of player%::death}
 
-		else if (metadata "back_periodical" of player) is set:
-			teleport player to (metadata "back_periodical" of player)
-			delete (metadata "back_periodical" of player)
+		else if {-back::%uuid of player%::periodical} is set:
+			teleport player to {-back::%uuid of player%::periodical}
+			delete {-back::%uuid of player%::ocation::periodical}
 
 on death:
-    set (metadata "back_death" of victim) to location of victim
+    set {-back::%uuid of victim%::death} to location of victim
 
 every 5 minutes:
 	loop all players:
-		if (metadata "back_periodical" of loop-player) isn't set:
-			set (metadata "back_periodical" of loop-player) to location of loop-player
+		if {-back::%uuid of loop-player%::periodical} isn't set:
+			set {-back::%uuid of loop-player%::periodical} to location of loop-player
