@@ -1,6 +1,6 @@
 function island_member_gui(p: player, page: integer = 1):
 
-	set {-island::%uuid of player%::gui} to "member"
+	set {-island::%uuid of {_p}%::gui} to "member"
 
 	set {_gui} to chest inventory with 6 rows named "Sziget tagok"
 	set slot (integers between 0 and 8) of {_gui} to black stained glass pane

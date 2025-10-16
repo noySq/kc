@@ -1,6 +1,6 @@
 function island_list_gui(p: player, page: integer = 1):
 
-	set {-island::%uuid of player%::gui} to "list"
+	set {-island::%uuid of {_p}%::gui} to "list"
 
 	set {_gui} to chest inventory with 6 rows named "Szigetek"
 	set slot (integers between 0 and 8) of {_gui} to black stained glass pane

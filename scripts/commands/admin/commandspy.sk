@@ -10,7 +10,7 @@ command /commandspy:
 
 		if {-cmdspy::%uuid of player%} is not set:
 
-			set {-cmdspy::%uuid of player%}) to true
+			set {-cmdspy::%uuid of player%} to true
 			server_log("cmdspy", "&aBekapcsolva %get_displayname(player)% &fszámára!")
 
 		else:
