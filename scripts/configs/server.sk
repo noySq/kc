@@ -1,5 +1,7 @@
 on load:
 
+	set {-server::id} to 1
+
 	set {config::color::main} to "<#00aeff>"
 	set {config::color::player} to "&7"
 
