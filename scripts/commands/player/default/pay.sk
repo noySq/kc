@@ -20,15 +20,11 @@ command /pay [<offlineplayer>] [<number>]:
 			send feedback("error", "&cNincs elég pénzed!")
 			stop
 
-		add arg-2 to {egyenleg::%uuid of arg-1%}
-		remove arg-2 from {egyenleg::%uuid of player%}
+		give_money(arg-1, arg-2)
+		remove_money(player, arg-2)
 
-		set {_display::sender} to get_displayname(player)
-		set {_display::receiver} to get_displayname(arg-1)
-		set {_formatted_money} to format_balance(arg-2)
-
-		send feedback("casual", "&fElküldtél %{_formatted_money}%&f-t %{_display::receiver}% számára")
-		send feedback("casual", "%{_display::sender}% küldött neked %{_formatted_money}%&f-t!") to arg-1
+		send feedback("casual", "&fElküldtél %format_balance(arg-2)%&f-t %get_displayname(arg-1)% számára")
+		send feedback("casual", "%get_displayname(player)% küldött neked %format_balance(arg-2)%&f-t!") to arg-1
 
 on tab complete of "/pay":
 	set tab completions for position 2 to "<összeg>"

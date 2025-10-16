@@ -7,7 +7,7 @@ command /home [<text>]:
 	trigger:
 
 		if arg-1 is not set:
-			set {_homes} to (join indices of {home::%uuid of player%::*} with ", " ? "&c-")
+			set {_homes} to join format_string_list(indices of {home::%uuid of player%::*})
 			set {_current_home_count} to size of {home::%uuid of player%::*}
 			set {_max_homes} to get_maximum_homes(player)
 

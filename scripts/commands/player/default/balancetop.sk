@@ -7,45 +7,21 @@ command /balancetop:
 	description: Egyenleg toplista megtekintése
 	trigger:
 
-		if difference between now and {-top::balance::renewed} <= 10 minutes:
-
-			send ""
-			send feedback("warning", "&fUtoljára frissítve: ß%{-top::balance::renewed}%")
-			send ""
-
-			loop {-top::balance::*}:
-
-				# Egy kis hack, mert nem lehet ellenőrízni, hogy az index egy szám-e XD
-				loop-index != "renewed"
-
-				add 1 to {_num}
-
-				set {_target} to (loop-value parsed as offlineplayer)
-				set {_target_balance} to {egyenleg::%loop-value%}
-
-				set {-top::balance::%loop-index%} to loop-value
-
-				send feedback("casual", "ß%loop-index%&f. - %get_displayname({_target})%&f: %format_balance({_target_balance})%", true)
-
-				if {_num} = 10:
-					stop loop
-
-		else:
-
-			send ""
-			send feedback("warning", "&fUtoljára frissítve: ßMOST")
-			send ""
+		if 1 minutes ago > {-top::balance::renewed}:
 
 			set {-top::balance::renewed} to now
-			set {_top::*} to get_paginated_objects(1, 10, sorted indices of {egyenleg::*} in descending order)
+			set {-top::balance::list::*} to get_paginated_objects(1, 10, sorted indices of {egyenleg::*} in descending order)
 
-			loop {_top::*}:
+		loop {-top::balance::list::*}:
 
-				set {_target} to (loop-value parsed as offlineplayer)
-				set {_target_balance} to {egyenleg::%loop-value%}
+			send ""
+			send feedback("casual", "ßEgyenleg toplista")
+			send feedback("casual", "&fUtoljára frissítve: ß%{-top::balance::renewed}%")
+			send ""
 
-				add loop-value to {-top::balance::*}
+			set {_target} to (loop-value parsed as offlineplayer)
+			set {_balance} to get_balance({_target})
 
-				send feedback("casual", "ß%loop-index%&f. - %get_displayname({_target})%&f: %format_balance({_target_balance})%", true)
+			send feedback("casual", "ß%loop-index%&f. - %get_displayname({_target})%&f: %format_balance({_balance})%", true)
 
 		send ""

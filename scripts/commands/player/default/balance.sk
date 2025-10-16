@@ -9,14 +9,14 @@ command /balance [<offlineplayer>]:
 
 		if arg-1 is not set:
 
-			set {_bal} to {egyenleg::%uuid of player%} ? 0
-			send feedback("casual", "&fEgyenleged: %format_balance({_bal})%")
+			set {_balance} to get_balance(player)
+			send feedback("casual", "&fEgyenleged: %format_balance({_balance})%")
 			
 		else:
 			
 			if arg-1 did not played before:
-				send feedback("warning", "&6%arg-1% még nem járt a szerveren!")
+				send feedback("warning", "&e%arg-1% &6még nem járt a szerveren!")
 				stop
 			
-			set {_bal} to {egyenleg::%uuid of arg-1%} ? 0
-			send feedback("casual", "%get_displayname(arg-1)% &fegyenlege: %format_balance({_bal})%")
+			set {_balance} to get_balance(arg-1)
+			send feedback("casual", "%get_displayname(arg-1)% &fegyenlege: %format_balance({_balance})%")

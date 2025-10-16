@@ -6,10 +6,10 @@ command /tpadeny:
 	description: Teleport kérelmek letíltása
 	trigger:
 
-		if (metadata "tpaOff" of player) is not set:
-			set (metadata "tpaOff" of player) to true
+		if {-tpa::%uuid of player%::disabled} is not set:
+			set {-tpa::%uuid of player%::disabled} to true
 			send feedback("success", "&fLetíltottad a teleport kérelmeket!")
 
 		else:
-			delete (metadata "tpaOff" of player)
+			delete {-tpa::%uuid of player%::disabled}
 			send feedback("success", "&fMost már újra lehet teleport kérelmet küldeni neked!")

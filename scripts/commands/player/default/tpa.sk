@@ -10,23 +10,23 @@ command /tpa [<offlineplayer>]:
 			send feedback("casual", "/tpa ß<játékos>")
 			stop
 
-		# if arg-1 = player:
-		# 	send feedback("error", "&cSaját magadnak nem küldhetsz teleport kérelmet!")
-		# 	stop
+		if arg-1 = player:
+			send feedback("error", "&cSaját magadnak nem küldhetsz teleport kérelmet!")
+			stop
 
 		if arg-1 is not online:
 			send feedback("error", "&4%arg-1% &cnem elérhető!")
 			stop
 
-		if (metadata "tpa" of arg-1) is set:
+		if {-tpa::%uuid of arg-1%::request} is set:
 			send feedback("error", "&cMár kérvényeztek teleportálást &4%arg-1% &cfelé!")
 			stop
 
-		if (metadata "tpaOff" of arg-1) is set:
+		if {-tpa::%uuid of arg-1%::disabled} is set:
 			send feedback("error", "&4%arg-1% &cletíltotta a teleport kérelmeket!")
 			stop
 
-		set (metadata "tpa" of arg-1) to player
+		set {-tpa::%uuid of arg-1%::request} to player
 		send feedback("casual", "&fTeleportálást kérvényeztél %get_displayname(arg-1)% &ffelé!")
 
 		send feedback("casual", "%get_displayname(player)% &frád szeretne teleportálni!") to arg-1
@@ -34,9 +34,9 @@ command /tpa [<offlineplayer>]:
 
 		wait 15 seconds
 
-		if (metadata "tpa" of arg-1) is set:
+		if {-tpa::%uuid of arg-1%::request} is set:
 
-			delete (metadata "tpa" of arg-1)
+			delete {-tpa::%uuid of arg-1%::request}
 
 			send feedback("warning", "&6Lejárt a(z) %get_displayname(arg-1)% felé küldött kérelem")
 			send feedback("warning", "&6Lejárt a teleport kérelem.") to arg-1
