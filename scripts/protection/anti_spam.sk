@@ -1,17 +1,17 @@
 function anti_spam(p: player, limit: timespan) :: boolean:
 
-	if {_p} has permission "admin":
+	if {_p} has permission {config::server::permission::chat_bypass}:
 		stop
 
-	set {_time} to (metadata "chat_cooldown" of {_p})
-	set {_time_diff} to difference between now and {_time} ? {_limit}
+	set {_time} to {-chat::%uuid of {_p}%::cooldown}
+	set {_difference} to difference between {_time} and now
 
-	set (metadata "chat_cooldown" of {_p}) to now
+	set {-chat::%uuid of {_p}%::cooldown} to now
 
-	if {_time_diff} < {_limit}:
+	if {_limit} > {_difference}:
 		return true
 
 	return false
 
 on quit:
-	delete (metadata "chat_cooldown" of player)
+	delete {-chat::%uuid of {_p}%::cooldown}
