@@ -1,12 +1,11 @@
 using queues
 
 options:
-	permission: log
 	message-format: "&c&l%{_type}% &8| &r%colored {_message}%"
 
 function server_log(type: text, message: text):
 
-	set {_sendTo} to a new queue of all players where [input has permission "{@permission}"]
+	set {_sendTo} to a new queue of all players where [input has permission {config::server::permission::log}]
 	add console to {_sendTo}
 
 	# Replace special character with color code
