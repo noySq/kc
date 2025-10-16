@@ -9,6 +9,7 @@ on load:
 	set slot 23 of {_gui} to island_list_button()
 	set slot 25 of {_gui} to island_setting_button()
 	set slot 29 of {_gui} to island_members_button()
+	set slot 31 of {_gui} to island_invite_players_button()
 	set slot 53 of {_gui} to island_leave_button()
 
 	set {island::gui::main} to {_gui}
@@ -55,6 +56,15 @@ local function island_members_button() :: item:
 	set name of {_item} to "&3Sziget tagok kezelése"
 
 	add "&7Kattints ide a sziget tagok kezeléséhez" to lore of {_item}
+
+	return {_item}
+
+local function island_invite_players_button() :: item:
+
+	set {_item} to player head
+	set name of {_item} to "&bJátékos meghívása"
+
+	add "&7Kattints ide játékosok meghíváshoz" to lore of {_item}
 
 	return {_item}
 

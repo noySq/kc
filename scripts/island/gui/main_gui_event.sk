@@ -11,6 +11,8 @@ on inventory click:
 			case 21:
 				teleport_player(player, {_ID})
 			case 23:
-				broadcast indices of {island::data::*}
+				island_list_gui(player)
 			case 25:
 				broadcast "wip"
+			case 29:
+				island_member_gui(player)

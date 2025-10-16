@@ -1,0 +1,43 @@
+function island_list_gui(p: player, page: integer = 1):
+
+	set {-island::%uuid of player%::gui} to "list"
+
+	set {_gui} to chest inventory with 6 rows named "Szigetek"
+	set slot (integers between 0 and 8) of {_gui} to black stained glass pane
+	set slot (integers between 45 and 53) of {_gui} to black stained glass pane
+
+	set {_slot} to 9
+	set {_islands::*} to get_paginated_objects({_page}, 35, indices of {island::data::*})
+
+	loop {_islands::*}:
+
+		set {_ID} to loop-value parsed as integer
+		set slot {_slot} of {_gui} to island_item({_ID})
+
+		add 1 to {_slot}
+
+		if {_slot} >= 44:
+			stop
+
+	open {_gui} to {_p}
+
+local function island_item(ID: integer) :: item:
+
+	set {_item} to grass block
+
+	set {_owner} to {island::data::%{_ID}%::owner}
+	set {_creation_date} to {island::data::%{_ID}%::creation_date}
+	set {_size} to {island::data::%{_ID}%::size}
+	set {_members::*} to {island::data::%{_ID}%::members::*}
+
+	set name of {_item} to "&f%{_owner}% &7szigete &8[&7%{_ID}%]"
+
+	add "" to {_lore::*}
+	add "&fLétrehozás dátuma: &7%{_creation_date}%" to {_lore::*}
+	add "&fMéret: &7%{_size}%" to {_lore::*}
+	add "&fTagok: &7%{_members::*}%" to {_lore::*}
+	add "" to {_lore::*}
+
+	set lore of {_item} to {_lore::*}
+
+	return {_item}

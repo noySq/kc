@@ -1,0 +1,4 @@
+on inventory click:
+
+	if {-island::%uuid of player%::gui} = "member":
+		cancel event

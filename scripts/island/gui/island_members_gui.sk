@@ -1,0 +1,29 @@
+function island_member_gui(p: player, page: integer = 1):
+
+	set {-island::%uuid of player%::gui} to "member"
+
+	set {_gui} to chest inventory with 6 rows named "Sziget tagok"
+	set slot (integers between 0 and 8) of {_gui} to black stained glass pane
+	set slot (integers between 45 and 53) of {_gui} to black stained glass pane
+
+	set {_ID} to get_player_island_id({_p})
+	set {_slot} to 9
+	set {_members::*} to get_paginated_objects({_page}, 35, {island::data::%{_ID}%::members::*})
+
+	loop {_members::*}:
+
+		set {_member} to loop-value
+		set slot {_slot} of {_gui} to member_item({_member})
+
+		add 1 to {_slot}
+
+		if {_slot} >= 44:
+			stop
+
+	open {_gui} to {_p}
+
+local function member_item(p: offlineplayer) :: item:
+
+	set {_item} to skull of {_p}
+
+	return {_item}
