@@ -11,7 +11,7 @@ options:
 function teleport_player(p: player, ID: integer):
 
 	if is_island_loaded({_ID}) = false:
-		send feedback("error", {@island-not-loaded})
+		send feedback("error", {@island-not-loaded}) to {_p}
 		stop
 
 	set {_location} to get_island_middle({_ID})
