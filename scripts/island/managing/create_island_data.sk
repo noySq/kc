@@ -3,7 +3,7 @@
 #
 #    Args:
 #        id (integer): A sziget azonosítója
-#        p (Player): A játékosó
+#        p (Player): A játékos
 #
 function create_island_data(ID: integer, p: player):
 
