@@ -1,0 +1,6 @@
+function format_string_list(text: texts) :: texts:
+
+	set {_text} to "%{_text::*}%"
+	replace all ("," and " and") with "," in {_text}
+
+	return {_text}
