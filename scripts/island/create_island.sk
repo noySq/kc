@@ -16,14 +16,14 @@ function create_island(p: player):
 	set {_ID} to get_next_island_id()
 
 	if player_has_island({_p}) = true:
-		send feedback("error", {@already-have-island})
+		send feedback("error", {@already-have-island}) to {_p}
 		stop
 
 	if player_has_island_cooldown({_p}) = true:
-		send feedback("error", {@created-island-recently})
+		send feedback("error", {@created-island-recently}) to {_p}
 		stop
 
-	send feedback("casual", {@creating-island})
+	send feedback("casual", {@creating-island}) to {_p}
 
 	increment_island_id()
 	#set_player_island_cooldown({_p})
@@ -35,4 +35,4 @@ function create_island(p: player):
 	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
 	teleport_player({_p}, {_ID})
 
-	send feedback("success", {@island-created})
+	send feedback("success", {@island-created}) to {_p}
