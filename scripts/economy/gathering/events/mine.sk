@@ -1,0 +1,21 @@
+on mine with priority highest:
+
+	if event is cancelled:
+		stop
+
+	if age of event-block is set:
+		max age of event-block != age of event-block
+		stop
+
+	if any:
+		event-block is tagged with tag "minecraft:logs"
+		event-block is tagged with tag "paper:ores"
+		event-block is tagged with tag "paper:mushrooms"
+		event-block is tagged with tag "minecraft:crops"
+		event-block = pumpkin
+		event-block = melon
+		event-block = sugar cane
+
+	then:
+		set {_money} to calculate_money()
+		send {_money}

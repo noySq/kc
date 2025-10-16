@@ -1,0 +1,10 @@
+on death of mob with priority highest:
+
+	if event is cancelled:
+		stop
+
+	if attacker is not player:
+		stop
+
+	set {_money} to calculate_money()
+	send {_money} to attacker

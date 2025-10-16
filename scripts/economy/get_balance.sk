@@ -1,0 +1,3 @@
+function get_balance(p: offlineplayer) :: number:
+
+    return {egyenleg::%uuid of {_p}%} ? 0

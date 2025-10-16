@@ -1,0 +1,4 @@
+on load:
+
+	set {config::economy::min} to 10
+	set {config::economy::max} to 20

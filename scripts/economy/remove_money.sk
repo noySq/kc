@@ -1,0 +1,3 @@
+function remove_money(p: offlineplayer, amount: integer):
+
+    remove {_amount} from {egyenleg::%uuid of {_p}%}

@@ -1,0 +1,8 @@
+function has_enough_money(p: offlineplayer, amount: number) :: boolean:
+
+    set {_balance} to get_balance({_p})
+
+    if {_balance} < {_amount}:
+        return false
+
+    return true
