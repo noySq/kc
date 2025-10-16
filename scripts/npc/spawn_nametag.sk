@@ -1,0 +1,15 @@
+function spawn_nametag(entity: entity, npc: text) :: entity:
+
+	spawn text display at location of {_entity}:
+
+		set {_name::*} to {npc::%{_npc}%::name} split at ","
+
+		set display text of entity to formatted {_name::*}
+		set display billboard of entity to center
+		set display text alignment of entity to center aligned
+		set display text shadowed of entity to true
+		set display translation of entity to vector(0, 0.1, 0)
+
+		set {_nametag} to entity
+
+	return {_nametag}

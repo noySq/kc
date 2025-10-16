@@ -1,0 +1,4 @@
+function create_npc(npc: text):
+
+	set {npc::%{_npc}%::name} to "NPC"
+	set {npc::%{_npc}%::type} to villager

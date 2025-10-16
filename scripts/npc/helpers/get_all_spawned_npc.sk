@@ -1,0 +1,3 @@
+function get_all_spawned_npc() :: texts:
+
+    return {-npc::spawned::*}

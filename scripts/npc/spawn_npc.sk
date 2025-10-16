@@ -1,0 +1,8 @@
+function spawn_npc(location: location, npc: text):
+
+	spawn {npc::%{_npc}%::type} at {_location}:
+
+		set ai of entity to false
+		make spawn_nametag(entity, {_npc}) ride entity
+
+		set {-npc::spawned::%uuid of entity%} to {_npc}

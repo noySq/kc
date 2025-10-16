@@ -1,0 +1,3 @@
+function delete_npc(npc: text):
+
+	delete {npc::%{_npc}%::*}

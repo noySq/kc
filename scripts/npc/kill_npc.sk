@@ -1,0 +1,6 @@
+function kill_npc(entity: entity):
+
+    if get_all_spawned_npc() contains uuid of {_entity}:
+
+        kill passenger of {_entity}
+        kill {_entity}
