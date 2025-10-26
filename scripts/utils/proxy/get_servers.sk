@@ -1,0 +1,3 @@
+function get_servers() :: proxyservers:
+
+    return all proxy servers

@@ -1,0 +1,3 @@
+function get_other_servers() :: proxyservers:
+
+    return get_servers() where [input is not this server]
