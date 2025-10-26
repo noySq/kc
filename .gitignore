@@ -2,8 +2,7 @@ aliases/
 backups/
 lang/
 features.sk
-variables.csv
-config.sk
+temp-data.csv
 test.sk
 scripts/island/schematics/data
 scripts/utils/minio/initialize.sk
