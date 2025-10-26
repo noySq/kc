@@ -17,7 +17,7 @@ on async chat:
 	set {_display_name} to get_displayname(player)
 	set {_message_color} to {ranks::%{_rank}%::chat_color}
 
-	set {_name_format} to colored join ({_display_name}, " &8> ") 
+	set {_name_format} to colored join ({config::server::id}, " ", {_display_name}, " &8> ") 
 	set {_message_format} to colored join ({_message_color}, async chat message)
 
 	set {_format::1} to text component from {_name_format}
@@ -25,3 +25,4 @@ on async chat:
 	set {_format} to merge components {_format::*}
 
 	set async chat format to {_format}
+	proxy broadcast text component from {_format} to get_other_servers()
