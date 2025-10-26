@@ -1,10 +1,8 @@
 on join:
 
-	# TODO: guarded while loop
-	# To prevent multiple loops running at once because of rapid reconnects
+	set {_guard} to unix timestamp of now
+	set {-tablist::%uuid of player%::loop} to {_guard}
 
-	while player is online:
-
+	while {-tablist::%uuid of player%::loop} is {_guard}:
 		set_tablist(player)
-
 		wait 1 second
