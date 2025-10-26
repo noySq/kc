@@ -1,0 +1,9 @@
+function economy_template(uuid: text):
+
+	set {_collection} to get_collection("economy")
+
+	set {_document} to a new mongo document with:
+		mongo "uuid": {_uuid}
+		mongo "balance": 0
+
+	insert mongo document {_document} into collection {_collection}

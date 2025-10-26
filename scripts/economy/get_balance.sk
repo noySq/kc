@@ -1,3 +1,6 @@
 function get_balance(p: offlineplayer) :: number:
 
-    return {egyenleg::%uuid of {_p}%} ? 0
+	set {_document} to get_player_document("economy", "%uuid of {_p}%")
+	set {_balance} to mongo value "balance" of {_document}
+
+	return {_balance} ? 0

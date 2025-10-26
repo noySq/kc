@@ -1,3 +1,10 @@
 function remove_money(p: offlineplayer, amount: integer):
 
-    remove {_amount} from {egyenleg::%uuid of {_p}%}
+	set {_collection} to get_collection("economy")
+	set {_document} to get_player_document("economy", "%uuid of {_p}%")
+
+	set {_balance} to mongo value "balance" of {_document}
+	remove {_amount} from {_balance}
+
+	set mongo value "balance" of {_document} to {_balance}
+	update mongo document {_document} of {_collection}
