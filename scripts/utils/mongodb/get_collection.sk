@@ -1,0 +1,4 @@
+function get_collection(collection: text) :: mongocollection:
+
+    set {_collection} to mongo collection named {_collection} of {-mongodb::client}
+    return {_collection}

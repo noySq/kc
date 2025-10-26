@@ -1,0 +1,4 @@
+function get_player_document(collection: text, uuid: text) :: mongodocument:
+
+    set {_mongodb::collection} to mongo collection named {_collection} of {-mongodb::client}
+    return first mongo document with mongosk filter where field "uuid" = {_uuid} of collection {_mongodb::collection}
