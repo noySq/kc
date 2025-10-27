@@ -1,0 +1,3 @@
+function generate_island_id() :: text:
+
+    return "%random uuid%"
