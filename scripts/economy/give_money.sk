@@ -1,7 +1,7 @@
 function give_money(p: offlineplayer, amount: integer):
 
 	set {_collection} to get_collection("economy")
-	set {_document} to get_player_document("economy", "%uuid of {_p}%")
+	set {_document} to get_document("economy", "uuid", "%uuid of {_p}%")
 
 	set {_balance} to mongo value "balance" of {_document}
 	add {_amount} to {_balance}
