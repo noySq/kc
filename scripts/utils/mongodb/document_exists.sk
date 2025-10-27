@@ -1,0 +1,7 @@
+function document_exists(collection: text, field: text, value: text) :: boolean:
+
+    set {_document} to get_document({_collection}, {_field}, {_value})
+    if {_document} is not set:
+        return false
+
+    return true
