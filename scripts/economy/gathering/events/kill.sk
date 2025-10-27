@@ -7,4 +7,6 @@ on death of mob with priority highest:
 		stop
 
 	set {_money} to calculate_money()
-	send {_money} to attacker
+	give_money(attacker, {_money})
+
+	show_temp_hologram(format_balance({_money}), head of victim)

@@ -1,4 +1,6 @@
 on load:
 
-	set {config::economy::min} to 10
-	set {config::economy::max} to 20
+	set {-config::economy::min} to 10
+	set {-config::economy::max} to 20
+
+	set {-config::economy::collection} to "economy"

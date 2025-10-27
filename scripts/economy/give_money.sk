@@ -1,4 +1,7 @@
-function give_money(p: offlineplayer, amount: integer):
+function give_money(p: offlineplayer, amount: number):
+
+	if document_exists({-config::economy::collection}, "uuid", uuid of {_p}) = false:
+		economy_template(uuid of {_p})
 
 	set {_collection} to get_collection("economy")
 	set {_document} to get_document("economy", "uuid", "%uuid of {_p}%")

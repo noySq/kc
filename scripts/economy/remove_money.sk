@@ -1,4 +1,4 @@
-function remove_money(p: offlineplayer, amount: integer):
+function remove_money(p: offlineplayer, amount: number):
 
 	set {_collection} to get_collection("economy")
 	set {_document} to get_document("economy", "uuid", "%uuid of {_p}%")

@@ -1,0 +1,31 @@
+function show_temp_hologram(text: text, location: location, duration: timespan = 0.5 seconds):
+
+	spawn text display at {_location}:
+		set display text of entity to colored {_text}
+		set display billboard of entity to center
+		set display text alignment of entity to center aligned
+		set display text shadowed of entity to true
+		set display view range of entity to 10
+		set teleport duration of entity to 60 ticks
+
+		set {_entity} to entity
+
+	teleport {_entity} to {_location} ~ vector(0, 0.2, 0)
+
+	# Fade in
+	loop 5 times:
+		set {_percentage} to loop-number / 5
+
+		set display opacity of {_entity} to 127 * {_percentage}
+		wait 5 tick
+
+	wait {_duration}
+
+	# Fade out
+	loop reversed 5 times:
+		set {_percentage} to loop-number / 5
+
+		set display opacity of {_entity} to 127 * {_percentage}
+		wait 5 tick
+
+	kill {_entity}

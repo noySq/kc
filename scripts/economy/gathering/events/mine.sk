@@ -18,4 +18,6 @@ on mine with priority highest:
 
 	then:
 		set {_money} to calculate_money()
-		send {_money}
+		give_money(player, {_money})
+
+		show_temp_hologram(format_balance({_money}), location of event-block)
