@@ -1,0 +1,4 @@
+function get_document(collection: text, field: text, value: text) :: mongodocument:
+
+    set {_mongo::collection} to get_collection({_collection})
+    return first mongo document with mongosk filter where field {_field} = {_value} of collection {_mongo::collection}
