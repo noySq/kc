@@ -8,7 +8,7 @@
 #    Returns:
 #        boolean: Rendelkezi-e jogosultságokkal vagy nem
 #
-function is_player_island_admin(ID: integer, p: player) :: boolean:
+function is_player_island_admin(ID: text, p: player) :: boolean:
 
     set {_admins::*} to get_island_admins({_ID})
     add get_island_owner({_ID}) to {_admins::*}

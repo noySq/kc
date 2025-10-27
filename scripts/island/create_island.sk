@@ -13,7 +13,7 @@ options:
 # 
 function create_island(p: player):
 
-	set {_ID} to get_next_island_id()
+	set {_ID} to generate_island_id()
 
 	if player_has_island({_p}) = true:
 		send feedback("error", {@already-have-island}) to {_p}
@@ -25,13 +25,12 @@ function create_island(p: player):
 
 	send feedback("casual", {@creating-island}) to {_p}
 
-	increment_island_id()
 	#set_player_island_cooldown({_p})
 
 	create_void_world({_ID})
 	create_bound({_ID})
 	create_island_data({_ID}, {_p})
-	create_player_data({_p})
+	set_player_island_id({_p}, {_ID})
 	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
 	teleport_player({_p}, {_ID})
 

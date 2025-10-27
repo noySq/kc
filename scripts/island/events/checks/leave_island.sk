@@ -4,4 +4,3 @@ on bound exit:
 	set {_middle} to get_island_middle({_ID})
 
 	teleport player to {_middle}
-	debug("Kilépés", script)

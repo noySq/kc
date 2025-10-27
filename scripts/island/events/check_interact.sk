@@ -16,15 +16,11 @@ function check_interact(p: player, obj: object) :: boolean:
 		stop
 
 	set {_ID} to id of first element of bounds at {_obj}
-	debug("ID: %{_ID}%", script)
 
 	if {_ID} is not set:
-		debug("Result: false", script)
 		return false
 
-	set {_members::*} to {island::data::%{_ID}%::members::*}
-	debug("Members: %{_members::*}%", script)
+	set {_members::*} to get_island_members({_ID})
 
 	if {_members::*} does not contain {_p}:
-		debug("Result: true", script)
 		return true

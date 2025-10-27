@@ -6,5 +6,7 @@
 #
 function delete_player_data(p: offlineplayer):
 
-	delete {island::player::%uuid of {_p}%::*}
-	debug("%{island::player::%uuid of {_p}%::*}%", script)
+	set {_collection} to get_collection({-config::island::collection::player})
+	set {_document} to get_document({-config::island::collection::player}, "uuid", "%uuid of {_p}%")
+
+	remove mongo documents {_document} from {_collection}

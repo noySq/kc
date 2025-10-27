@@ -10,8 +10,6 @@
 function player_has_island(p: player) :: boolean:
 
 	if get_player_island_id({_p}) is set:
-		debug("true", script)
 		return true
 
-	debug("false", script)
 	return false

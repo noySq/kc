@@ -4,9 +4,9 @@
 #    Args:
 #        ID (integer): A sziget azonosítója
 #
-function create_void_world(ID: integer):
+function create_void_world(ID: text):
 
-	set {_world} to world creator named "%{_ID}%"
+	set {_world} to world creator named "islands/%{_ID}%"
 	set world type option of {_world} to flat
 	set generator settings option of {_world} to "{""biome"": ""minecraft:plains"",""layers"": []}}"
 	set should generate structures option of {_world} to false
@@ -19,5 +19,3 @@ function create_void_world(ID: integer):
 	set gamerule doImmediateRespawn of {_world} to true
 	set gamerule locatorBar of {_world} to false
 	set gamerule showDeathMessages of {_world} to false
-
-	debug("betöltve", script) if {_world} is loaded

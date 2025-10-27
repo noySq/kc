@@ -7,6 +7,9 @@
 #    Returns:
 #        players (Offilneplayer[]): Egy lista a játékosokról
 #
-function get_island_admins(ID: integer) :: offlineplayers:
+function get_island_admins(ID: text) :: offlineplayers:
 
-    return {island::data::%{_ID}%::admins::*}
+	set {_document} to get_document("island", "uuid", {_ID})
+	set {_admins::*} to mongo list "admins" of {_document}
+
+	return {_admins::*}

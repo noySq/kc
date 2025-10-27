@@ -7,7 +7,7 @@
 #    Returns:
 #        boolean: Be van-e töltve a sziget vagy nem
 #
-function is_island_loaded(ID: integer) :: boolean:
+function is_island_loaded(ID: text) :: boolean:
 
     if get_island_world({_ID}) is loaded:
         return true

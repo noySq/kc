@@ -4,19 +4,14 @@
 #    Args:
 #        id (integer): A sziget azonosítója
 #
-function create_bound(ID: integer):
+function create_bound(ID: text):
 
 	set {_middle} to get_island_middle({_ID})
-	debug("Közép: %{_middle}%", script)
 
 	set {_size} to {config::island::size}
 	set {_size_reversed} to ({_size} * -1)
-	debug("%{_size}%, %{_size_reversed}%", script)
 
 	set {_location::1} to ({_middle} ~ (vector {_size}, 0, {_size}))
 	set {_location::2} to ({_middle} ~ (vector {_size_reversed}, 0, {_size_reversed}))
-	debug("1. %{_location::1}%", script)
-	debug("2. %{_location::2}%", script)
 
 	create temporary full bound with id "%{_ID}%" between {_location::1} and {_location::2}
-	debug("Bound létezik", script) if get_bound({_ID}) is set

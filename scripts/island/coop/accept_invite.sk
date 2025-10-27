@@ -18,5 +18,6 @@ function accept_invite(p: player):
 
 	delete {-island::%uuid of {_p}%::invite}
 
+	broadcast "&5%{_ID}%"
 	add_island_member({_p}, {_ID})
 	send feedback("success", "%get_displayname({_p})% csatlakozott a szigethez") to get_island_members({_ID})

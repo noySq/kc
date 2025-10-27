@@ -8,7 +8,7 @@ options:
 #        p (Player): Teleportálandó játékos
 #        ID (integer): A sziget azonosítója
 #
-function teleport_player(p: player, ID: integer):
+function teleport_player(p: player, ID: text):
 
 	if is_island_loaded({_ID}) = false:
 		send feedback("error", {@island-not-loaded}) to {_p}

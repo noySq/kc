@@ -7,7 +7,7 @@
 #    Returns:
 #        location (Location): A sziget közepe 
 #
-function get_island_middle(ID: integer) :: location:
+function get_island_middle(ID: text) :: location:
 
 	set {_world} to get_island_world({_ID})
 	return location(0, 64, 0, {_world})

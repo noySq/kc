@@ -7,6 +7,11 @@
 #    Returns:
 #        id (integer): A játékos szigetének azonosítója
 #
-function get_player_island_id(p: player) :: integer:
+function get_player_island_id(p: player) :: text:
 
-	return {island::player::%uuid of {_p}%::ID}
+	set {_collection} to {-config::island::collection::player}
+	set {_document} to get_document({_collection}, "uuid", "%uuid of {_p}%")
+	set {_ID::*} to mongo list "islands" of {_document}
+	# NEED REWORK
+	# ACCOUNT FOR MULTIPLE ISLANDS
+	return first element of {_ID::*}

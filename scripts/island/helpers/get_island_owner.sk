@@ -7,6 +7,9 @@
 #    Returns:
 #        player (Offlineplayer): A sziget tulajdonosa
 #
-function get_island_owner(ID: integer) :: offlineplayer:
+function get_island_owner(ID: text) :: offlineplayer:
 
-    return {island::data::%{_ID}%::owner}
+	set {_document} to get_document("island", "uuid", {_ID})
+	set {_owner} to mongo value "owner" of {_document}
+
+	return {_owner}

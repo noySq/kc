@@ -21,7 +21,7 @@ function island_list_gui(p: player, page: integer = 1):
 
 	open {_gui} to {_p}
 
-local function island_item(ID: integer) :: item:
+local function island_item(ID: text) :: item:
 
 	set {_item} to grass block
 

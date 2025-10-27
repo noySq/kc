@@ -4,7 +4,7 @@
 #    Args:
 #        ID (integer): A sziget azonosítója
 #
-function load_island(ID: integer):
+function load_island(ID: text):
 
     create_void_world({_ID})
     create_bound({_ID})

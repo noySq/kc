@@ -39,14 +39,4 @@ on load:
 		set {_format} to ClipboardFormats.findByAlias("schem")
 		{_clipboard}.save({_file}, {_format})
 
-		debug("File path: ß%{_file_location}%", script)
-		debug("Absolute path: ß%{_absolute_path}%", script)
-		debug("File: ß%{_file}%", script)
-		debug("Vertices: ß%{_vertices::*}%", script)
-		debug("Location 1: ß%{_location::1}%", script)
-		debug("Location 2: ß%{_location::2}%", script)
-		debug("Origin: ß%{_origin}%", script)
-		debug("World: ß%{_world}%", script)
-		debug("Format: ß%{_format}%", script)
-
 		upload_file("islands", {_file_name}, {_absolute_path})

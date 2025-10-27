@@ -4,5 +4,3 @@ on bound enter:
 
 	set {_ID} to id of event-bound parsed as integer
 	set_border_effect(player, {_ID})
-
-	debug("Belépés", script)

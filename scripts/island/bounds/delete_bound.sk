@@ -4,7 +4,7 @@
 #    Args:
 #        id (integer): A sziget azonosítója
 #
-function delete_bound(ID: integer):
+function delete_bound(ID: text):
 
     set {_bound} to get_bound({_ID})
     set {_bound_ID} to bound id of {_bound}

@@ -5,7 +5,25 @@
 #        p (Player): A hozzáadni kívánt játékos
 #        id (integer): A sziget azonosítója
 #
-function remove_island_member(p: player, ID: integer):
+function remove_island_member(p: player, ID: text):
 
-    delete {island::player::%uuid of {_p}%::ID}
-    remove {_p} from {island::data::%{_ID}%::members::*}
+	set {_collection::island} to get_collection({-config::island::collection::island})
+	set {_collection::player} to get_collection({-config::island::collection::player})
+
+	set {_document::island} to get_document({-config::island::collection::island}, "uuid", {_ID})
+	set {_document::player} to get_document({-config::island::collection::player}, "uuid", "%uuid of {_p}%")
+
+	if document_exists({-config::island::collection::island}, "uuid", {_ID}) = true:
+
+		set {_members::*} to mongo list "members" of {_document::island}
+		remove {_p} from {_members::*}
+		set mongo list "members" of {_document::island} to {_members::*}
+		update mongo document {_document::island} of {_collection::island}
+
+		set {_ids::*} to mongo list "islands" of {_document::player}
+		remove {_ID} from {_ids::*}
+		set mongo list "islands" of {_document::player} to {_ids::*}
+		update mongo document {_document::player} of {_collection::player}
+
+	else:
+		broadcast "&c?"

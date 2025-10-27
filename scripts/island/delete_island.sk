@@ -8,7 +8,7 @@ options:
 #        ID (integer): A sziget azonosítója
 #        deleteData (boolean): Végleges törlés kapcsoló
 #
-function delete_island(ID: integer, deleteData: boolean = false):
+function delete_island(ID: text, deleteData: boolean = false):
 
 	loop get_all_player_on_island({_ID}):
 		spawn(loop-value)

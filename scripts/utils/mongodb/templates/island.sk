@@ -1,0 +1,13 @@
+function island_template(uuid: text) :: mongodocument:
+
+	set {_collection} to get_collection("island")
+
+	set {_document} to a new mongo document with:
+		mongo "uuid": {_uuid}
+		mongo "size": 0
+		mongo "creation_date": "none"
+		mongo "owner": "none"
+		mongo list "members": "", ""
+		mongo list "admins": "", ""
+
+	return {_document}

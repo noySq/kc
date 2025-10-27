@@ -6,6 +6,7 @@
 #
 function create_player_data(p: player):
 
-	set {island::player::%uuid of {_p}%::ID} to {island::ID}
+	set {_collection} to get_collection({-config::island::collection::player})
+	set {_document} to island_player_template(uuid of {_p})
 
-	debug("%{island::player::%uuid of {_p}%::ID}%", script)
+	insert mongo document {_document} into collection {_collection}

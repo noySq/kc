@@ -4,7 +4,7 @@
 #    Args:
 #        ID (integer): A sziget azonosítója
 #
-function delete_world(ID: integer):
+function delete_world(ID: text):
 
 	set {_world} to get_island_world({_ID})
 

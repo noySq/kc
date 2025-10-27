@@ -34,10 +34,4 @@ on load:
 		set {_location} to BlockVector3.at({_middle}.getBlockX(), {_middle}.getBlockY(), {_middle}.getBlockZ())
 		set {_world} to new BukkitWorld({_middle}.getWorld())
 
-		debug("File path: ß%{_file_location}%", script)
-		debug("Absolute path: ß%{_absolute_path}%", script)
-		debug("File: ß%{_file}%", script)
-		debug("Location: ß%{_location}%", script)
-		debug("World: ß%{_world}%", script)
-
 		ClipboardFormats.findByFile({_file}).load({_file}).paste({_world}, {_location}, false, false, false, null)

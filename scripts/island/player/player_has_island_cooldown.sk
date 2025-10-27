@@ -10,8 +10,6 @@
 function player_has_island_cooldown(p: player) :: boolean:
 
 	if {-island::%uuid of {_p}%::cooldown} is set:
-		debug("true", script)
 		return true
 
-	debug("false", script)
 	return false

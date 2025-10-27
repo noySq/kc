@@ -7,7 +7,7 @@
 #    Returns:
 #        location (Location[]): A sziget két ellentétes sarka
 #
-function get_opposite_vertices(ID: integer) :: locations:
+function get_opposite_vertices(ID: text) :: locations:
 
 	set {_world} to get_island_world({_ID})
 

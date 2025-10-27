@@ -7,6 +7,6 @@
 #    Returns:
 #        world (BukkitWorld): A sziget világát
 #
-function get_island_world(ID: integer) :: world:
+function get_island_world(ID: text) :: world:
 
-    return world("%{_ID}%")
+    return world("islands/%{_ID}%")

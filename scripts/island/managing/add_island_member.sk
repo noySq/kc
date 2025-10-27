@@ -5,7 +5,20 @@
 #        p (Player): A hozzáadni kívánt játékos
 #        id (integer): A sziget azonosítója
 #
-function add_island_member(p: player, ID: integer):
+function add_island_member(p: player, ID: text):
 
-	set {island::player::%uuid of {_p}%::ID} to {_ID}
-	add {_p} to {island::data::%{_ID}%::members::*}
+	set {_collection} to get_collection({-config::island::collection::island})
+	set {_document} to get_document({-config::island::collection::island}, "uuid", {_ID})
+
+	if document_exists({-config::island::collection::island}, "uuid", {_ID}) = true:
+
+		set {_members::*} to mongo list "members" of {_document}
+		add {_p} to {_members::*}
+
+		set mongo list "members" of {_document} to {_members::*}
+		update mongo document {_document} of {_collection}
+
+		set_player_island_id({_p}, {_ID})
+
+	else:
+		broadcast "&c?"

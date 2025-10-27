@@ -4,6 +4,9 @@
 #    Args:
 #        id (integer): A sziget azonosítója
 #
-function delete_island_data(ID: integer):
+function delete_island_data(ID: text):
 
-    delete {island::data::%{_ID}%::*}
+	set {_collection} to get_collection("island")
+	set {_document} to get_document("island", "uuid", {_ID})
+
+	remove mongo documents {_document} from {_collection}

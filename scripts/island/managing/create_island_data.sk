@@ -5,14 +5,15 @@
 #        id (integer): A sziget azonosítója
 #        p (Player): A játékos
 #
-function create_island_data(ID: integer, p: player):
+function create_island_data(ID: text, p: player):
 
-	set {island::data::%{_ID}%::size} to {config::island::size}
-	set {island::data::%{_ID}%::creation_date} to now
-	set {island::data::%{_ID}%::owner} to {_p}
-	add {_p} to {island::data::%{_ID}%::members::*}
+	set {_collection} to get_collection("island")
+	set {_document} to island_template({_ID})
+	
+	set mongo value "size" of {_document} to {config::island::size}
+	set mongo value "creation_date" of {_document} to now
+	set mongo value "owner" of {_document} to {_p}
+	set mongo list "members" of {_document} to {_p}
+	set mongo list "admins" of {_document} to {_p}
 
-	debug("Size: %{island::data::%{_ID}%::size}%", script)
-	debug("Date: %{island::data::%{_ID}%::creation_date}%", script)
-	debug("Owner: %{island::data::%{_ID}%::owner}%", script)
-	debug("Members: %{island::data::%{_ID}%::members::*}%", script)
+	insert mongo document {_document} into collection {_collection}

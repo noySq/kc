@@ -5,7 +5,7 @@
 #        id (integer): A sziget azonosítója
 #        target (Player): A cél játékos
 #
-function promote_player(ID: integer, target: player):
+function promote_player(ID: text, target: player):
 
 	if get_player_island_id({_p}) is not set:
 		stop
@@ -13,4 +13,9 @@ function promote_player(ID: integer, target: player):
 	if get_island_members({_ID}) does not contain {_p}:
 		stop
 
-	add {_target} to {island::data::%{_ID}%::admins::*}
+	set {_document} to get_document("island", "uuid", {_ID})
+
+	set {_admins::*} to mongo list "admins" of {_document}
+	add {_p} to {_admins::*}
+
+	set mongo list "admins" of {_document} to {_admins::*}
