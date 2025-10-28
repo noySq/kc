@@ -5,4 +5,3 @@ features.sk
 temp-data.csv
 test.sk
 scripts/island/schematics/data
-scripts/utils/minio/initialize.sk
