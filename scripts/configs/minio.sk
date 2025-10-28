@@ -1,5 +1,5 @@
 on load:
 
-    set {-config::minio::address} to "minio.r1g.hu"
-    set {-config::minio::username} to "kockacraft"
-    set {-config::minio::password} to "kockacraft"
+	set {-config::minio::address} to "minio.r1g.hu"
+	set {-config::minio::username} to "kockacraft"
+	set {-config::minio::password} to "kockacraft"
