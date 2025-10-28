@@ -1,7 +1,7 @@
 on load:
 
-	set {_mongodb::ip} to "192.168.10.55"
-	set {_mongodb::database} to "kockacraft"
+	set {_mongodb::ip} to {-config::mongodb::address}
+	set {_mongodb::database} to {-config::mongodb::database}
 	set {_mongodb::connection} to mongo server with connection string "mongodb://%{_mongodb::ip}%"
 
 	set {-mongodb::client} to mongo database {_mongodb::database} of {_mongodb::connection}

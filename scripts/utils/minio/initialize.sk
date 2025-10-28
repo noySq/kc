@@ -1,0 +1,12 @@
+import:
+	io.minio.MinioClient
+
+on load:
+	set {_minio::endpoint} to "http://%{-config::minio::address}%:9000"
+	set {_minio::username} to {-config::minio::username}
+	set {_minio::password} to {-config::minio::password}
+
+	set {_builder} to MinioClient.builder()
+	set {_builder} to {_builder}.endpoint({_minio::endpoint})
+	set {_builder} to {_builder}.credentials({_minio::username}, {_minio::password})
+	set {-minio::client} to {_builder}.build()

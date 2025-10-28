@@ -1,0 +1,4 @@
+on load:
+
+    set {-config::mongodb::address} to "mongodb.r1g.hu"
+    set {-config::mongodb::database} to "kockacraft"
