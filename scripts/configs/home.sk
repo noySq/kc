@@ -1,5 +1,5 @@
 on load:
 
-    set {config::home::permission} to "more_homes"
-    set {config::home::maximum} to 3
-    set {config::home::expanded_maximum} to 10
+    set {-config::home::permission} to "more_homes"
+    set {-config::home::maximum} to 3
+    set {-config::home::expanded_maximum} to 10
