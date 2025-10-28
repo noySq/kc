@@ -1,6 +1,6 @@
 function anti_spam(p: player, limit: timespan) :: boolean:
 
-	if {_p} has permission {config::server::permission::chat_bypass}:
+	if {_p} has permission {-config::server::permission::chat_bypass}:
 		stop
 
 	set {_time} to {-chat::%uuid of {_p}%::cooldown}

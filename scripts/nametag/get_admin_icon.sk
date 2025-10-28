@@ -5,5 +5,5 @@ options:
 
 function get_admin_icon(p: offlineplayer) :: text:
 
-	if {_p} has permission {config::server::permission::log}:
+	if {_p} has permission {-config::server::permission::log}:
 		return {@icon}

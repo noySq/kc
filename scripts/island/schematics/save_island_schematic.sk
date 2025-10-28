@@ -17,7 +17,7 @@ import:
 on load:
 	create new section with arguments variables {_ID} stored in {-section::save_island_schematic}:
 
-		set {_file_location} to {config::island::save_location}
+		set {_file_location} to {-config::island::save_location}
 		set {_file_name} to "%{_ID}%.schem"
 		set {_absolute_path} to join {_file_location} and {_file_name}
 

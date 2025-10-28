@@ -1,7 +1,7 @@
 function calculate_money(multiplier: number = 1) :: number:
 
-	set {_min} to {config::economy::min}
-	set {_max} to {config::economy::max}
+	set {_min} to {-config::economy::min}
+	set {_max} to {-config::economy::max}
 
 	set {_random} to random number between {_min} and {_max}
 

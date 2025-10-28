@@ -8,7 +8,7 @@ function create_bound(ID: text):
 
 	set {_middle} to get_island_middle({_ID})
 
-	set {_size} to {config::island::size}
+	set {_size} to {-config::island::size}
 	set {_size_reversed} to ({_size} * -1)
 
 	set {_location::1} to ({_middle} ~ (vector {_size}, 0, {_size}))

@@ -1,7 +1,7 @@
 function get_displayname(p: offlineplayer) :: text:
 
 	if {_p} is not set:
-		return {config::server::name}
+		return {-config::server::name}
 
 	set {_name::1} to get_player_rank({_p})
 	set {_name::2} to get_player_name({_p})

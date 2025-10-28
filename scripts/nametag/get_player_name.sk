@@ -1,6 +1,6 @@
 function get_player_name(p: offlineplayer) :: text:
 
-	set {_name::1} to {config::color::player}
+	set {_name::1} to {-config::color::player}
 	set {_name::2} to name of {_p}
 
 	return colored join {_name::*}

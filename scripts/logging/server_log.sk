@@ -5,11 +5,11 @@ options:
 
 function server_log(type: text, message: text):
 
-	set {_sendTo} to a new queue of all players where [input has permission {config::server::permission::log}]
+	set {_sendTo} to a new queue of all players where [input has permission {-config::server::permission::log}]
 	add console to {_sendTo}
 
 	# Replace special character with color code
-	replace every "ß" in {_message} with {config::color::main}
+	replace every "ß" in {_message} with {-config::color::main}
 
 	loop {_sendTo}:
 		send {@message-format} to loop-value

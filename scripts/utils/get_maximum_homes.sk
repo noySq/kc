@@ -1,6 +1,6 @@
 function get_maximum_homes(p: player) :: integer:
 
-	if {_p} has permission {config::home::permission}:
-		return {config::home::expanded_maximum}
+	if {_p} has permission {-config::home::permission}:
+		return {-config::home::expanded_maximum}
 	else:
-		return {config::home::maximum}
+		return {-config::home::maximum}

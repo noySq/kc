@@ -22,7 +22,7 @@ on load:
 		if object_exists("islands", {_file_name}) = false:
 			set {_file_name} to "1.schem"
 
-		set {_file_location} to {config::island::save_location}
+		set {_file_location} to {-config::island::save_location}
 		set {_absolute_path} to join {_file_location} and {_file_name}
 
 		Files.deleteIfExists(Paths.get({_absolute_path}))
