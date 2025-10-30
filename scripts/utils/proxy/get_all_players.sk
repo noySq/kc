@@ -1,0 +1,3 @@
+function get_all_players() :: proxyplayers:
+
+    return all proxy players

@@ -1,0 +1,3 @@
+function get_players_on_other_servers() :: proxyplayers:
+
+    return all proxy players on get_other_servers()
