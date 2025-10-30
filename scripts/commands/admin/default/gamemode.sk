@@ -39,28 +39,28 @@ command /gamemode [<text>] [<offlineplayer>]:
 
 				set arg-2's gamemode to survival
 
-				send feedback("casual", "%get_displayname(player)% &fátváltott téged &atúlélő &fmódba!")
+				send feedback("casual", "%get_displayname(player)% &fátváltott téged &atúlélő &fmódba!") to arg-2
 				server_log("admin", "%get_displayname(player)% &fátváltotta %get_displayname(arg-2)% &fmódját &2túlélőbe&f!")
 
 			if arg-1 is "1" or "creative" or "c":
 
 				set arg-2's gamemode to creative
 
-				send feedback("casual", "%get_displayname(player)% &fátváltott téged &bkreatív &fmódba!")
+				send feedback("casual", "%get_displayname(player)% &fátváltott téged &bkreatív &fmódba!") to arg-2
 				server_log("admin", "%get_displayname(player)% &fátváltotta %get_displayname(arg-2)% &fmódját &bkreatívba&f!")
 
 			if arg-1 is "2" or "adventure":
 
 				set arg-2's gamemode to adventure
 
-				send feedback("casual", "%get_displayname(player)% &fátváltott téged &ekaland &fmódba!")
+				send feedback("casual", "%get_displayname(player)% &fátváltott téged &ekaland &fmódba!") to arg-2
 				server_log("admin", "%get_displayname(player)% &fátváltotta %get_displayname(arg-2)% &fmódját &ekalandba&f!")
 
 			if arg-1 is "3" or "spectator":
 
 				set arg-2's gamemode to spectator
 
-				send feedback("casual", "%get_displayname(player)% &fátváltott téged &7szemlélő &fmódba!")
+				send feedback("casual", "%get_displayname(player)% &fátváltott téged &7szemlélő &fmódba!") to arg-2
 				server_log("admin", "%get_displayname(player)% &fátváltotta %get_displayname(arg-2)% &fmódját &7szemlélőbe&f!")
 
 on tab complete of "/gamemode" or "/gm":
