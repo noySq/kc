@@ -1,0 +1,4 @@
+on inventory close:
+
+    if indices of {-gui::%uuid of player%::*} is set:
+        delete {-gui::%uuid of player%::*}

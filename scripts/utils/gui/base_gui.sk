@@ -1,0 +1,12 @@
+function base_gui(size: integer, name: text) :: inventory:
+
+	set {_slot::start} to ({_size} - 1) * 9
+	set {_slot::end} to ({_size} * 9) - 1
+
+	set {_gui} to chest inventory with {_size} rows named colored {_name}
+	set slot (integers between 0 and 8) of {_gui} to black stained glass pane named "&r"
+
+	if {_size} > 1:
+		set slot (integers between {_slot::start} and {_slot::end}) of {_gui} to black stained glass pane named "&r"
+
+	return {_gui}
