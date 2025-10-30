@@ -1,0 +1,5 @@
+function remove_fake_player(p: player, uuid: text):
+
+    delete {-proxy::tablist::%{_uuid}%::*}
+    broadcast {_uuid}
+    remove tablist player with uuid "%{_uuid}%" for {_p}
