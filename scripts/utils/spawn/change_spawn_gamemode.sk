@@ -1,0 +1,6 @@
+function change_spawn_gamemode(p: player):
+
+	if {_p} has permission {-config::server::permission::admin}:
+		stop
+
+	set gamemode of {_p} to adventure

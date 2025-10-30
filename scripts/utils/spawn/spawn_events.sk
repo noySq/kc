@@ -1,0 +1,30 @@
+on break:
+	if world of event-block != {-config::server::spawn_world}:
+		stop
+
+	if {_p} has permission {-config::server::permission::admin}:
+		stop
+
+	cancel event
+
+on place:
+	if world of event-block != {-config::server::spawn_world}:
+		stop
+
+	if {_p} has permission {-config::server::permission::admin}:
+		stop
+
+	cancel event
+
+on damage:
+
+	if attacker != player:
+		stop
+
+	if world of event-block != {-config::server::spawn_world}:
+		stop
+
+	if {_p} has permission {-config::server::permission::admin}:
+		stop
+
+	cancel event
