@@ -4,6 +4,7 @@ options:
 on first join:
 
 	spawn(player)
+	change_spawn_gamemode(player)
 
 	set join message to ""
 	send action bar feedback("casual", {@first-join-message}, true) to all players
