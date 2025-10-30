@@ -1,0 +1,28 @@
+function confirmation_gui(p: player, item: item):
+
+	set {_gui} to base_gui(3, "Megerősítés")
+
+	set slot 13 of {_gui} to {_item}
+	set slot 22 of {_gui} to {-config::shop::home_item} named "Vissza"
+
+	if {_p} is op:
+		set slot 26 of {_gui} to {-config::shop::delete_item} named "&cTörlés"
+
+	set {_nbt} to custom nbt compound of {_item}
+	set {_price::sell} to double tag "shop;price;sell" of {_nbt}
+	set {_price::purchase} to double tag "shop;price;purchase" of {_nbt}
+
+	set slot 9 of {_gui} to categories_gui_purchase_item({_price::purchase}, 1)
+	set slot 10 of {_gui} to categories_gui_purchase_item({_price::purchase}, 8)
+	set slot 11 of {_gui} to categories_gui_purchase_item({_price::purchase}, 16)
+	set slot 12 of {_gui} to categories_gui_purchase_item({_price::purchase}, 32)
+
+	set slot 14 of {_gui} to categories_gui_sell_item({_price::sell}, 1)
+	set slot 15 of {_gui} to categories_gui_sell_item({_price::sell}, 8)
+	set slot 16 of {_gui} to categories_gui_sell_item({_price::sell}, 16)
+	set slot 17 of {_gui} to categories_gui_sell_item({_price::sell}, 32)
+
+	open {_gui} to {_p}
+
+	set {-gui::%uuid of {_p}%::shop::gui} to "shop-confirmation"
+	set {-gui::%uuid of {_p}%::shop::confirmation::item} to {_item}

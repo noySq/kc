@@ -1,0 +1,8 @@
+on load:
+
+	set {-config::shop::previous_page_item} to instant health tipped arrow
+	set {-config::shop::next_page_item} to luck tipped arrow
+	set {-config::shop::home_item} to paper
+	set {-config::shop::purchase_item} to green stained glass pane
+	set {-config::shop::sell_item} to red stained glass pane
+	set {-config::shop::delete_item} to barrier

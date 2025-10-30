@@ -1,0 +1,18 @@
+function categories_gui_purchase_item(base_price: number, amount: integer) :: item:
+
+    set {_item} to {_amount} of green stained glass pane
+    set name of {_item} to "&aVásárlás"
+
+    set {_nbt} to custom nbt compound of {_item}
+    set {_price} to {_base_price} * {_amount}
+    set double tag "shop" of {_nbt} to {_price}
+
+    add "" to {_lore::*}
+    add "&fKattints ide a(z) &a%{_amount}% &fdarab vásárláshoz" to {_lore::*}
+    add "" to {_lore::*}
+    add "&fÁr: %format_balance({_price})%" to {_lore::*}
+    add "" to {_lore::*}
+
+    set lore of {_item} to {_lore::*}
+
+    return {_item}

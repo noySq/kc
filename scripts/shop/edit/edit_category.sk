@@ -1,0 +1,9 @@
+function edit_category(uuid: text, category: text):
+
+	set {_document} to get_document("shop", "uuid", {_uuid})
+	set {_collection} to get_collection("shop")
+
+	if {_document} is set:
+
+		set mongo value "category" of {_document} to {_category}
+		update mongo document {_document} of collection {_collection}

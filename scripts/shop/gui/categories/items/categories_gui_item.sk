@@ -1,0 +1,16 @@
+function categories_gui_item(item: item, category: text) :: item:
+
+    set {_nbt} to custom nbt compound of {_item}
+    set string tag "shop;category" of {_nbt} to {_category}
+
+    set name of {_item} to join {-config::color::main}, {_category}
+
+    add "" to {_lore::*}
+    add "&fKattints ide, hogy megtekintsd" to {_lore::*}
+    add "&fa(z) %{_category}% kategóriában" to {_lore::*}
+    add "&felérhető tárgyakat" to {_lore::*}
+    add "" to {_lore::*}
+
+    set lore of {_item} to {_lore::*}
+
+    return {_item}

@@ -1,0 +1,16 @@
+options:
+	no-item: "&cNincs nálad ilyen tárgy"
+	sold-items: "&fEladtál ß%{_amount}%&fx ß%{_item}%&f-t, kaptál %format_balance({_price})%&f-t"
+
+function sell_item(p: player, amount: integer, item: item):
+
+	set {_price} to (get_item_sell_price({_item}) * {_amount})
+
+	if {_p} does not have {_amount} of plain {_item}:
+		send feedback("error", {@no-item}) to {_p}
+		stop
+
+	give_money({_p}, {_price})
+	remove {_amount} of plain {_item} from {_p}
+
+	send feedback("success", {@sold-items}) to {_p}

@@ -1,0 +1,40 @@
+on inventory click:
+
+	if {-gui::%uuid of player%::shop::gui} != "shop-items":
+		stop
+
+	cancel event
+	
+	cooldown of event-slot for player = 0 seconds
+
+	if index of event-slot = 48:
+
+		event-slot = {-config::shop::previous_page_item}
+
+		set {_page} to {-gui::%uuid of player%::shop::page}
+		set {_category} to {-gui::%uuid of player%::shop::category}
+		shop_gui(player, {_category}, ({_page} - 1))
+
+		set item cooldown of event-slot for player to 10 tick
+
+	else if index of event-slot = 49:
+
+		event-slot = {-config::shop::home_item}
+
+		categories_gui(player)
+
+	else if index of event-slot = 50:
+
+		event-slot = {-config::shop::next_page_item}
+
+		set {_page} to {-gui::%uuid of player%::shop::page}
+		set {_category} to {-gui::%uuid of player%::shop::category}
+		shop_gui(player, {_category}, ({_page} + 1))
+
+		set item cooldown of event-slot for player to 10 tick
+
+	else if (integers between 9 and 44) contains index of event-slot:
+
+		event-slot != air
+
+		confirmation_gui(player, event-slot)

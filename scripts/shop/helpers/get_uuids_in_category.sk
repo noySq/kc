@@ -1,0 +1,8 @@
+function get_uuids_in_category(category: text) :: texts:
+
+	set {_collection} to get_collection("shop")
+
+	set {_filter} to mongosk filter where field "category" = {_category}
+	set {_uuids::*} to all mongo fields distincted by "uuid" with filter {_filter} of collection {_collection}
+
+	return {_uuids::*}

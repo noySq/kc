@@ -1,0 +1,10 @@
+command /piac:
+
+	prefix: kockacraft
+	aliases: shop, bolt
+	executable by: players
+	usage: &f/piac
+	description: Piac rendszer
+	trigger:
+
+		categories_gui(player)

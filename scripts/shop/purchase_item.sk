@@ -1,0 +1,22 @@
+options:
+	not-enough-money: "&cNincs elég pénzed!"
+	no-space: "&cNincs elég hely a leltáradban"
+	purchased-items: "&fVásároltál ß%{_amount}%&fx ß%{_item}%&f-t, %format_balance({_price})% &flevonva"
+
+function purchase_item(p: player, amount: integer, item: item):
+
+	set {_price} to (get_item_purchase_price({_item}) * {_amount})
+	set {_balance} to get_balance({_p})
+
+	if has_enough_money({_p}, {_price}) = false:
+		send feedback("error", {@not-enough-money}) to {_p}
+		stop
+
+	if {_p} doesn't have space for {_amount} of plain {_item}:
+		send feedback("error", {@no-space}) to {_p}
+		stop
+
+	remove_money({_p}, {_price})
+	give {_p} {_amount} of plain {_item}
+
+	send feedback("success", {@purchased-items}) to {_p}

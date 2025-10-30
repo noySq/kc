@@ -1,0 +1,25 @@
+function shop_gui_item(uuid: text) :: item:
+
+	set {_document} to get_document("shop", "uuid", {_uuid})
+
+	if {_document} is set:
+
+		set {_item} to mongo value "item" of {_document}
+		set {_category} to mongo value "category" of {_document}
+		set {_purchase_price} to mongo value "purchase_price" of {_document}
+		set {_sell_price} to mongo value "sell_price" of {_document}
+
+		set {_nbt} to custom nbt compound of {_item}
+		set string tag "shop;uuid" of {_nbt} to {_uuid}
+		set string tag "shop;category" of {_nbt} to {_category}
+		set double tag "shop;price;purchase" of {_nbt} to {_purchase_price}
+		set double tag "shop;price;sell" of {_nbt} to {_sell_price}
+
+		add "" to {_lore::*}
+		add "&2Vásárlási ár: %format_balance({_purchase_price})%" to {_lore::*}
+		add "&cEladási ár: %format_balance({_sell_price})%" to {_lore::*}
+		add "" to {_lore::*}
+
+		set lore of {_item} to {_lore::*}
+
+		return {_item}

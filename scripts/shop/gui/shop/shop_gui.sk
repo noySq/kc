@@ -1,0 +1,24 @@
+function shop_gui(p: player, category: text, page: integer = 1):
+
+	set {_gui} to base_gui(6, {_category})
+
+	set slot 49 of {_gui} to {-config::shop::home_item} named "Vissza"
+
+	if {_page} > 1:
+		set slot 48 of {_gui} to {-config::shop::previous_page_item}
+
+	set {_slot} to 9
+	set {_uuids::*} to get_paginated_objects({_page}, 36, get_uuids_in_category({_category}))
+
+	loop {_uuids::*}:
+		set slot {_slot} of {_gui} to shop_gui_item(loop-value)
+		add 1 to {_slot}
+
+		if {_slot} > 44:
+			set slot 50 of {_gui} to {-config::shop::next_page_item}
+
+	open {_gui} to {_p}
+
+	set {-gui::%uuid of {_p}%::shop::gui} to "shop-items"
+	set {-gui::%uuid of {_p}%::shop::page} to {_page}
+	set {-gui::%uuid of {_p}%::shop::category} to {_category}

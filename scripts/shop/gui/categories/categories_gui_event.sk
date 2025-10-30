@@ -1,0 +1,16 @@
+on inventory click:
+
+	if {-gui::%uuid of player%::shop::gui} != "shop-categories":
+		stop
+
+	cancel event
+
+	set {_item} to event-slot
+	set {_nbt} to custom nbt compound of {_item}
+	set {_category} to string tag "shop;category" of {_nbt}
+
+	if {_category} is not set:
+		stop
+
+	wait 1 tick # ????
+	shop_gui(player, {_category}, 1)

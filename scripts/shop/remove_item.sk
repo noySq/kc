@@ -1,0 +1,7 @@
+function remove_item(uuid: text):
+
+	set {_document} to get_document("shop", "uuid", {_uuid})
+	set {_collection} to get_collection("shop")
+
+	if {_document} is set:
+		remove mongo document {_document} from collection {_collection}

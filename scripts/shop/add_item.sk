@@ -1,0 +1,12 @@
+function add_item(item: item, category: text, purchase_price: number, sell_price: number):
+
+	set {_uuid} to random uuid
+	set {_document} to shop_template({_uuid})
+	set {_collection} to get_collection("shop")
+
+	set mongo value "item" of {_document} to {_item}
+	set mongo value "category" of {_document} to {_category}
+	set mongo value "purchase_price" of {_document} to {_purchase_price}
+	set mongo value "sell_price" of {_document} to {_sell_price}
+
+	insert mongo document {_document} into collection {_collection}

@@ -1,0 +1,9 @@
+function edit_purchase_price(uuid: text, price: number):
+
+	set {_document} to get_document("shop", "uuid", {_uuid})
+	set {_collection} to get_collection("shop")
+
+	if {_document} is set:
+
+		set mongo value "purchase_price" of {_document} to {_price}
+		update mongo document {_document} of collection {_collection}

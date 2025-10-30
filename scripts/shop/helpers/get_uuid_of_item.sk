@@ -1,0 +1,4 @@
+function get_uuid_of_item(item: item) :: string:
+
+    set {_nbt} to custom nbt compound of {_item}
+    return string tag "shop;uuid" of {_nbt}

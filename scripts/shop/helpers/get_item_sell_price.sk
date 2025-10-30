@@ -1,0 +1,4 @@
+function get_item_sell_price(item: item) :: number:
+
+	set {_nbt} to custom nbt compound of {_item}
+	return double tag "shop;price;sell" of {_nbt}
