@@ -21,7 +21,7 @@ on damage:
 	if attacker != player:
 		stop
 
-	if world of event-block != {-config::server::spawn_world}:
+	if world of victim != {-config::server::spawn_world}:
 		stop
 
 	if {_p} has permission {-config::server::permission::admin}:
