@@ -2,8 +2,8 @@ on load:
 	create new section with arguments variables {_p} stored in {-section::tablist}:
 
 		# Data to be showed on the tablist
-		set {_server::name} to mini message from {-config::server::motd}
-		set {_server::domain} to {-config::server::domain}
+		set {_server::name} to minimessage from {-config::server::motd}
+		set {_server::domain} to minimessage from {-config::server::domain}
 		set {_server::id} to {-config::server::id}
 		set {_balance} to format_balance(get_balance({_p}))
 		set {_online} to get_player_number()

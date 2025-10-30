@@ -1,5 +1,7 @@
 on join:
 
+	set_tablist_name(player)
+
 	set {_guard} to unix timestamp of now
 	set {-tablist::%uuid of player%::loop} to {_guard}
 
