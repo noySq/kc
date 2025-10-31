@@ -1,0 +1,3 @@
+function send_proxy_data(channel: text, data: text):
+
+	send redis message {_data} to channel {_channel}
