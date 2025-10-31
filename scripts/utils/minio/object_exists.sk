@@ -3,7 +3,7 @@ import:
 
 function object_exists(bucketName: text, objectName: text) :: boolean:
 
-	if {minio::client}.statObject(StatObjectArgs.builder().bucket({_bucketName}).object({_objectName}).build()):
+	if {-minio::client}.statObject(StatObjectArgs.builder().bucket({_bucketName}).object({_objectName}).build()):
 		return true
 
 	return false

@@ -5,4 +5,4 @@ function upload_file(bucketName: text, objectName: text, path: text):
 
 	if bucket_exists({_bucketName}) = true:
 		set {_args} to UploadObjectArgs.builder().bucket({_bucketName}).object({_objectName}).filename({_path}).build()
-		{minio::client}.uploadObject({_args})
+		{-minio::client}.uploadObject({_args})
