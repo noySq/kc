@@ -7,7 +7,7 @@ on load:
 			add loop-value to {-command_list::*}
 
 on send command list:
-	if player has permission {-config::server::permission::command_bypass} :
+	if player has permission {-config::server::permission::command_bypass}:
 		stop
 
 	set command list to {-command_list::*}
@@ -16,7 +16,7 @@ on command:
 	if executor is console:
 		stop
 
-	if executor has permission {-config::server::permission::command_bypass} :
+	if executor has permission {-config::server::permission::command_bypass}:
 		stop
 
 	if {-command_list::*} doesn't contain command:
