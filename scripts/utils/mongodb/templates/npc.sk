@@ -1,0 +1,8 @@
+function npc_template(npc: text) :: mongodocument:
+
+	set {_document} to a new mongo document with:
+		mongo "npc": {_npc}
+		mongo "name": null
+		mongo "type": null
+
+	return {_document}

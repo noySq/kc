@@ -1,0 +1,5 @@
+function get_type(npc: text) :: entity type:
+
+	set {_document} to get_document({-config::npc::collection}, "npc", {_npc})
+	if {_document} is set:
+		return (mongo value "type" of {_document} parsed as entity type)
