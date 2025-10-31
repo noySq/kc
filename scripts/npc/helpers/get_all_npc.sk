@@ -1,3 +1,6 @@
 function get_all_npc() :: texts:
 
-    return indices of {npc::*}
+	set {_collection} to get_collection({-config::npc::collection})
+	set {_npcs::*} to all mongo fields distincted by "npc" of collection {_collection}
+
+	return {_npcs::*}

@@ -1,4 +1,4 @@
 function create_npc(npc: text):
 
-	set {npc::%{_npc}%::name} to "NPC"
-	set {npc::%{_npc}%::type} to villager
+	set {_document} to npc_template({_npc})
+	insert mongo document {_document} into collection get_collection({-config::npc::collection})

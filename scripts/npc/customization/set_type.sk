@@ -1,3 +1,7 @@
-function set_type(npc: text, type: entity type):
+function set_type(npc: text, type: text):
 
-	set {npc::%{_npc}%::type} to {_type}
+	set {_document} to get_document({-config::npc::collection}, "npc", {_npc})
+	if {_document} is set:
+
+		set mongo value "type" of {_document} to {_type}
+		update mongo document {_document} into get_collection({-config::npc::collection})

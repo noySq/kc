@@ -1,0 +1,5 @@
+function get_name(npc: text) :: text:
+
+	set {_document} to get_document({-config::npc::collection}, "npc", {_npc})
+	if {_document} is set:
+		return mongo value "name" of {_document}

@@ -1,3 +1,5 @@
 function delete_npc(npc: text):
 
-	delete {npc::%{_npc}%::*}
+	set {_document} to get_document({-config::npc::collection}, "npc", {_npc})
+	if {_document} is set:
+		remove mongo documents {_document} from get_collection({-config::npc::collection})

@@ -1,3 +1,7 @@
 function set_name(npc: text, name: text):
 
-	set {npc::%{_npc}%::name} to {_name}
+	set {_document} to get_document({-config::npc::collection}, "npc", {_npc})
+	if {_document} is set:
+
+		set mongo value "name" of {_document} to {_name}
+		update mongo document {_document} into get_collection({-config::npc::collection})

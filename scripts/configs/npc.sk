@@ -1,0 +1,3 @@
+on load:
+
+	set {-config::npc::collection} to "npc"

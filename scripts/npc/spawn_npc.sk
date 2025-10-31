@@ -1,6 +1,7 @@
 function spawn_npc(location: location, npc: text):
 
-	spawn {npc::%{_npc}%::type} at {_location}:
+	set {_type} to get_type({_npc})
+	spawn {_type} at {_location}:
 
 		set ai of entity to false
 		make spawn_nametag(entity, {_npc}) ride entity
