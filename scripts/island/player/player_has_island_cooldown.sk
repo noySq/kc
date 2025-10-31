@@ -1,12 +1,3 @@
-#
-# Játékos sziget létrehozási türelmi idő meglétének lekérdezése
-#
-#    Args:
-#        p (Player): A játékos
-#    
-#    Returns:
-#        boolean: Van türelmi idő vagy nincs
-#
 function player_has_island_cooldown(p: player) :: boolean:
 
 	if {-island::%uuid of {_p}%::cooldown} is set:

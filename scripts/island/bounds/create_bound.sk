@@ -14,4 +14,4 @@ function create_bound(ID: text):
 	set {_location::1} to ({_middle} ~ (vector {_size}, 0, {_size}))
 	set {_location::2} to ({_middle} ~ (vector {_size_reversed}, 0, {_size_reversed}))
 
-	create temporary full bound with id "%{_ID}%" between {_location::1} and {_location::2}
+	create temporary full bound with id {_ID} between {_location::1} and {_location::2}

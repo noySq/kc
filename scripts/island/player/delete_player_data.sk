@@ -1,12 +1,5 @@
-#
-# Szigettel kapcsolatos adatok törlése
-#
-#    Args:
-#        p (Offlineplayer): A játékos (akár lehet offline is)
-#
 function delete_player_data(p: offlineplayer):
 
-	set {_collection} to get_collection({-config::island::collection::player})
 	set {_document} to get_document({-config::island::collection::player}, "uuid", "%uuid of {_p}%")
 
-	remove mongo documents {_document} from {_collection}
+	remove mongo documents {_document} from get_collection({-config::island::collection::player})

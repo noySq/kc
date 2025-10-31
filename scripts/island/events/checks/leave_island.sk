@@ -1,6 +1,9 @@
 on bound exit:
 
-	set {_ID} to (id of event-bound) parsed as integer
+	set {_ID} to id of event-bound
 	set {_middle} to get_island_middle({_ID})
+
+	if world of player != world of {_middle}:
+		stop
 
 	teleport player to {_middle}

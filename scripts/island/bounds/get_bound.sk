@@ -9,4 +9,4 @@
 #
 function get_bound(ID: text) :: bound:
 
-    return bound with id "%{_ID}%"
+    return bound with id {_ID}

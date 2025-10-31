@@ -1,15 +1,6 @@
-#
-# A sziget tagjainak lekérdezése
-#
-#    Args:
-#        id (integer): A sziget azonosítója
-#    
-#    Returns:
-#        players (Offlineplayer[]): Egy lista a játékosokról
-#
 function get_island_members(ID: text) :: offlineplayers:
 
-	set {_document} to get_document("island", "uuid", {_ID})
+	set {_document} to get_document({-config::island::collection::island}, "uuid", {_ID})
 	set {_members::*} to mongo list "members" of {_document}
 
 	return {_members::*}

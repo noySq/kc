@@ -1,0 +1,3 @@
+function add_loaded_island(ID: text):
+
+    add {_ID} to {-island::loaded::*}

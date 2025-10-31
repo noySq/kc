@@ -1,12 +1,5 @@
-#
-# Játékos összekapcsolása egy szigettel
-#
-#    Args:
-#        p (Player): A játékos
-#
 function create_player_data(p: player):
 
-	set {_collection} to get_collection({-config::island::collection::player})
 	set {_document} to island_player_template(uuid of {_p})
 
-	insert mongo document {_document} into collection {_collection}
+	insert mongo document {_document} into get_collection({-config::island::collection::player})

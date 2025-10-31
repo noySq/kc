@@ -1,12 +1,12 @@
-#
-# Sziget betöltése
-#
-#    Args:
-#        ID (integer): A sziget azonosítója
-#
 function load_island(ID: text):
+
+    if is_island_loaded({_ID}) = true:
+        broadcast "&cloaded"
+        stop
 
     create_void_world({_ID})
     create_bound({_ID})
 
     run section {-section::paste_island_schematic} async with arguments {_ID} and wait
+
+    send_island_loaded({_ID})

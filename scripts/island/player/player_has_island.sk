@@ -1,12 +1,3 @@
-#
-# Játékos szigete meglétének lekérdezése
-#
-#    Args:
-#        p (Player): A játékos
-#    
-#    Returns:
-#        boolean: Van szigete vagy nincs
-#
 function player_has_island(p: player) :: boolean:
 
 	if get_player_island_id({_p}) is set:

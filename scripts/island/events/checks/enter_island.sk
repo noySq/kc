@@ -1,6 +1,4 @@
 on bound enter:
 
-	wait 1 tick
-
 	set {_ID} to id of event-bound parsed as integer
 	set_border_effect(player, {_ID})

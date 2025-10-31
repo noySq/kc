@@ -1,3 +1,0 @@
-on inventory close:
-	if {-island::%uuid of player%::gui} is set:
-		delete {-island::%uuid of player%::gui}

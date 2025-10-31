@@ -1,9 +1,3 @@
-#
-# Szigettel kapcsolatos adatok törlése
-#
-#    Args:
-#        id (integer): A sziget azonosítója
-#
 function delete_island_data(ID: text):
 
 	set {_collection} to get_collection("island")

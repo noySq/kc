@@ -1,11 +1,3 @@
-#
-# Játékos meghívása a sziget tagjai közé
-#
-#    Args:
-#        id (integer): A sziget azonosítója
-#        target (Player): A meghívott játékos
-#        sender (Player): A meghívót küldő játékos
-#
 function invite_player(ID: text, target: player, sender: player):
 
 	if get_player_island_id({_target}) is set:
@@ -20,8 +12,8 @@ function invite_player(ID: text, target: player, sender: player):
 	set {-island::%uuid of {_target}%::invite} to {_ID}
 
 	send "" to {_target}
-	send feedback("casual", "%{_sender}% meghívott a(z) %{_ID}% szigetre") to {_target}
-	send feedback("casual", "fogadd el a ß/sziget elfogad &fparanccsal") to {_target}
+	send feedback("casual", "%get_displayname({_sender})% meghívott a szigetére") to {_target}
+	send feedback("casual", "Fogadd el a ß/sziget elfogad &fparanccsal") to {_target}
 	send "" to {_target}
 
 	send feedback("casual", "%get_displayname({_target})% meg lett hívva a szigetre") to get_island_members({_ID})
@@ -30,5 +22,5 @@ function invite_player(ID: text, target: player, sender: player):
 
 	if {-island::%uuid of {_target}%::invite} is set:
 
-		send feedback("warning", "lejárt a meghívó") to {_target}
+		send feedback("warning", "&6Lejárt a meghívó") to {_target}
 		delete {-island::%uuid of {_target}%::invite}

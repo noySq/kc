@@ -8,25 +8,23 @@ import:
 	java.nio.file.Files
 	java.nio.file.Paths
 
-#
-# Sziget schematic betöltése
-#
-#    Args:
-#        ID (integer): A sziget azonosítója
-#
 on load:
 	create new section with arguments variables {_ID} stored in {-section::paste_island_schematic}:
 
 		set {_file_name} to "%{_ID}%.schem"
 
-		if object_exists("islands", {_file_name}) = false:
+		if object_exists({-config::island::minio::bucket}, {_file_name}) = false:
+			set {_file_location} to {-config::island::template_location}
 			set {_file_name} to "1.schem"
 
-		set {_file_location} to {-config::island::save_location}
-		set {_absolute_path} to join {_file_location} and {_file_name}
+			set {_absolute_path} to join {_file_location} and {_file_name}
 
-		Files.deleteIfExists(Paths.get({_absolute_path}))
-		download_file("islands", {_file_name}, {_absolute_path})
+		else:
+			set {_file_location} to {-config::island::save_location}
+			set {_absolute_path} to join {_file_location} and {_file_name}
+
+			Files.deleteIfExists(Paths.get({_absolute_path}))
+			download_file({-config::island::minio::bucket}, {_file_name}, {_absolute_path})
 
 		set {_middle} to get_island_middle({_ID})
 

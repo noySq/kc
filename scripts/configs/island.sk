@@ -3,8 +3,14 @@ on load:
 	set {-config::island::cooldown} to 15 minutes
 	set {-config::island::size} to 96
 
-	set {-config::island::schem_location} to "plugins/Skript/scripts/island/schematics/data/templates/"
+	set {-config::island::template_location} to "plugins/Skript/scripts/island/schematics/data/templates/"
+	set {-config::island::save_location} to "plugins/Skript/scripts/island/schematics/data/player_islands/"
 	set {-config::island::world_folder} to "islands"
 
 	set {-config::island::collection::player} to "island_player"
 	set {-config::island::collection::island} to "island"
+
+	set {-config::island::minio::bucket} to "islands"
+
+	set {-config::island::redis::unload} to "island-unloaded"
+	set {-config::island::redis::load} to "island-loaded"

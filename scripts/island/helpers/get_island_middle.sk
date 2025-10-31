@@ -1,12 +1,3 @@
-#
-# A sziget középpontjának lekérdezése
-#
-#    Args:
-#        id (integer): A sziget azonosítója
-#    
-#    Returns:
-#        location (Location): A sziget közepe 
-#
 function get_island_middle(ID: text) :: location:
 
 	set {_world} to get_island_world({_ID})

@@ -1,21 +1,14 @@
-#
-# Üres világ létrehozása
-#
-#    Args:
-#        ID (integer): A sziget azonosítója
-#
 function create_void_world(ID: text):
 
 	set {_world} to world creator named "islands/%{_ID}%"
 	set world type option of {_world} to flat
 	set generator settings option of {_world} to "{""biome"": ""minecraft:plains"",""layers"": []}}"
 	set should generate structures option of {_world} to false
-	load world from {_world}
-
-	set {_world} to get_island_world({_ID})
 
 	set gamerule announceAdvancements of {_world} to false
 	set gamerule disablePlayerMovementCheck of {_world} to true
 	set gamerule doImmediateRespawn of {_world} to true
 	set gamerule locatorBar of {_world} to false
 	set gamerule showDeathMessages of {_world} to false
+
+	load world from {_world}

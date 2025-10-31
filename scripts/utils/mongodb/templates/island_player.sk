@@ -1,7 +1,5 @@
 function island_player_template(uuid: text) :: mongodocument:
 
-	set {_collection} to get_collection({-config::island::collection::player})
-
 	set {_document} to a new mongo document with:
 		mongo value "uuid": {_uuid}
 		mongo list "islands": null

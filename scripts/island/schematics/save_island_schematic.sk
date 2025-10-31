@@ -8,12 +8,6 @@ import:
     java.nio.file.Files
     java.nio.file.Paths
 
-#
-# Sziget schematic mentése
-#
-#    Args:
-#        ID (integer): A sziget azonosítója
-#
 on load:
 	create new section with arguments variables {_ID} stored in {-section::save_island_schematic}:
 
@@ -39,4 +33,5 @@ on load:
 		set {_format} to ClipboardFormats.findByAlias("schem")
 		{_clipboard}.save({_file}, {_format})
 
-		upload_file("islands", {_file_name}, {_absolute_path})
+		upload_file({-config::island::minio::bucket}, {_file_name}, {_absolute_path})
+		Files.deleteIfExists(Paths.get({_absolute_path}))

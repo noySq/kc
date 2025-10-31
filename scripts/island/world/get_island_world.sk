@@ -1,12 +1,5 @@
-#
-# Sziget világának lekérdezése
-#
-#    Args:
-#        id (int): A sziget azonosítója
-#    
-#    Returns:
-#        world (BukkitWorld): A sziget világát
-#
 function get_island_world(ID: text) :: world:
 
-    return world("islands/%{_ID}%")
+    set {_world} to (join "islands/", {_ID})
+
+    return world({_world})

@@ -1,10 +1,3 @@
-#
-# Admin jogosultság biztosítás a játékosnak
-#
-#    Args:
-#        id (integer): A sziget azonosítója
-#        target (Player): A cél játékos
-#
 function promote_player(ID: text, target: player):
 
 	if get_player_island_id({_p}) is not set:

@@ -1,17 +1,15 @@
 function set_player_island_id(p: player, ID: text):
 
 	set {_uuid} to "%uuid of {_p}%"
-	set {_exists} to document_exists({-config::island::collection::player}, "uuid", {_uuid})
-
-	if {_exists} = false:
-		broadcast "&6false, letrehozas"
+	if document_exists({-config::island::collection::player}, "uuid", {_uuid}) = false:
 		create_player_data({_p})
 
-	set {_collection} to get_collection({-config::island::collection::player})
+	wait 1 tick
+
 	set {_document} to get_document({-config::island::collection::player}, "uuid", {_uuid})
 
 	set {_islands::*} to mongo list "islands" of {_document}
 	add {_ID} to {_islands::*}
 	set mongo list "islands" of {_document} to {_islands::*}
 
-	update mongo document {_document} of {_collection}
+	update mongo document {_document} of get_collection({-config::island::collection::player})

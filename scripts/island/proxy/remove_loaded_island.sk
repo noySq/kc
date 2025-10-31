@@ -1,0 +1,3 @@
+function remove_loaded_island(ID: text):
+
+    remove {_ID} from {-island::loaded::*}

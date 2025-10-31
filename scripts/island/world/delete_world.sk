@@ -1,9 +1,7 @@
-#
-# Sziget világ törlése
-#
-#    Args:
-#        ID (integer): A sziget azonosítója
-#
+import:
+	org.apache.commons.io.FileUtils
+	java.io.File
+
 function delete_world(ID: text):
 
 	set {_world} to get_island_world({_ID})
@@ -11,5 +9,10 @@ function delete_world(ID: text):
 	if {_world} is not set:
 		stop
 
+	if {_world} is not loaded:
+		stop
+
 	unload world {_world}
 	delete world file for {_world}
+
+	FileUtils.deleteDirectory(new File("%{_world}%"))
