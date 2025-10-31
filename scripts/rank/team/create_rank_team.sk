@@ -1,8 +1,8 @@
 function create_rank_team(rank: text):
 
-	set {_weight} to {ranks::%{_rank}%::weight}
-	set {_prefix} to {ranks::%{_rank}%::prefix}
+	set {_weight} to get_weight({_rank})
+	set {_prefix} to get_prefix({_rank})
 
-	set {_team} to team named "%{_weight}%-%{_rank}%"
-	set team prefix of {_team} to "%colored {_prefix}% "
+	set {_team} to team named join ({_weight}, "-", {_rank})
+	set team prefix of {_team} to join ({_prefix}, " ")
 	set team color of {_team} to gray

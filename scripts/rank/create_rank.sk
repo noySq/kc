@@ -1,22 +1,4 @@
-options:
-	already-exist: "%colored {_prefix}% &crang már létezik!"
-	rank-created: "%get_displayname({_p})% &flétrehozta a(z) %colored {_prefix}% &frangot!"
+function create_rank(rank: text):
 
-# A {_weight} ami meghatározza, hogy hol helyezkedjen el a tablistán
-# minél több     (pl.: "a-admin")   annál feljebb
-# minél kevesebb (pl.: "z-default") annál lejjebb
-# A -> Z
-
-function create_rank(p: player, rank: text, weight: text, prefix: text, chat_color: text):
-
-	if {ranks::%{_rank}%::name} is set:
-		send feedback("error", {@already-exist}) to {_p}
-		stop
-
-	set {ranks::%{_rank}%::name} to {_rank}
-	set {ranks::%{_rank}%::weight} to {_weight}
-	set {ranks::%{_rank}%::prefix} to {_prefix}
-	set {ranks::%{_rank}%::chat_color} to {_chat_color}
-
-	create_rank_team({_rank})
-	server_log("RANK", {@rank-created})
+	set {_document} to rank_template({_rank})
+	insert mongo document {_document} into collection get_collection({-config::rank::collection::rank})

@@ -1,0 +1,7 @@
+function rank_player_template(uuid: text) :: mongodocument:
+
+	set {_document} to a new mongo document with:
+		mongo value "uuid": {_uuid}
+		mongo value "rank": null
+
+	return {_document}

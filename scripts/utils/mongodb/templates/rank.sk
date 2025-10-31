@@ -1,0 +1,9 @@
+function rank_template(rank: text) :: mongodocument:
+
+	set {_document} to a new mongo document with:
+		mongo "rank": {_rank}
+		mongo "prefix": null
+		mongo "weight": null
+		mongo "chat_color": null
+
+	return {_document}

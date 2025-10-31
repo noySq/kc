@@ -1,36 +1,14 @@
-options:
-	not-exist: "&4%{_rank}% &cnem létezik!"
-	never-played: "&4%get_displayname({_target})% &cmég nem járt a szerveren!"
+function give_rank(p: offlineplayer, rank: text):
 
-	rank-given-to: "%get_displayname({_p})% &fadott egy ß%{_rank}% &frangot neki: %get_displayname({_target})%&f!"
-	got-rank: "%get_displayname({_p})% &fadott neked egy ß%{_rank}% &frangot!"
-	expiration-date: "&fA rang lejárati dátuma: &6%{_unix_date}%"
+	set {_uuid} to uuid of {_p}
+	set {_document} to get_document({-config::rank::collection::player}, "uuid", {_uuid})
 
-function give_rank(p: player, target: offlineplayer, rank: text, time_for: timespan = 0 seconds):
+	if {_document} is not set:
+		set {_document} to rank_player_template({_uuid})
+		set mongo value "rank" of {_document} to {_rank}
 
-	if {ranks::%{_rank}%::name} is not set:
-		send feedback("error", {@not-exist}) to {_p}
-		stop
+		insert mongo document {_document} into get_collection({-config::rank::collection::player})
 
-	if {_target} has not played before:
-		send feedback("error", {@never-played}) to {_p}
-		stop
-
-	set {rank::%uuid of {_target}%} to {_rank}
-	set_tablist_name({_target})
-	add_rank_team({_target})
-
-	if {_time_for} > 0 seconds:
-		set {_unix_time} to unix timestamp of {_time_for} from now
-		set {_unix_date} to unix date of {_unix_time}
-
-		set {rank::%uuid of {_target}%::expire} to {_unix_time}
-
-	if {_target} is online:
-
-		send "" to {_target}
-		send feedback("casual", {@got-rank}) to {_target}
-		send feedback("warning", {@expiration-date}) to {_target} if {_time_for} > 0 seconds
-		send "" to {_target}
-
-	server_log("RANK", {@rank-given-to})
+	else:
+		set mongo value "rank" of {_document} to {_rank}
+		update mongo document {_document} into get_collection({-config::rank::collection::player})

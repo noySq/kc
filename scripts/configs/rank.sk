@@ -1,0 +1,4 @@
+on load:
+
+	set {-config::rank::collection::rank} to "rank"
+	set {-config::rank::collection::player} to "rank-player"

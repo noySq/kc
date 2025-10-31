@@ -1,7 +1,0 @@
-function add_rank_team(target: offlineplayer):
-
-	set {_rank} to {rank::%uuid of {_target}%}
-	set {_weight} to {ranks::%{_rank}%::weight}
-	
-	set {_team} to "%{_weight}%-%{_rank}%"
-	add {_target} to team named {_team}
