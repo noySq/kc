@@ -10,18 +10,28 @@ command /balancetop:
 		if 1 minutes ago > {-top::balance::renewed}:
 
 			set {-top::balance::renewed} to now
-			set {-top::balance::list::*} to get_paginated_objects(1, 10, sorted indices of {egyenleg::*} in descending order)
 
-		loop {-top::balance::list::*}:
+			set {_query} to new mongosk query
+			set mongo sort of {_query} to mongo descending sort by field "balance"
+			set mongo collection of {_query} to get_collection({-config::economy::collection})
 
-			send ""
-			send feedback("casual", "ßEgyenleg toplista")
-			send feedback("casual", "&fUtoljára frissítve: ß%{-top::balance::renewed}%")
-			send ""
+			set {_documents::*} to all mongo documents of query {_query}
+			loop {_documents::*}:
+				set {_position} to loop-index
+				set {-top::balance::list::%{_position}%::uuid} to mongo value "uuid" of loop-value
+				set {-top::balance::list::%{_position}%::balance} to mongo value "balance" of loop-value
 
-			set {_target} to (loop-value parsed as offlineplayer)
-			set {_balance} to get_balance({_target})
+		send ""
+		send feedback("casual", "ßEgyenleg toplista")
+		send feedback("casual", "&fUtoljára frissítve: ß%{-top::balance::renewed}%")
+		send ""
 
-			send feedback("casual", "ß%loop-index%&f. - %get_displayname({_target})%&f: %format_balance({_balance})%", true)
+		loop indices of {-top::balance::list::*}:
+
+			set {_uuid} to {-top::balance::list::%loop-value%::uuid}
+			set {_balance} to {-top::balance::list::%loop-value%::balance}
+			set {_p} to ({_uuid} parsed as offlineplayer)
+
+			send feedback("casual", "ß%loop-value%&f. - %get_displayname({_p})%&f: %format_balance({_balance})%", true)
 
 		send ""
