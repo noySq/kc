@@ -1,0 +1,10 @@
+function remove_rank(p: offlineplayer):
+
+	set {_uuid} to uuid of {_p}
+	set {_rank} to get_players_rank({_p})
+	set {_document} to get_document({-config::rank::collection::player}, "uuid", {_uuid})
+
+	if {_document} is set:
+		remove mongo documents {_document} from get_collection({-config::rank::collection::player})
+		remove_from_rank_team({_p}, {_rank})
+		set_tablist_name({_p})

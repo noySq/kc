@@ -1,0 +1,17 @@
+function give_rank(p: offlineplayer, rank: text):
+
+	set {_uuid} to uuid of {_p}
+	set {_document} to get_document({-config::rank::collection::player}, "uuid", {_uuid})
+
+	if {_document} is not set:
+		set {_document} to rank_player_template({_uuid})
+		set mongo value "rank" of {_document} to {_rank}
+
+		insert mongo document {_document} into get_collection({-config::rank::collection::player})
+
+	else:
+		set mongo value "rank" of {_document} to {_rank}
+		update mongo document {_document} into get_collection({-config::rank::collection::player})
+
+	add_to_rank_team({_p}, {_rank})
+	set_tablist_name({_p})

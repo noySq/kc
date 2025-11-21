@@ -1,0 +1,9 @@
+function create_rank_team(rank: text):
+
+	set {_weight} to get_weight({_rank})
+	set {_prefix} to get_prefix({_rank})
+
+	set {_team} to team named join ({_weight}, "-", {_rank})
+	set {_prefix} to join ({_prefix}, " ")
+	set team prefix of {_team} to {_prefix}
+	set team color of {_team} to gray
