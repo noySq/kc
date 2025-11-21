@@ -4,4 +4,4 @@ function get_player_rank(p: offlineplayer) :: text:
 	set {_rank} to get_players_rank({_p}) ? ""
 	set {_prefix} to get_prefix({_rank})
 
-	return colored {_prefix}
+	return {_prefix}
