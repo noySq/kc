@@ -1,0 +1,3 @@
+function get_servers() :: texts:
+
+    return get_redis_list("servers")
