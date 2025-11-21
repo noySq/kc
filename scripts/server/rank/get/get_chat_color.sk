@@ -1,9 +1,0 @@
-function get_chat_color(rank: text) :: text:
-
-	if {_rank} is not set:
-		stop
-
-	set {_document} to get_document({-config::rank::collection::rank}, "rank", {_rank})
-	if {_document} is set:
-
-		return mongo value "chat_color" of {_document}

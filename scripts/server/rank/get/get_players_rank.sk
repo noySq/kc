@@ -1,7 +1,0 @@
-function get_players_rank(p: offlineplayer) :: text:
-
-	set {_uuid} to uuid of {_p}
-	set {_document} to get_document({-config::rank::collection::player}, "uuid", {_uuid})
-	if {_document} is set:
-
-		return mongo value "rank" of {_document}

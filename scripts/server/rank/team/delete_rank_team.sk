@@ -1,6 +1,0 @@
-function delete_rank_team(rank: text):
-
-	set {_weight} to get_weight({_rank})
-	set {_team} to join ({_weight}, "-", {_rank})
-	
-	delete team named {_team}
