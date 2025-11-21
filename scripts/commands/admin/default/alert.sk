@@ -1,0 +1,22 @@
+command /alert [<text>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/alert <üzenet>
+	description: Szerver közötti globális üzenet küldése a chatre
+	permission: alert
+	trigger:
+
+		if arg-1 is set:
+
+			set {_message} to feedback("warning", colored arg-1)
+
+			send_global_message("")
+			send_global_message({_message})
+			send_global_message("")
+
+		else:
+			send feedback("error", "&c/alert <szöveg>")
+
+on tab complete of "/alert":
+	set tab completions for position 1 to "<szöveg>"
