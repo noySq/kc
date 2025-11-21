@@ -1,0 +1,11 @@
+on load:
+	set {-tiny::*} to "ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ" split at ""
+	set {_lower} to "abcdefghijklmnopqrstuvwxyz"
+	set {-lower::*} to {_lower} split at ""
+	set {-upper::*} to (uppercase {_lower}) split at ""
+
+function format_tiny_text(text: text) :: text:
+	loop {-tiny::*}:
+		replace {-lower::%loop-index%} and {-upper::%loop-index%} with loop-value in {_text}
+		replace "§%loop-value%" with "§%{-lower::%loop-index%}%" in {_text}
+	return {_text}
