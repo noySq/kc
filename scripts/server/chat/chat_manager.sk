@@ -24,4 +24,4 @@ on async chat:
 	set {_format} to merge components {_format::*}
 
 	set async chat format to {_format}
-	proxy broadcast text component from {_format} to get_other_servers() if get_other_servers() is set
+	send_global_message({_format}, "others")
