@@ -1,0 +1,3 @@
+function remove_from_redis_list(value: text, list: text):
+
+	delete entry with value {_value} from redis list {_list}

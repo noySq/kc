@@ -1,0 +1,3 @@
+function get_redis_list(list: text) :: objects:
+    
+    return redis list {_list}

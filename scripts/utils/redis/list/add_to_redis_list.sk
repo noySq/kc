@@ -1,0 +1,3 @@
+function add_to_redis_list(value: text, list: text):
+
+	add {_value} to redis list {_list}
