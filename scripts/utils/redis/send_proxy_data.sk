@@ -1,3 +1,6 @@
-function send_proxy_data(channel: text, data: text):
+function send_proxy_data(channel: text, data: text, server: text = "all"):
 
-	send redis message {_data} to channel {_channel}
+	set {_hostname} to get_hostname()
+	set {_json} to "{""server"":{""from"":""%{_hostname}%"",""target"":""%{_server}%""},""message"":%{_data}%}"
+
+	send custom redis message {_json} to channel {_channel}
