@@ -10,7 +10,7 @@ command /clearchat [<text>]:
 
 		if arg-1 = "all":
 			loop 100 times:
-				broadcast ""
+				send_global_message("")
 
 		else:
 			loop {-signatures::*}:
