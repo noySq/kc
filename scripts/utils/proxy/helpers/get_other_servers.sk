@@ -1,0 +1,3 @@
+function get_other_servers() :: texts:
+
+    return get_servers() where [input != get_hostname()]

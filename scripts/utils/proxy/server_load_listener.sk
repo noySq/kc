@@ -1,0 +1,12 @@
+on load:
+	set {_hostname} to get_hostname()
+
+	set {_servers::*} to get_redis_list("servers")
+	if {_servers::*} contains {_hostname}:
+		stop
+
+	add_to_redis_list({_hostname}, "servers")
+
+on unload:
+	set {_hostname} to get_hostname()
+	remove_from_redis_list({_hostname}, "servers")

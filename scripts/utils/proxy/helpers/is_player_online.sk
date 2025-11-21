@@ -1,0 +1,7 @@
+function is_player_online(p: offlineplayer) :: boolean:
+
+    loop get_all_players():
+        if loop-value = {_p}:
+            return true
+
+    return false

@@ -1,0 +1,6 @@
+function get_player_server(p: offlineplayer) :: text:
+
+    loop get_servers():
+        set {_players::*} to get_players_on_server(loop-value)
+        if {_players::*} contains {_p}:
+            return loop-value

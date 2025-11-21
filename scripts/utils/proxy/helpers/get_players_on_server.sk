@@ -1,0 +1,7 @@
+function get_players_on_server(server: text) :: offlineplayers:
+
+	set {_uuids::*} to get_redis_list("server-players:%{_server}%")
+	loop {_uuids::*}:
+		add (loop-value parsed as offlineplayer) to {_players::*}
+	
+	return {_players::*}

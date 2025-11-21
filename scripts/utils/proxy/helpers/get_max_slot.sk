@@ -1,0 +1,6 @@
+function get_max_slot() :: integer:
+
+    set {_slots} to max player count
+    set {_server_count} to size of get_servers()
+
+    return {_slots} * {_server_count}

@@ -1,0 +1,8 @@
+function get_players_on_other_servers() :: offlineplayers:
+
+    set {_current_players::*} to all players
+    set {_other_players::*} to get_all_players()
+
+    remove {_current_players::*} from {_other_players::*}
+
+    return {_other_players::*}

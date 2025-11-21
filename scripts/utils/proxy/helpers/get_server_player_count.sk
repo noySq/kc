@@ -1,0 +1,4 @@
+function get_server_player_count(server: text) :: integer:
+
+	set {_uuids::*} to get_redis_list("server-players:%{_server}%")
+	return size of {_uuids::*}

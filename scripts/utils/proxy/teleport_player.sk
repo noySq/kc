@@ -1,0 +1,15 @@
+function teleport_player_to(p: player, target: offlineplayer):
+
+	if is_player_online({_target}) = false:
+		stop
+
+	set {_target_server} to get_player_server({_target})
+	if {_target_server} != get_hostname():
+
+		change_player_server({_p}, {_target_server})
+
+		set {_json} to "{""player"":""%uuid of {_p}%"",""target"":""%uuid of {_target}%""}"
+		send_proxy_data("teleport:::%{_target_server}%", {_json}, {_target_server})
+
+	else:
+		teleport {_p} to {_target}

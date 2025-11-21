@@ -1,0 +1,24 @@
+function send_global_message(message: text, target: text = "all"):
+	set {_json} to "{""value"":""%{_message}%""}"
+
+	send_proxy_data("global-message", {_json}, {_target})
+
+on custom redis message:
+	if redis channel = "global-message":
+
+		encode redis message as json to {_json::*}
+		set {_server} to {_json::server::from}
+		set {_target} to {_json::server::target}
+		set {_message} to {_json::message::value}
+
+		if {_target} = "all":
+			broadcast {_message}
+
+		else if {_target} = "others":
+			if {_target} = get_hostname():
+				stop
+
+			broadcast {_message}
+
+		else if {_target} = get_hostname():
+			broadcast {_message}

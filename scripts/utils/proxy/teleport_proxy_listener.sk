@@ -1,0 +1,10 @@
+on custom redis message:
+
+	if redis channel = "teleport:::%get_hostname()%":
+
+		encode redis message as json to {_json::*}
+
+		set {_player} to ({_json::message::player} parsed as offlineplayer)
+		set {_target} to ({_json::message::target} parsed as offlineplayer)
+
+		teleport {_player} to {_target}

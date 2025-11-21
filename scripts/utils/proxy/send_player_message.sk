@@ -1,0 +1,15 @@
+function send_player_message(p: offlineplayer, message: text):
+
+	set {_target} to get_player_server({_p})
+	set {_json} to "{""target"":""%{_p}%"",""text"":""%{_message}%""}"
+
+	send_proxy_data("player-message", {_json}, {_target})
+
+on custom redis message:
+	if redis channel = "player-message":
+
+		encode redis message as json to {_json::*}
+		set {_player} to ({_json::message::target} parsed as offlineplayer)
+		set {_message} to {_json::message::text}
+
+		send {_message} to {_player}

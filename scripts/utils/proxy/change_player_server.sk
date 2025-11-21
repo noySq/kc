@@ -1,0 +1,3 @@
+function change_player_server(p: player, server: text):
+
+    send {_p} to server {_server}
