@@ -1,0 +1,7 @@
+function remove_from_rank_team(p: offlineplayer, rank: text):
+
+	set {_rank} to get_players_rank({_p})
+	set {_weight} to get_weight({_rank})
+	
+	set {_team} to join ({_weight}, "-", {_rank})
+	remove {_p} from team named {_team}

@@ -1,0 +1,4 @@
+function create_rank(rank: text):
+
+	set {_document} to rank_template({_rank})
+	insert mongo document {_document} into collection get_collection({-config::rank::collection::rank})
