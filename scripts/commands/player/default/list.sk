@@ -1,12 +1,21 @@
 command /list:
 
+	aliases: lista, szerverek
 	prefix: kockacraft
 	executable by: console and players
 	usage: &f/list
 	description: Elérhető játékosok számának lekérdezése
 	trigger:
 
-		# TODO: Account for Proxy
 		send ""
-		send feedback("casual", "&fJátékosok: ß%number of all players%")
+		send feedback("casual", "&3🌐 &fElérhető játékosok")
+		send ""
+
+		loop sorted get_servers():
+
+			set {_hostname} to loop-value
+			set {_count} to number of get_players_on_server(loop-value)
+
+			send feedback("casual", "   ß%format_tiny_text({_hostname})%&f: ß%{_count}%")
+
 		send ""
