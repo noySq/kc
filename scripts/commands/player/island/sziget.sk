@@ -31,7 +31,7 @@ command /sziget [<text>] [<text>]:
 			delete_island({_ID})
 
 		else if arg-1 is "teleport":
-			teleport_player(player, {_ID})
+			teleport_player_to_island(player, {_ID})
 
 		else if arg-1 is "info" or "infó":
 			send feedback("warning", "&6work in progress...")
