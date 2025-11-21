@@ -1,9 +1,11 @@
-options:
-	join-message: "%get_displayname(player)% &acsatlakozott!"
-
 on join:
 
-	spawn(player)
-
 	set join message to ""
-	send action bar feedback("casual", {@join-message}, true) to all players
+	
+	spawn(player)
+	
+	set {_uuid} to uuid of player
+	set {_hostname} to get_hostname()
+
+	add_to_redis_list({_uuid}, "online-players")
+	add_to_redis_list({_uuid}, "server-players:%{_hostname}%")

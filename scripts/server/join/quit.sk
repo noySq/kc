@@ -1,6 +1,9 @@
-options:
-	quit-message: "%get_displayname(player)% &clecsatlakozott!"
-
 on quit:
+
 	set quit message to ""
-	send action bar feedback("casual", {@quit-message}, true) to all players
+	
+	set {_uuid} to uuid of player
+	set {_hostname} to get_hostname()
+
+	remove_from_redis_list({_uuid}, "online-players")
+	remove_from_redis_list({_uuid}, "server-players:%{_hostname}%")
