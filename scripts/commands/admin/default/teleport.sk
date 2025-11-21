@@ -1,0 +1,20 @@
+command /tp [<offlineplayer>] [<offlineplayer>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/teleport <játékos> <játékos>
+	description: Teleportálás játékoshoz
+	permission: teleport
+	trigger:
+
+		if arg-1 is not set:
+			stop
+
+		if arg-2 is not set:
+			teleport_player_to(player, arg-1)
+
+		else:
+			teleport_player_to(arg-1, arg-2)
+
+on tab complete of "/teleport" or "/tp":
+	set tab completions for position 1 to get_all_players()
