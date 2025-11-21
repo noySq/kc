@@ -1,6 +1,8 @@
 command /pay [<offlineplayer>] [<number>]:
+
+	prefix: kockacraft
 	executable by: players
-	usage: &f/pay &a<játékos> <összeg>
+	usage: &f/pay <játékos> <összeg>
 	description: Pénz küldése más játékosnak
 	trigger:
 
@@ -8,23 +10,26 @@ command /pay [<offlineplayer>] [<number>]:
 			send feedback("error", "&cNem küldhetsz magadnak pénzt!")
 			stop
 
-		if arg-1 is not online:
+		if is_player_online(arg-1) = false:
 			send feedback("error", "&4%arg-1% &cnem elérhető!")
 			stop
 
 		if arg-2 <= 0:
-			send feedback("error", "&cNem küldhetsz kevesebbet mint 0$!")
+			send feedback("error", "&cNem küldhetsz kevesebbet mint %format_balance(0)%!")
 			stop
 
-		if {egyenleg::%uuid of player%} < arg-2:
+		if has_enough_money(player, {_arg2}) = false:
 			send feedback("error", "&cNincs elég pénzed!")
 			stop
 
 		give_money(arg-1, arg-2)
 		remove_money(player, arg-2)
 
-		send feedback("casual", "&fElküldtél %format_balance(arg-2)%&f-t %get_displayname(arg-1)% számára")
-		send feedback("casual", "%get_displayname(player)% küldött neked %format_balance(arg-2)%&f-t!") to arg-1
+		send feedback("casual", "&fElküldtél %format_balance(arg-2)%&f-t %get_displayname(arg-1)% &fszámára")
+
+		set {_message} to feedback("casual", "%get_displayname(player)% &fküldött neked %format_balance(arg-2)%&f-t!")
+		send_player_message(arg-1, {_message})
 
 on tab complete of "/pay":
+	set tab completions for position 1 to get_all_players() where [input != player]
 	set tab completions for position 2 to "<összeg>"
