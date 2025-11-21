@@ -1,3 +1,6 @@
+options:
+	refresh-time: 1 minutes
+
 command /balancetop:
 
 	prefix: kockacraft
@@ -7,7 +10,10 @@ command /balancetop:
 	description: Egyenleg toplista megtekintése
 	trigger:
 
-		if 1 minutes ago > {-top::balance::renewed}:
+		if {-top::balance::renewed} is not set:
+			set {-top::balance::renewed} to {@refresh-time} ago
+
+		if {@refresh-time} ago >= {-top::balance::renewed}:
 
 			set {-top::balance::renewed} to now
 
