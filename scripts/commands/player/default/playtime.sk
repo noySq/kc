@@ -1,8 +1,9 @@
-command /jatekido [<offlineplayer>]:
+command /playtime [<offlineplayer>]:
 
+	aliases: jatekido
 	prefix: kockacraft
 	executable by: console and players
-	usage: &f/jatekido ß<játékos>
+	usage: &f/playtime ß<játékos>
 	description: Játékidő megtekintése
 	trigger:
 
@@ -26,3 +27,6 @@ command /jatekido [<offlineplayer>]:
 			send feedback("casual", "&fUtolsó bejelentkezés: ß%arg-1's last login%")
 			send feedback("casual", "&fJátékidő: ß%format_timespan({_time_played})%")
 			send ""
+
+on tab complete of "/playtime" or "/jatekido":
+	set tab completions for position 1 to get_all_players() where [input != player]
