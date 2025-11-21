@@ -5,7 +5,7 @@ options:
 	sending-format: "ßTE &f→ ß%get_displayname({_target})%&8: &r%colored {_message}%"
 	receive-format: "%get_displayname({_p})% &f→ ßTE&8: &r%colored {_message}%"
 
-command /message [<player>] [<text>]:
+command /message [<offlineplayer>] [<text>]:
 
 	prefix: kockacraft
 	aliases: m, msg, tell, whisper, w
@@ -35,12 +35,14 @@ local function private_message(p: player, target: offlineplayer, message: text):
 		send feedback("error", {@no-message}) to {_p}
 		stop
 	
-	if {_target} is not online:
+	if is_player_online({_target}) = false:
 		send feedback("error", {@target-offline}) to {_p}
 		stop
 		
 	send feedback("casual", {@sending-format}) to {_p}
-	send feedback("casual", {@receive-format}) to {_target}
 
-	set {-private_message::%uuid of {_p}%::reply} to {_target}
+	set {_message} to feedback("casual", {@receive-format})
+	send_player_message({_target}, {_message})
+
 	set {-private_message::%uuid of {_target}%::reply} to {_p}
+	set {-private_message::%uuid of {_p}%::reply} to {_target}
