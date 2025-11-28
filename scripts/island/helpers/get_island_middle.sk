@@ -1,4 +1,4 @@
 function get_island_middle(ID: text) :: location:
 
-	set {_world} to get_island_world({_ID})
+	set {_world} to world(get_island_world({_ID}))
 	return location(0, 64, 0, {_world})

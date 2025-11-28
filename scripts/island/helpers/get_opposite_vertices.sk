@@ -1,6 +1,6 @@
 function get_opposite_vertices(ID: text) :: locations:
 
-	set {_world} to get_island_world({_ID})
+	set {_world} to world(get_island_world({_ID}))
 
 	set {_size} to {-config::island::size}
 	set {_size_reversed} to ({_size} * -1)
