@@ -8,12 +8,21 @@ command /commandspy:
 	permission: commandspy
 	trigger:
 
-		if {-cmdspy::%uuid of player%} is not set:
+		set {_uuid} to uuid of player
 
-			set {-cmdspy::%uuid of player%} to true
+		set {_uuids::*} to get_redis_list({-config::redis::list::commandspy})
+		if {_uuids::*} does not contain {_uuid}:
+			add_to_redis_list({_uuid}, {-config::redis::list::commandspy})
 			server_log("cmdspy", "&aBekapcsolva %get_displayname(player)% &fszámára!")
 
 		else:
-
-			delete {-cmdspy::%uuid of player%}
+			remove_from_redis_list({_uuid}, {-config::redis::list::commandspy})
 			server_log("cmdspy", "&cKikapcsolva %get_displayname(player)% &fszámára!")
+
+on command:
+	set {_message} to feedback("warning", "%get_displayname(sender)%&f: /&7%full command% &8(%get_hostname()%)")
+	set {_players::*} to get_redis_list({-config::redis::list::commandspy})
+
+	loop {_players::*}:
+		set {_player} to (loop-value parsed as offlineplayer)
+		send_player_message({_player}, {_message})
