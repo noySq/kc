@@ -1,7 +1,7 @@
 # TOOD: some kind of resourcepack?
 
 options:
-	icon: ""
+	icon: ""
 
 function get_admin_icon(p: offlineplayer) :: text:
 
