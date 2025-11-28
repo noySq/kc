@@ -11,10 +11,10 @@ command /tp [<offlineplayer>] [<offlineplayer>]:
 			stop
 
 		if arg-2 is not set:
-			teleport_player_to(player, arg-1)
+			teleport_player_to_player(player, arg-1)
 
 		else:
-			teleport_player_to(arg-1, arg-2)
+			teleport_player_to_player(arg-1, arg-2)
 
 on tab complete of "/teleport" or "/tp":
 	set tab completions for position 1 to get_all_players()
