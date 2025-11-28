@@ -4,9 +4,8 @@ function load_island(ID: text):
         broadcast "&cloaded"
         stop
 
+    add_loaded_island({_ID})
     create_void_world({_ID})
     create_bound({_ID})
 
     run section {-section::paste_island_schematic} async with arguments {_ID} and wait
-
-    send_island_loaded({_ID})

@@ -11,12 +11,13 @@ function delete_island(ID: text, deleteData: boolean = false):
 
 	delete_bound({_ID})
 	delete_world({_ID})
-	send_island_unloaded({_ID})
 
 	if {_deleteData} = true:
 
 		loop get_island_members({_ID}):
-			delete_player_data(loop-value parsed as offlineplayer)
+			delete_player_data(loop-value)
 			send feedback("warning", {@island-deleted}) to loop-value
 
 		delete_island_data({_ID})
+
+	remove_loaded_island({_ID})
