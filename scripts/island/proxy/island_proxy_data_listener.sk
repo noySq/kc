@@ -1,9 +1,0 @@
-on redis message:
-
-    if redis channel = {-config::island::redis::load}:
-        set {_ID} to redis message
-        add_loaded_island({_ID})
-
-    else if redis channel = {-config::island::redis::unload}:
-        set {_ID} to redis message
-        remove_loaded_island({_ID})

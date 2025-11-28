@@ -1,3 +1,4 @@
 function add_loaded_island(ID: text):
 
-    add {_ID} to {-island::loaded::*}
+	set {_hostname} to get_hostname()
+	add_to_redis_list({_ID}, {-config::redis::channel::loaded-islands})

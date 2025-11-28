@@ -1,3 +1,0 @@
-function send_island_unloaded(ID: text):
-
-    send_proxy_data({-config::island::redis::unload}, {_ID})

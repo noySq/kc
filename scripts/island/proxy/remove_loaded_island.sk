@@ -1,3 +1,4 @@
 function remove_loaded_island(ID: text):
 
-    remove {_ID} from {-island::loaded::*}
+    set {_hostname} to get_hostname()
+    remove_from_redis_list({_ID}, {-config::redis::channel::loaded-islands})

@@ -1,0 +1,8 @@
+function get_islands_server(ID: text) :: text:
+
+	set {_servers::*} to get_servers()
+	loop {_servers::*}:
+		set {_channel} to join ({-config::redis::channel::loaded-islands}, loop-value)
+		set {_islands::*} to get_redis_list({-config::redis::channel::loaded-islands})
+		if {_islands::*} contains {_ID}:
+			return loop-value

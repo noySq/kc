@@ -1,6 +1,6 @@
 function is_island_loaded(ID: text) :: boolean:
 
-    if {-island::loaded::*} contains {_ID}:
-        return true
-    
-    return false
+	if get_loaded_islands() contains {_ID}:
+		return true
+	
+	return false
