@@ -1,5 +1,3 @@
-function get_island_world(ID: text) :: world:
+function get_island_world(ID: text) :: text:
 
-    set {_world} to (join "islands/", {_ID})
-
-    return world({_world})
+    return (join "islands/", {_ID})

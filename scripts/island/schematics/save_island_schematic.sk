@@ -20,8 +20,8 @@ on load:
 
 		set {_vertices::*} to get_opposite_vertices({_ID})
 		set {_middle} to get_island_middle({_ID})
-		set {_world} to new BukkitWorld({_middle}.getWorld())
 
+		set {_world} to new BukkitWorld({_middle}.getWorld())
 		set {_location::1} to BlockVector3.at({_vertices::1}.getBlockX(), {_vertices::1}.getBlockY(), {_vertices::1}.getBlockZ())
 		set {_location::2} to BlockVector3.at({_vertices::2}.getBlockX(), {_vertices::2}.getBlockY(), {_vertices::2}.getBlockZ())
 		set {_origin} to BlockVector3.at({_middle}.getBlockX(), {_middle}.getBlockY(), {_middle}.getBlockZ())
