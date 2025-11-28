@@ -9,6 +9,7 @@ command /clearchat [<text>]:
 	trigger:
 
 		if arg-1 = "all":
+			# wow
 			loop 100 times:
 				send_global_message("")
 
