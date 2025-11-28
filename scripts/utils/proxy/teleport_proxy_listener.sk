@@ -1,10 +1,49 @@
+options:
+	timeout: 200 # 5s
+
 on custom redis message:
 
-	if redis channel = "teleport:::%get_hostname()%":
+	if redis channel = {-config::redis::channel::teleport-player}:
 
 		encode redis message as json to {_json::*}
 
 		set {_player} to ({_json::message::player} parsed as offlineplayer)
 		set {_target} to ({_json::message::target} parsed as offlineplayer)
 
+		set {_t} to 0
+		while {_t} < {@timeout}:
+			if {_player} is online:
+				exit loop
+
+			wait 1 tick
+			add 1 to {_t}
+
+		if {_t} >= {@timeout}:
+			stop
+
 		teleport {_player} to {_target}
+
+	else if redis channel = {-config::redis::channel::teleport-location}:
+
+		encode redis message as json to {_json::*}
+
+		set {_player} to ({_json::message::player} parsed as offlineplayer)
+		set {_x} to {_json::message::location::x}
+		set {_y} to {_json::message::location::y}
+		set {_z} to {_json::message::location::z}
+		set {_world} to {_json::message::location::world}
+
+		set {_location} to location({_x}, {_y}, {_z}, {_world})
+
+		set {_t} to 0
+		while {_t} < {@timeout}:
+			if {_player} is online:
+				exit loop
+
+			wait 1 tick
+			add 1 to {_t}
+
+		if {_t} >= {@timeout}:
+			stop
+
+		teleport {_player} to {_location}

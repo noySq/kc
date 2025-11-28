@@ -1,0 +1,17 @@
+# could be implemented into 'teleport_player_to_location.sk', if really neccesary
+function teleport_player_to_player(p: player, target: offlineplayer):
+
+	if is_player_online({_target}) = false:
+		stop
+
+	set {_server} to get_player_server({_target})
+	if {_server} != get_hostname():
+
+		change_player_server({_p}, {_server})
+
+		set {_json} to "{""player"":""%uuid of {_p}%"",""target"":""%uuid of {_target}%""}"
+		set {_channel} to join ({-config::redis::channel::teleport-player}, {_server})
+		send_proxy_data({_channel}, {_json}, {_server})
+
+	else:
+		teleport {_p} to {_target}
