@@ -24,7 +24,7 @@ command /sziget [<text>] [<text>]:
 		if arg-1 is "letrehoz" or "létrehoz":
 			create_island(player)
 
-		if arg-1 is "load" :
+		else if arg-1 is "load":
 			load_island({_ID})
 
 		else if arg-1 is "torol" or "töröl":
