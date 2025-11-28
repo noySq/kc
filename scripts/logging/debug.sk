@@ -3,7 +3,7 @@ using queues
 options:
 	message-format: "&c&o%{_script}% &8| &r%colored {_message}%"
 
-function debug(message: text, script: script = script):
+function debug(message: text, script: script):
 
 	set {_sendTo} to a new queue of all players where [input has permission {-config::server::permission::debug}]
 	add console to {_sendTo}
@@ -12,4 +12,4 @@ function debug(message: text, script: script = script):
 	replace every "ß" in {_message} with {-config::color::main}
 
 	loop {_sendTo}:
-		send {@message-format} to loop-value
+		send_player_message(loop-value, {@message-format})
