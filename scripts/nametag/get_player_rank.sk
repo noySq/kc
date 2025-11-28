@@ -1,4 +1,3 @@
-# TODO: rank system
 function get_player_rank(p: offlineplayer) :: text:
 
 	set {_rank} to get_players_rank({_p}) ? ""

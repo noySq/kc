@@ -1,12 +1,3 @@
-#
-# Sziget bound lekérdezése
-#
-#    Args:
-#        id (integer): A sziget azonosítója
-#    
-#    Returns:
-#        bound (Bound): A sziget körüli bound
-#
 function get_bound(ID: text) :: bound:
 
     return bound with id {_ID}
