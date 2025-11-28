@@ -4,7 +4,7 @@ on server list ping:
 	set fake max players count to get_max_slot()
 
 	set {_header} to {-config::server::motd}
-	set {_footer} to "<gradient:#ff00000:#005dab><bold>%{-config::server::domain}%"#{-config::server::domain}
+	set {_footer} to "<gradient:#ff00000:#005dab><bold>%{-config::server::domain}%"
 	set {_version} to {-config::server::version}
 
 	set motd to minimessage from (join {_header}, nl, {_footer})
