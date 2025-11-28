@@ -8,8 +8,8 @@ on load:
 	set {-config::server::name} to "KOCKACRAFT"
 	set {-config::server::motd} to "<gradient:#00aeff:#005dab>%{-config::server::name}%"
 	set {-config::server::domain} to "<gradient:#ffffff:#A0A0A0>play.%{-config::server::name}%.hu"
-	set {-config::server::version} to "1.19.4 - 1.21.7"
-	set {-config::server::id} to "&8[s%{-server::id}%]"
+	set {-config::server::version} to "1.19.4 - 1.21.8"
+	set {-config::server::id} to "&7[s%{-server::id}%]"
 
 	set {-config::server::spawn_world} to world("Spawn")
 
