@@ -1,7 +1,12 @@
 function get_all_players() :: offlineplayers:
 
-    set {_uuids::*} to get_redis_list("online-players")
-    loop {_uuids::*}:
-        add (loop-value parsed as offlineplayer) to {_players::*}
-    
-    return {_players::*}
+	set {_servers::*} to get_redis_list({-config::redis::channel::server-list})
+	loop {_servers::*}:
+
+		set {_channel} to join ({-config::redis::channel::online-players}, loop-value)
+		set {_uuids::*} to get_redis_list({_channel})
+
+		loop {_uuids::*}:
+			add (loop-value-2 parsed as offlineplayer) to {_players::*}
+	
+	return {_players::*}

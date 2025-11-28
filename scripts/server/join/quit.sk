@@ -5,5 +5,5 @@ on quit:
 	set {_uuid} to uuid of player
 	set {_hostname} to get_hostname()
 
-	remove_from_redis_list({_uuid}, "online-players")
-	remove_from_redis_list({_uuid}, "server-players:%{_hostname}%")
+	set {_channel} to join ({-config::redis::channel::online-players}, {_hostname})
+	remove_from_redis_list({_uuid}, {_channel})
