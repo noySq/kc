@@ -10,7 +10,6 @@ KockaCraft szerver forráskódja
 ## Futtatáshoz szükséges adatbázisok
 - [MongoDB](https://www.mongodb.com/)
 - [Redis](https://redis.io/)
-- [PostgreSQL](https://www.postgresql.org/) (opcionális)
 - [MinIO](https://www.min.io/)
 
 ## Futtatáshoz szükséges pluginok
@@ -19,7 +18,7 @@ KockaCraft szerver forráskódja
 - [skript-reflect](https://github.com/SkriptLang/skript-reflect)
 - [SkBee](https://github.com/ShaneBeee/SkBee)
 - [MongoSK](https://github.com/Romitou/MongoSK)
-- [HuskSync](https://github.com/WiIIiam278/HuskSync) (opcionális)
+- [HuskSync](https://github.com/WiIIiam278/HuskSync) (opcionális, MongoDB)
 
 ## Discord
 Link: https://discord.com/invite/T4De4FMk9E
