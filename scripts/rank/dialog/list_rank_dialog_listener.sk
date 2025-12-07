@@ -1,0 +1,17 @@
+on dynamic button click:
+
+	if event-text does not contain "rank:list_rank":
+		stop
+
+	# ez aztán kókány
+	set {_split::*} to event-text split at "-"
+	set {_rank} to {_split::2}
+
+	if event-namespacedkey = "rank:list_rank-%{_rank}%":
+		set {_action} to string tag "action" of event-nbt
+
+		switch {_action}:
+			case "delete":
+				delete_rank({_rank})
+			case "edit":
+				edit_rank_dialog(player, {_rank})

@@ -1,0 +1,17 @@
+function list_rank_dialog(p: player, nbt: nbt compound = nbt compound from "{}"):
+	open multi action dialog to {_p}:
+		title: ""
+		columns: 1
+		body:
+			add plain message body:
+				contents: "Rang lista"
+		actions:
+			loop get_all_ranks():
+				add dynamic action button:
+					label: get_prefix(loop-value)
+					id: "rank:list_rank-%loop-value%"
+					additions: {_nbt}
+
+			add dynamic action button:
+				label: "Vissza a főmenübe"
+				id: "rank:main_return"

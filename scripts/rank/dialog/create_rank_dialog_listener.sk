@@ -1,0 +1,26 @@
+on dynamic button click:
+	if event-namespacedkey = "rank:create_rank":
+		set {_nbt} to event-nbt
+		set {_rank} to string tag "rank" of {_nbt}
+
+		set {_prefix} to string tag "rank_prefix" of {_nbt}
+		set {_chat_color} to string tag "rank_chat_color" of {_nbt}
+		set {_weight} to string tag "rank_weight" of {_nbt}
+
+		if all:
+			{_rank} != ""
+			{_prefix} != ""
+			{_chat_color} != ""
+			{_weight} != ""
+
+		then:
+			create_rank({_rank})
+			edit_prefix({_rank}, {_prefix})
+			edit_chat_color({_rank}, {_chat_color})
+			edit_weight({_rank}, {_weight})
+			create_rank_team({_rank})
+
+			send feedback("success", "%{_prefix}% &frang létrehozva!") to player
+
+		else:
+			send feedback("error", "&cTölts ki minden mezőt!") to player

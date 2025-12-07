@@ -1,0 +1,28 @@
+function edit_rank_dialog(p: player, rank: text):
+	open multi action dialog to {_p}:
+		title: ""
+		columns: 1
+		body:
+			add plain message body:
+				contents: "%get_prefix({_rank})% &frang szerkesztése"
+		inputs:
+			add text input:
+				label: "Rang neve &4&l[NE MÓDOSÍTSD]"
+				initial: {_rank}
+				key: "rank"
+			add text input:
+				label: "Prefix"
+				key: "rank_prefix"
+			add text input:
+				label: "Chat color"
+				key: "rank_chat_color"
+			add text input:
+				label: "Weight"
+				key: "rank_weight"
+		actions:
+			add dynamic action button:
+				label: "Rang szerkesztése"
+				id: "rank:edit_rank"
+			add dynamic action button:
+				label: "Vissza a főmenübe"
+				id: "rank:main_return"

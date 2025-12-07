@@ -1,0 +1,11 @@
+on dynamic button click:
+	if event-namespacedkey = "rank:main_return":
+		main_rank_dialog(player)
+	if event-namespacedkey = "rank:main_create_rank":
+		create_rank_dialog(player)
+	if event-namespacedkey = "rank:main_list_rank":
+		list_rank_dialog(player)
+	if event-namespacedkey = "rank:main_delete_rank":
+		list_rank_dialog(player, event-nbt)
+	if event-namespacedkey = "rank:main_edit_rank":
+		list_rank_dialog(player, event-nbt)

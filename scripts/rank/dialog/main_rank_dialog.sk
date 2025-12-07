@@ -1,0 +1,25 @@
+function main_rank_dialog(p: player):
+	open multi action dialog to {_p}:
+		title: ""
+		columns: 1
+		body:
+			add plain message body:
+				contents: "Rang manager"
+		actions:
+			add dynamic action button:
+				label: "Létrehozás"
+				id: "rank:main_create_rank"
+			add dynamic action button:
+				label: "Törlés"
+				id: "rank:main_delete_rank"
+				additions: nbt compound from "{action:""delete""}"
+			add dynamic action button:
+				label: "Lista"
+				id: "rank:main_list_rank"
+			add dynamic action button:
+				label: "Szerkesztés"
+				id: "rank:main_edit_rank"
+				additions: nbt compound from "{action:""edit""}"
+			add dynamic action button:
+				label: "&cKilépés"
+				id: "rank:cancel"
