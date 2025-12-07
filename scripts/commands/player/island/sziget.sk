@@ -1,15 +1,3 @@
-options:
-	letrehozInfo: &fSziget létrehozása%nl%%nl%ßHasználat: &f/sziget ßletrehoz
-	torolInfo: &fSziget törlése%nl%%nl%ßHasználat: &f/sziget ßtorol
-	teleportInfo: &fSzigetre teleportálás%nl%%nl%ßHasználat: &f/sziget ßteleport %nl%&fvagy &f/sziget ßteleport <Sziget ID>
-	infoInfo: &fSziget információinak lekérdezése%nl%%nl%ßHasználat: &f/sziget ßinfo ß&l1 %nl%&fvagy &fegy sziget területén belül /sziget ßinfo
-	meghivInfo: &fJátékos meghívása a szigetedre%nl%%nl%&cA meghívott játékosok rombolni tudnak a szigeteden!%nl%ßHasználat: &f/sziget ßmeghiv <Játékosnév>
-	elfogadInfo: &fMeghívás elfogadása%nl%%nl%ßHasználat: &f/sziget ßelfogad
-	kirugInfo: &fJátékos kirúgása a szigetedről%nl%%nl%ßHasználat: &f/sziget ßkirug <Játékosnév>
-	kilepInfo: &fKilépés a sziget tagjai közül%nl%%nl%ßHasználat: &f/sziget ßkilep
-	eloleptetInfo: &fJátékos előléptetése a szigeteden%nl%%nl%&cAz előléptetett játékosok a sziget törlésén kívűl minden más joggal rendelkeznek!%nl%ßHasználat: &f/sziget ßeloleptet <Játékosnév>
-	lefokozInfo: &fElőléptetett játékos lefokozása%nl%%nl%ßHasználat: &f/sziget ßlefokoz <Játékosnév>
-
 command /sziget [<text>] [<text>]:
 
 	aliases: island, is
@@ -21,58 +9,72 @@ command /sziget [<text>] [<text>]:
 
 		set {_ID} to get_player_island_id(player)
 
-		if arg-1 is "letrehoz" or "létrehoz":
-			create_island(player)
+		switch arg-1:
+			
+			case "letrehoz":
+				create_island(player)
 
-		else if arg-1 is "load":
-			load_island({_ID})
+			case "betolt":
+				load_island({_ID})
 
-		else if arg-1 is "torol" or "töröl":
-			delete_island({_ID})
+			case "torol":
+				delete_island({_ID})
 
-		else if arg-1 is "teleport":
-			teleport_player_to_island(player, {_ID})
+			case "vegleges.torles.instant":
+				delete_island({_ID}, true)
 
-		else if arg-1 is "info" or "infó":
-			send feedback("warning", "&6work in progress...")
+			case "teleport":
+				teleport_player_to_island(player, {_ID})
 
-		else if arg-1 is "meghiv" or "meghív":
-			invite_player({_ID}, (arg-2 parsed as player), player)
+			case "info":
+				send feedback("warning", "&6work in progress...")
 
-		else if arg-1 is "elfogad":
-			accept_invite(player)
+			case "meghiv":
+				set {_target} to (arg-2 parsed as player)
+				invite_player({_ID}, {_target}, player)
 
-		else if arg-1 is "kirug" or "kirúg":
-			kick_player({_ID}, (arg-2 parsed as player))
+			case "elfogad":
+				accept_invite(player)
 
-		else if arg-1 is "kilep" or "kilép":
-			leave_island(player)
+			case "kirug":
+				set {_target} to (arg-2 parsed as player)
+				kick_player({_ID}, {_target})
 
-		else if arg-1 is "eloleptet":
-			promote_player({_ID}, (arg-2 parsed as player))
+			case "kilep":
+				leave_island(player)
 
-		else if arg-1 is "lefokoz":
-			revoke_player({_ID}, (arg-2 parsed as player))
+			case "eloleptet":
+				set {_target} to (arg-2 parsed as player)
+				promote_player({_ID}, {_target})
 
-		else:
+			case "lefokoz":
+				set {_target} to (arg-2 parsed as player)
+				revoke_player({_ID}, {_target})
+
+			default:
+				send feedback("warning", "&6Nincs ilyen argumentum!")
+
+		if arg-1 is not set:
 			send ""
 			send format_text_middle("&7&lSZIGET RENDSZER", 154)
-			send format_text_middle("&7&o(húzd rá a kurzort a parancsokra további információért)", 154)
-			send formatted feedback("casual", "<tooltip:{@letrehozInfo}>&f/sziget ßletrehoz")
-			send formatted feedback("casual", "<tooltip:{@torolInfo}>&f/sziget ßtorol")
-			send formatted feedback("casual", "<tooltip:{@teleportInfo}>&f/sziget ßteleport")
-			send formatted feedback("casual", "<tooltip:{@infoInfo}>&f/sziget ßinfo")
-			send formatted feedback("casual", "<tooltip:{@meghivInfo}>&f/sziget ßmeghiv <Játékosnév>")
-			send formatted feedback("casual", "<tooltip:{@elfogadInfo}>&f/sziget ßelfogad")
-			send formatted feedback("casual", "<tooltip:{@kirugInfo}>&f/sziget ßkirug <Játékosnév>")
-			send formatted feedback("casual", "<tooltip:{@kilepInfo}>&f/sziget ßkilep")
-			send formatted feedback("casual", "<tooltip:{@eloleptetInfo}>&f/sziget ßeloleptet <Játékosnév>")
-			send formatted feedback("casual", "<tooltip:{@lefokozInfo}>&f/sziget ßlefokoz <Játékosnév>")
+			send feedback("casual", "&f/sziget ßletrehoz")
+			send feedback("casual", "&f/sziget ßtorol")
+			send feedback("casual", "&f/sziget &cvegleges.torles.instant")
+			send feedback("casual", "&f/sziget ßteleport")
+			send feedback("casual", "&f/sziget ßinfo")
+			send feedback("casual", "&f/sziget ßmeghiv <Játékosnév>")
+			send feedback("casual", "&f/sziget ßelfogad")
+			send feedback("casual", "&f/sziget ßkirug <Játékosnév>")
+			send feedback("casual", "&f/sziget ßkilep")
+			send feedback("casual", "&f/sziget ßeloleptet <Játékosnév>")
+			send feedback("casual", "&f/sziget ßlefokoz <Játékosnév>")
 
 on tab complete of "/sziget" or "/island" or "/is":
 
 	add "letrehoz" to {_tab::*}
+	add "betolt" to {_tab::*}
 	add "torol" to {_tab::*}
+	add "vegleges.torles.instant" to {_tab::*}
 	add "teleport" to {_tab::*}
 	add "info" to {_tab::*}
 	add "meghiv" to {_tab::*}
@@ -83,11 +85,11 @@ on tab complete of "/sziget" or "/island" or "/is":
 	add "lefokoz" to {_tab::*}
 	set tab completions for position 1 to {_tab::*}
 
-	if tab arg-1 = "meghiv" or "meghív":
-		set tab completions for position 2 to all players
+	if tab arg-1 = "meghiv":
+		set tab completions for position 2 to get_all_players()
 
-	if tab arg-1 = "kirug" or "kirúg":
-		set tab completions for position 2 to get_island_members({_ID})
+	if tab arg-1 = "kirug":
+		set tab completions for position 2 to get_player_island_id(player)
 
-	if tab arg-1 = "eloleptet" or "lefokoz":
-		set tab completions for position 2 to get_island_members({_ID})
+	if tab arg-1 = "eloleptet":
+		set tab completions for position 2 to get_player_island_id(player)
