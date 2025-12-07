@@ -1,0 +1,6 @@
+function get_all_islands() :: texts:
+
+	set {_collection} to get_collection({-config::island::collection::island})
+	set {_islands::*} to all mongo fields distincted by "uuid" of collection {_collection}
+
+	return {_islands::*}

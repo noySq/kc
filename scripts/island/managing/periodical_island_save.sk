@@ -1,0 +1,11 @@
+every 10 minutes:
+
+	loop get_loaded_islands():
+
+		server_log("island", "&7&o%loop-value% &fsziget mentése elkezdődött")
+
+		set {_server} to get_islands_server(loop-value)
+		if {_server} = get_hostname():
+			save_island(loop-value)
+			server_log("island", "&7&o%loop-value% &fsziget elmentve")
+			wait 5 second

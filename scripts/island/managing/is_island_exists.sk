@@ -1,0 +1,6 @@
+function is_island_exists(ID: text) :: boolean:
+
+	if get_all_islands() does not contain {_ID}:
+		return false
+
+	return true
