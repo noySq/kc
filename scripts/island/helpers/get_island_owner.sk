@@ -3,4 +3,4 @@ function get_island_owner(ID: text) :: offlineplayer:
 	set {_document} to get_document({-config::island::collection::island}, "uuid", {_ID})
 	set {_owner} to mongo value "owner" of {_document}
 
-	return {_owner}
+	return ({_owner} parsed as offlineplayer)

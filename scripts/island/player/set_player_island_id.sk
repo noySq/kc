@@ -1,10 +1,7 @@
-function set_player_island_id(p: player, ID: text):
+function set_player_island_id(uuid: text, ID: text):
 
-	set {_uuid} to "%uuid of {_p}%"
 	if document_exists({-config::island::collection::player}, "uuid", {_uuid}) = false:
 		create_player_data({_p})
-
-	wait 1 tick
 
 	set {_document} to get_document({-config::island::collection::player}, "uuid", {_uuid})
 

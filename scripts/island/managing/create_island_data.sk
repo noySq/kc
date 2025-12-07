@@ -1,12 +1,12 @@
-function create_island_data(ID: text, p: player):
+function create_island_data(ID: text, uuid: text):
 
 	set {_collection} to get_collection("island")
 	set {_document} to island_template({_ID})
-	
+
 	set mongo value "size" of {_document} to {-config::island::size}
 	set mongo value "creation_date" of {_document} to now
-	set mongo value "owner" of {_document} to {_p}
-	set mongo list "members" of {_document} to {_p}
-	set mongo list "admins" of {_document} to {_p}
+	set mongo value "owner" of {_document} to {_uuid}
+	set mongo list "members" of {_document} to {_uuid}
+	set mongo list "admins" of {_document} to {_uuid}
 
 	insert mongo document {_document} into collection {_collection}
