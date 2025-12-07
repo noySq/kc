@@ -1,0 +1,5 @@
+function create_island_player_data(uuid: text):
+
+	set {_document} to island_player_template({_uuid})
+
+	insert mongo document {_document} into get_collection({-config::island::collection::player})

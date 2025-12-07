@@ -16,6 +16,7 @@ command /sziget [<text>] [<text>]:
 
 			case "betolt":
 				load_island({_ID})
+				teleport_player_to_island(player, {_ID})
 
 			case "torol":
 				delete_island({_ID})

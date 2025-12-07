@@ -1,4 +1,4 @@
-function delete_player_data(p: offlineplayer):
+function delete_island_player_data(p: offlineplayer):
 
 	set {_document} to get_document({-config::island::collection::player}, "uuid", "%uuid of {_p}%")
 

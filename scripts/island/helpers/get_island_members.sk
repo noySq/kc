@@ -1,6 +1,7 @@
 function get_island_members(ID: text) :: offlineplayers:
 
 	set {_document} to get_document({-config::island::collection::island}, "uuid", {_ID})
-	set {_members::*} to mongo list "members" of {_document}
+	loop mongo list "members" of {_document}:
+		add (loop-value parsed as offlineplayer) to {_members::*}
 
 	return {_members::*}

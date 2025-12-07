@@ -12,7 +12,7 @@ function delete_island(ID: text, deleteData: boolean = false):
 	if {_deleteData} = true:
 
 		loop get_island_members({_ID}):
-			delete_player_data(loop-value)
+			delete_island_player_data(loop-value)
 			send feedback("warning", {@island-deleted}) to loop-value
 
 		delete_island_data({_ID})
