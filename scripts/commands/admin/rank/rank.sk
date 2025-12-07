@@ -1,0 +1,10 @@
+command /rank:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/rank
+	description: Rank manager
+	permission: rank
+	trigger:
+
+		main_rank_dialog(player)
