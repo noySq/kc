@@ -3,6 +3,9 @@ options:
 
 function check_interact(p: player, obj: object) :: boolean:
 
+	if {_p} is op:
+		stop
+
 	if world of {_obj} contains {@excluded-worlds}:
 		stop
 
