@@ -1,0 +1,6 @@
+function get_island_size(ID: text) :: integer:
+
+	set {_document} to get_document({-config::island::collection::island}, "uuid", {_ID})
+	set {_size} to mongo value "size" of {_document}
+
+	return {_size}
