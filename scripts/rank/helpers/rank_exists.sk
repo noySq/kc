@@ -1,0 +1,7 @@
+function rank_exists(rank: text) :: boolean:
+
+	set {_document} to get_document({-config::rank::collection::rank}, "rank", {_rank})
+	if {_document} is not set:
+		return false
+
+	return true

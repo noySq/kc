@@ -1,0 +1,6 @@
+function get_all_ranks() :: texts:
+
+	set {_collection} to get_collection({-config::rank::collection::rank})
+	set {_ranks::*} to all mongo fields distincted by "rank" of collection {_collection}
+
+	return {_ranks::*}
