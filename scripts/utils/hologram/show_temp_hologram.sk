@@ -16,7 +16,8 @@ function show_temp_hologram(text: text, location: location, duration: timespan =
 	loop 5 times:
 		set {_percentage} to loop-number / 5
 
-		set display opacity of {_entity} to 127 * {_percentage}
+		set {_opacity} to 255 * {_percentage}
+		set display text opacity of {_entity} to {_opacity}
 		wait 5 tick
 
 	wait {_duration}
@@ -25,7 +26,8 @@ function show_temp_hologram(text: text, location: location, duration: timespan =
 	loop reversed 5 times:
 		set {_percentage} to loop-number / 5
 
-		set display opacity of {_entity} to 127 * {_percentage}
+		set {_opacity} to 255 * {_percentage}
+		set display text opacity of {_entity} to {_opacity}
 		wait 5 tick
 
 	kill {_entity}
