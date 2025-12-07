@@ -3,7 +3,11 @@ options:
 
 on custom redis message:
 
-	if redis channel = {-config::redis::channel::teleport-player}:
+	set {_hostname} to get_hostname()
+	set {_channel::player} to join ({-config::redis::channel::teleport-player}, {_hostname}) 
+	set {_channel::location} to join ({-config::redis::channel::teleport-location}, {_hostname})
+
+	if redis channel = {_channel::player}:
 
 		encode redis message as json to {_json::*}
 
@@ -23,7 +27,7 @@ on custom redis message:
 
 		teleport {_player} to {_target}
 
-	else if redis channel = {-config::redis::channel::teleport-location}:
+	else if redis channel = {_channel::location}:
 
 		encode redis message as json to {_json::*}
 
