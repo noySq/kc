@@ -1,0 +1,4 @@
+function reload_bound(ID: text):
+
+	delete_bound({_ID})
+	create_bound({_ID})
