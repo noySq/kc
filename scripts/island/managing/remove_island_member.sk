@@ -5,8 +5,10 @@ function remove_island_member(p: player, ID: text):
 
 	if document_exists({-config::island::collection::island}, "uuid", {_ID}) = true:
 
+		set {_uuid} to "%uuid of {_p}%"
+
 		set {_members::*} to mongo list "members" of {_document::island}
-		remove {_p} from {_members::*}
+		remove {_uuid} from {_members::*}
 		set mongo list "members" of {_document::island} to {_members::*}
 		update mongo document {_document::island} of get_collection({-config::island::collection::island})
 
