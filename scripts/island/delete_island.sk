@@ -7,7 +7,7 @@ function delete_island(ID: text, deleteData: boolean = false):
 		spawn(loop-value)
 
 	if {_deleteData} = false:
-		run section {-section::save_island_schematic} async with arguments {_ID} and wait
+		save_island({_ID})
 
 	delete_bound({_ID})
 	delete_world({_ID})

@@ -1,11 +1,15 @@
 function load_island(ID: text):
 
-    if is_island_loaded({_ID}) = true:
-        broadcast "&cloaded"
-        stop
+	if is_island_loaded({_ID}) = true:
+		broadcast "már betöltve"
+		stop
 
-    add_loaded_island({_ID})
-    create_void_world({_ID})
-    create_bound({_ID})
+	if is_island_exists({_ID}) = false:
+		broadcast "nincs ilyen"
+		stop
 
-    run section {-section::paste_island_schematic} async with arguments {_ID} and wait
+	add_loaded_island({_ID})
+	create_void_world({_ID})
+	create_bound({_ID})
+
+	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
