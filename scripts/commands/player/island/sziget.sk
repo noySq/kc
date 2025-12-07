@@ -27,11 +27,45 @@ command /sziget [<text>] [<text>]:
 				teleport_player_to_island(player, {_ID})
 
 			case "info":
-				send feedback("warning", "&6work in progress...")
+				if arg-2 is not set:
+
+					set {_island} to first element out of (bound ids at player)
+
+					if is_island_exists({_island}) = false:
+						send feedback("error", "&cNem vagy egy sziget közelében sem vagy nem adtál meg egy ID-t")
+						stop
+
+					set {_owner} to get_island_owner({_island})
+					set {_members::*} to get_island_owner({_island})
+					set {_size} to get_island_size({_island})
+
+					send format_text_middle("&8%{_island}%", 154)
+					send feedback("casual", "&fTulajdonos: %get_displayname({_owner})%")
+					send feedback("casual", "&fTagok: ß%{_members::*}%")
+					send feedback("casual", "&fMéret: ß%{_size}%")
+
+				if arg-2 is set:
+
+					if is_island_exists(arg-2) = false:
+						send feedback("error", "&cEzzel az ID-vel nincs sziget")
+						stop
+
+					set {_owner} to get_island_owner(arg-2)
+					set {_members::*} to get_island_owner(arg-2)
+					set {_size} to get_island_size(arg-2)
+
+					send format_text_middle("&8%arg-2%", 154)
+					send feedback("casual", "&fTulajdonos: %get_displayname({_owner})%")
+					send feedback("casual", "&fTagok: ß%{_members::*}%")
+					send feedback("casual", "&fMéret: ß%{_size}%")
 
 			case "list":
+				send format_text_middle("&7&lBETÖLTÖTT SZIGETEK", 154)
 				loop get_loaded_islands():
-					send feedback("casual", "ß%get_island_owner(loop-value)% &fszigete: &7&o%loop-value%")
+					set {_island} to loop-value
+					set {_owner} to get_island_owner({_island})
+					set {_displayname} to get_displayname({_owner})
+					send feedback("casual", "ß%{_displayname}% &fszigete: &8&o%{_island}%")
 
 			case "meghiv":
 				set {_target} to (arg-2 parsed as player)
@@ -63,8 +97,8 @@ command /sziget [<text>] [<text>]:
 			send format_text_middle("&7&lSZIGET RENDSZER", 154)
 			send feedback("casual", "&f/sziget ßletrehoz")
 			send feedback("casual", "&f/sziget ßbetolt &7- &fÚJ!")
-			send feedback("casual", "&f/sziget ßtorol")
-			send feedback("casual", "&f/sziget &cvegleges.torles.instant &7- &fÚJ!")
+			send feedback("casual", "&f/sziget ßtorol &7- &fSziget törlés és mentés")
+			send feedback("casual", "&f/sziget &cvegleges.torles.instant &7- &fSziget törlés mentés nélkül")
 			send feedback("casual", "&f/sziget ßteleport")
 			send feedback("casual", "&f/sziget ßinfo &7- &6wip")
 			send feedback("casual", "&f/sziget ßlist &7- &fÚJ!")
@@ -100,3 +134,6 @@ on tab complete of "/sziget" or "/island" or "/is":
 
 	if tab arg-1 = "eloleptet":
 		set tab completions for position 2 to get_player_island_id(player)
+
+	if tab arg-1 = "info":
+		set tab completions for position 2 to get_loaded_islands()
