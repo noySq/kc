@@ -4,4 +4,4 @@ function save_island(ID: text):
 		broadcast "nincs ilyen"
 		stop
 
-    run section {-section::save_island_schematic} async with arguments {_ID} and wait
+	run section {-section::save_island_schematic} async with arguments {_ID} and wait
