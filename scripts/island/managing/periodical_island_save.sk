@@ -6,6 +6,6 @@ every 10 minutes:
 
 		set {_server} to get_islands_server(loop-value)
 		if {_server} = get_hostname():
-			save_island(loop-value)
+			run section {-section::save_island_schematic} async with arguments loop-value and wait
 			server_log("island", "&7&o%loop-value% &fsziget elmentve")
 			wait 5 second
