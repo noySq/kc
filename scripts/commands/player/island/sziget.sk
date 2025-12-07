@@ -29,6 +29,10 @@ command /sziget [<text>] [<text>]:
 			case "info":
 				send feedback("warning", "&6work in progress...")
 
+			case "list":
+				loop get_loaded_islands():
+					send feedback("casual", "ß%get_island_owner(loop-value)% &fszigete: &7&o%loop-value%")
+
 			case "meghiv":
 				set {_target} to (arg-2 parsed as player)
 				invite_player({_ID}, {_target}, player)
@@ -62,6 +66,7 @@ command /sziget [<text>] [<text>]:
 			send feedback("casual", "&f/sziget &cvegleges.torles.instant")
 			send feedback("casual", "&f/sziget ßteleport")
 			send feedback("casual", "&f/sziget ßinfo")
+			send feedback("casual", "&f/sziget ßlist")
 			send feedback("casual", "&f/sziget ßmeghiv <Játékosnév>")
 			send feedback("casual", "&f/sziget ßelfogad")
 			send feedback("casual", "&f/sziget ßkirug <Játékosnév>")
@@ -77,6 +82,7 @@ on tab complete of "/sziget" or "/island" or "/is":
 	add "vegleges.torles.instant" to {_tab::*}
 	add "teleport" to {_tab::*}
 	add "info" to {_tab::*}
+	add "list" to {_tab::*}
 	add "meghiv" to {_tab::*}
 	add "elfogad" to {_tab::*}
 	add "kirug" to {_tab::*}
