@@ -24,6 +24,7 @@ function create_island(p: player):
 	add_loaded_island({_ID})
 	create_void_world({_ID})
 	create_bound({_ID})
+	create_border({_ID})
 	create_island_data({_ID}, {_uuid})
 	set_player_island_id({_p}, {_uuid})
 	run section {-section::paste_island_schematic} async with arguments {_ID} and wait

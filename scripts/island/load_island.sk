@@ -11,5 +11,6 @@ function load_island(ID: text):
 	add_loaded_island({_ID})
 	create_void_world({_ID})
 	create_bound({_ID})
+	create_border({_ID})
 
 	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
