@@ -4,8 +4,8 @@ on join:
 	
 	spawn(player)
 	
-	set {_uuid} to uuid of player
+	set {_name} to name of player
 	set {_hostname} to get_hostname()
 
 	set {_channel} to join ({-config::redis::channel::online-players}, {_hostname})
-	add_to_redis_list({_uuid}, {_channel})
+	add_to_redis_list({_name}, {_channel})

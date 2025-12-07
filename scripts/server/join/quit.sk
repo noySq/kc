@@ -2,8 +2,8 @@ on quit:
 
 	set quit message to ""
 	
-	set {_uuid} to uuid of player
+	set {_name} to name of player
 	set {_hostname} to get_hostname()
 
 	set {_channel} to join ({-config::redis::channel::online-players}, {_hostname})
-	remove_from_redis_list({_uuid}, {_channel})
+	remove_from_redis_list({_name}, {_channel})
