@@ -1,0 +1,11 @@
+options:
+	invite-link: https://discord.gg/T4De4FMk9E
+
+command /discord:
+
+	aliases: dc
+	prefix: kockacraft
+	usage: &f/discord
+	description: Discord szerver link
+	trigger:
+		send formatted feedback("casual", "<link:{@invite-link}>&fKattints ide a &9&lDISCORD &flinkhez")
