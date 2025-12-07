@@ -1,3 +1,7 @@
 function save_island(ID: text):
 
+	if is_island_exists({_ID}) = false:
+		broadcast "nincs ilyen"
+		stop
+
     run section {-section::save_island_schematic} async with arguments {_ID} and wait
