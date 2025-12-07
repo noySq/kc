@@ -1,0 +1,8 @@
+function create_border(ID: text):
+
+	set {_world} to world(get_island_world({_ID}))
+
+	set worldborder of {_world} to a worldborder:
+		set worldborder radius of event-worldborder to get_island_size({_ID})
+		set worldborder center of event-worldborder to get_island_middle({_ID})
+		set worldborder warning distance of event-worldborder to -1

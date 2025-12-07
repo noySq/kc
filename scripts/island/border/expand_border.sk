@@ -1,0 +1,4 @@
+function expand_border(ID: text, size: integer):
+
+	set {_world} to world(get_island_world({_ID}))
+	expand world border of {_world} to {_size} over 1 seconds
