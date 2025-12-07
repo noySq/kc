@@ -1,0 +1,9 @@
+function set_island_size(ID: text, size: integer):
+
+	set {_collection} to get_collection({-config::island::collection::island})
+	set {_document} to get_document({-config::island::collection::island}, "uuid", {_ID})
+
+	if document_exists({-config::island::collection::island}, "uuid", {_ID}) = true:
+
+		set mongo value "size" of {_document} to {_size}
+		update mongo document {_document} of {_collection}
