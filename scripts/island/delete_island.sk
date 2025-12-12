@@ -1,13 +1,21 @@
 options:
+	island-deleting-and-saving: "&6Sziget törlése és mentése folyamatban..."
+	island-deleted-and-saved: "&aSziget sikeresen elmentve és törölve!"
 	island-deleted: "&6Szigeted véglegesen törölve!"
 
 function delete_island(ID: text, deleteData: boolean = false):
 
 	loop get_all_player_on_island({_ID}):
+		add loop-value to {_island_players::*}
 		spawn(loop-value)
 
 	if {_deleteData} = false:
+		send feedback("warning", {@island-deleting-and-saving}) to {_island_players::*}
 		run section {-section::save_island_schematic} async with arguments {_ID} and wait
+		send feedback("success", {@island-deleted-and-saved}) to {_island_players::*}
+
+	delete_bound({_ID})
+	delete_world({_ID})
 
 	if {_deleteData} = true:
 
