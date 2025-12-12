@@ -1,0 +1,3 @@
+function get_fake_player_count() :: integer:
+
+	return {-tmp::server::player-count} ? 0

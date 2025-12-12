@@ -1,0 +1,19 @@
+function set_fake_player_count():
+
+	set {_count} to get_player_number()
+	set {-tmp::server::player-count} to {_count}
+
+	set {_json} to "{""value"":""%{_count}%""}"
+	send_proxy_data({-config::redis::channel::player-count}, {_json})
+
+on custom redis message:
+	if redis channel = {-config::redis::channel::player-count}:
+
+		encode redis message as json to {_json::*}
+		set {_server} to {_json::server::from}
+		set {_count} to ({_json::message::value} parsed as integer)
+
+		if {_server} = get_hostname():
+			stop
+
+		set {-tmp::server::player-count} to {_count}
