@@ -1,13 +1,20 @@
+custom event "give money":
+	pattern: give money
+	event-values: offlineplayer
+
 function give_money(p: offlineplayer, amount: number):
 
 	if document_exists({-config::economy::collection}, "uuid", uuid of {_p}) = false:
 		economy_template(uuid of {_p})
 
 	set {_collection} to get_collection("economy")
-	set {_document} to get_document("economy", "uuid", "%uuid of {_p}%")
+	set {_document} to get_document("economy", "uuid", get_uuid({_p}))
 
 	set {_balance} to mongo value "balance" of {_document}
 	add {_amount} to {_balance}
 
 	set mongo value "balance" of {_document} to {_balance}
 	update mongo document {_document} of {_collection}
+
+	set {_event::offlineplayer} to {_p}
+	call custom event "give money" with event-values {_event::*}
