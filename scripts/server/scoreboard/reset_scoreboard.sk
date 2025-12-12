@@ -1,0 +1,3 @@
+function reset_scoreboard(p: player):
+
+	clear fastboard of {_p}

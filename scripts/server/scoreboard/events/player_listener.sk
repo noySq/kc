@@ -1,0 +1,5 @@
+on custom redis message:
+	if redis channel = {-config::redis::channel::player-count}:
+
+		loop all players:
+			refresh_scoreboard(loop-player)

@@ -1,0 +1,26 @@
+on load:
+	create new section with arguments variables {_p} stored in {-section::scoreboard}:
+
+		# Data to be showed on the tablist
+		set {_server::id} to {-config::server::id}
+		set {_server::name} to minimessage from {-config::server::motd}
+		set {_server::domain} to minimessage from {-config::server::domain}
+		set {_player::balance} to get_balance({_p})
+
+		set title of {_p}'s fastboard to "%{_server::name}% %{_server::id}%"
+
+		set line 1  of {_p}'s fastboard to ""
+		set line 2  of {_p}'s fastboard to get_displayname({_p})
+		set line 3  of {_p}'s fastboard to feedback("casual", "ßJátékosok:")
+		set line 4  of {_p}'s fastboard to "   &f-  %get_fake_player_count()%"
+		set line 5  of {_p}'s fastboard to ""
+		set line 6  of {_p}'s fastboard to feedback("casual", "ßEgyenleg:")
+		set line 7  of {_p}'s fastboard to "   &f-  %format_balance({_player::balance})%"
+		set line 8  of {_p}'s fastboard to ""
+		set line 9  of {_p}'s fastboard to {_server::domain}
+		#set line 10 of {_p}'s fastboard to ""
+		#set line 11 of {_p}'s fastboard to ""
+		#set line 12 of {_p}'s fastboard to ""
+		#set line 13 of {_p}'s fastboard to ""
+		#set line 14 of {_p}'s fastboard to ""
+		#set line 15 of {_p}'s fastboard to ""

@@ -1,0 +1,5 @@
+on give money:
+	refresh_scoreboard(offlineplayer)
+
+on remove money:
+	refresh_scoreboard(offlineplayer)
