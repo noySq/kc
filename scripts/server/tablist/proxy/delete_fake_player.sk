@@ -1,0 +1,22 @@
+function delete_fake_player(p: offlineplayer):
+
+	set {_uuid} to uuid of {_p}
+
+	delete {-proxy::tablist::%{_uuid}%::*}
+
+	set {_json} to "{""uuid"":""%{_uuid}%""}"
+	send_proxy_data({-config::redis::channel::remove-fake-tablist-player}, {_json})
+
+on custom redis message:
+	if redis channel = {-config::redis::channel::remove-fake-tablist-player}:
+		encode redis message as json to {_json::*}
+
+		set {_server} to {_json::server::from}
+		if {_server} = get_hostname():
+			stop
+
+		set {_uuid} to {_json::message::uuid}
+		set {_p} to ({_uuid} parsed as offlineplayer)
+
+		remove_fake_player({_p})
+		delete {-proxy::tablist::%{_uuid}%::*}

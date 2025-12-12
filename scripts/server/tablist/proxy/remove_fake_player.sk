@@ -1,0 +1,6 @@
+function remove_fake_player(p: offlineplayer):
+
+    set {_uuid} to uuid of {_p}
+    set {_fake_uuid} to {-proxy::tablist::%{_uuid}%::fake_uuid}
+
+    remove tablist player with uuid "%{_fake_uuid}%" for all players

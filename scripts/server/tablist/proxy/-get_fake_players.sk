@@ -1,9 +1,0 @@
-function get_fake_players():
-
-	loop get_players_on_other_servers():
-
-		set {_fake_player} to loop-value parsed as offlineplayer
-
-		set {-proxy::tablist::%uuid of loop-value%::displayname} to get_displayname({_fake_player})
-		set {-proxy::tablist::%uuid of loop-value%::username} to "A-%{_fake_player}%"
-		set {-proxy::tablist::%uuid of loop-value%::fake_uuid} to random uuid

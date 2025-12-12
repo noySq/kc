@@ -1,0 +1,13 @@
+function add_all_fake_players(p: offlineplayer):
+
+	loop indices of {-proxy::tablist::*}:
+
+		set {_uuid} to loop-value
+		set {_skin} to "ewogICJ0aW1lc3RhbXAiOiAxNzY1NTQ5NDA2ODQ4LAogICJwcm9maWxlSWQiOiAiODY2N2JhNzFiODVhNDAwNGFmNTQ0NTdhOTczNGVlZDciLAogICJwcm9maWxlTmFtZSI6ICJTdGV2ZSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIjogdHJ1ZSwKICAidGV4dHVyZXMiOiB7CiAgICAiU0tJTiI6IHsKICAgICAgInVybCI6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzYwYTViZDAxNmIzYzlhMWI5MjcyZTQ5MjllMzA4MjdhNjdiZTRlYmIyMTkwMTdhZGJiYzRhNGQyMmViZDViMSIKICAgIH0sCiAgICAiQ0FQRSI6IHsKICAgICAgInVybCI6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzk1M2NhYzhiNzc5ZmU0MTM4M2U2NzVlZTJiODYwNzFhNzE2NThmMjE4MGY1NmZiY2U4YWEzMTVlYTcwZTJlZDYiCiAgICB9CiAgfQp9Cg=="
+
+		set {_displayname} to {-proxy::tablist::%{_uuid}%::displayname}
+		set {_username} to {-proxy::tablist::%{_uuid}%::username}
+		set {_fake_uuid} to {-proxy::tablist::%{_uuid}%::fake_uuid}
+
+		add player named {_username} to tablist with skin named {_skin} with latency 0 with username {_displayname} for {_p} with uuid {_fake_uuid}
+		send team packet to {_p} with name {_username} with entity uuid {_fake_uuid}

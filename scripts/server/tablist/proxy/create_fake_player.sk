@@ -1,0 +1,35 @@
+function create_fake_player(p: offlineplayer):
+
+	set {_uuid} to uuid of {_p}
+	set {_displayname} to get_displayname({_p})
+	set {_weight} to get_weight(get_players_rank({_p})) ? "Z"
+	set {_username} to join ({_weight}, "-", {_p})
+	set {_fake_uuid} to random uuid
+
+	set {-proxy::tablist::%{_uuid}%::displayname} to {_displayname}
+	set {-proxy::tablist::%{_uuid}%::username} to {_username}
+	set {-proxy::tablist::%{_uuid}%::fake_uuid} to {_fake_uuid}
+
+	set {_json} to "{""uuid"":""%{_uuid}%"" ,""displayname"":""%{_displayname}%"" ,""username"":""%{_username}%"" ,""fake_uuid"":""%{_fake_uuid}%""}"
+	send_proxy_data({-config::redis::channel::fake-tablist-player}, {_json})
+
+on custom redis message:
+	if redis channel = {-config::redis::channel::fake-tablist-player}:
+		encode redis message as json to {_json::*}
+
+		set {_server} to {_json::server::from}
+		if {_server} = get_hostname():
+			stop
+
+		set {_uuid} to {_json::message::uuid}
+		set {_p} to ({_uuid} parsed as offlineplayer)
+
+		set {_displayname} to {_json::message::displayname}
+		set {_username} to {_json::message::username}
+		set {_fake_uuid} to {_json::message::fake_uuid}
+
+		set {-proxy::tablist::%{_uuid}%::displayname} to {_displayname}
+		set {-proxy::tablist::%{_uuid}%::username} to {_username}
+		set {-proxy::tablist::%{_uuid}%::fake_uuid} to {_fake_uuid}
+
+		add_fake_player({_p})
