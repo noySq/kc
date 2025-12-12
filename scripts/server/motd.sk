@@ -1,6 +1,6 @@
 on server list ping:
 
-	set fake online player count to get_player_number()
+	set fake online player count to get_fake_player_count()
 	set fake max players count to get_max_slot()
 
 	set {_header} to {-config::server::motd}
