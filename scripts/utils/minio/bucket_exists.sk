@@ -3,6 +3,10 @@ import:
 
 function bucket_exists(bucketName: text) :: boolean:
 
+	# TODO
+	# Valamiért folyton dobálja a warningot a consoleba ha nem létezik az object
+	# ezt javítani kéne mert idegesítő
+
 	if {-minio::client}.bucketExists(BucketExistsArgs.builder().bucket({_bucketName}).build()):
 		return true
 
