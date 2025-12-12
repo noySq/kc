@@ -1,12 +1,17 @@
 function load_island(ID: text):
 
+	loop get_island_members({_ID}):
+		add loop-value to {_island_players::*}
+
 	if is_island_loaded({_ID}) = true:
-		broadcast "már betöltve"
+		send feedback("error", "&cEz a sziget már be van töltve!") to {_island_players::*}
 		stop
 
 	if is_island_exists({_ID}) = false:
-		broadcast "nincs ilyen"
+		send feedback("error", "&cEz a sziget nem létezik!") to {_island_players::*}
 		stop
+
+	send feedback("casual", "&7Sziget betöltése...") to {_island_players::*}
 
 	add_loaded_island({_ID})
 
@@ -14,3 +19,5 @@ function load_island(ID: text):
 	create_bound({_ID})
 	create_border({_ID})
 	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
+
+	send feedback("success", "&aSziget sikeresen betöltve!") to {_island_players::*}
