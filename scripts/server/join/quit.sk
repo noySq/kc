@@ -1,9 +1,14 @@
 on quit:
 
 	set quit message to ""
+
+	remove_fake_player(player)
+	delete_fake_player(player)
 	
 	set {_name} to name of player
 	set {_hostname} to get_hostname()
 
 	set {_channel} to join ({-config::redis::channel::online-players}, {_hostname})
 	remove_from_redis_list({_name}, {_channel})
+
+	set_fake_player_count()
