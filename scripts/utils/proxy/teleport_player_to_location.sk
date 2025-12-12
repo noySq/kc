@@ -1,5 +1,6 @@
 function teleport_player_to_location(p: player, location: location, world: text, server: text = get_hostname()):
 
+	set {_uuid} to get_uuid({_p})
 	set {_x} to x-coordinate of {_location}
 	set {_y} to y-coordinate of {_location}
 	set {_z} to z-coordinate of {_location}
@@ -8,7 +9,7 @@ function teleport_player_to_location(p: player, location: location, world: text,
 
 		change_player_server({_p}, {_server})
 
-		set {_json} to "{""player"":""%uuid of {_p}%"",""location"":{""x"":%{_x}%,""y"":%{_y}%,""z"":%{_z}%,""world"":""%{_world}%""}}"
+		set {_json} to "{""player"":""%{_uuid}%"",""location"":{""x"":%{_x}%,""y"":%{_y}%,""z"":%{_z}%,""world"":""%{_world}%""}}"
 		set {_channel} to join ({-config::redis::channel::teleport-location}, {_server})
 		send_proxy_data({_channel}, {_json}, {_server})
 

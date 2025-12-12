@@ -9,7 +9,7 @@ function teleport_player_to_player(p: player, target: offlineplayer):
 
 		change_player_server({_p}, {_server})
 
-		set {_json} to "{""player"":""%uuid of {_p}%"",""target"":""%uuid of {_target}%""}"
+		set {_json} to "{""player"":""%get_uuid({_p})%"",""target"":""%get_uuid({_target})%""}"
 		set {_channel} to join ({-config::redis::channel::teleport-player}, {_server})
 		send_proxy_data({_channel}, {_json}, {_server})
 

@@ -19,17 +19,17 @@ function create_island(p: player):
 	send feedback("casual", {@creating-island}) to {_p}
 
 	set {_ID} to generate_island_id()
-	set {_uuid} to "%uuid of {_p}%"
+	set {_uuid} to get_uuid({_p})
 
 	add_loaded_island({_ID})
-
 	create_void_world({_ID})
-	create_bound({_ID})
-	create_border({_ID})
-	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
 
 	create_island_data({_ID}, {_uuid})
 	set_player_island_id({_uuid}, {_ID})
+
+	create_bound({_ID})
+	create_border({_ID})
+	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
 
 	teleport_player_to_island({_p}, {_ID})
 

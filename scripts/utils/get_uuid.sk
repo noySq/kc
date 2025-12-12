@@ -1,0 +1,4 @@
+function get_uuid(p: offlineplayer) :: text:
+
+	set {_uuid} to "%uuid of {_p}%"
+	return {_uuid}

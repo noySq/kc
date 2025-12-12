@@ -1,6 +1,6 @@
 function get_player_island_id(p: player) :: text:
 
-	set {_document} to get_document({-config::island::collection::player}, "uuid", "%uuid of {_p}%")
+	set {_document} to get_document({-config::island::collection::player}, "uuid", get_uuid({_p}))
 	set {_ID::*} to mongo list "islands" of {_document}
 	# NEED REWORK
 	# ACCOUNT FOR MULTIPLE ISLANDS

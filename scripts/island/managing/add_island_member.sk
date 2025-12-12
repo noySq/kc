@@ -5,7 +5,7 @@ function add_island_member(p: player, ID: text):
 
 	if document_exists({-config::island::collection::island}, "uuid", {_ID}) = true:
 
-		set {_uuid} to "%uuid of {_p}%"
+		set {_uuid} to get_uuid({_p})
 
 		set {_members::*} to mongo list "members" of {_document}
 		add {_uuid} to {_members::*}
