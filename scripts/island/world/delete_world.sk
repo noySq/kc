@@ -1,7 +1,3 @@
-import:
-	org.apache.commons.io.FileUtils
-	java.io.File
-
 function delete_world(ID: text):
 
 	set {_world} to get_island_world({_ID})
@@ -14,5 +10,3 @@ function delete_world(ID: text):
 
 	unload world {_world}
 	delete world file for {_world}
-
-	FileUtils.deleteDirectory(new File("%{_world}%"))
