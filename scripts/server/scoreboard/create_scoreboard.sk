@@ -18,9 +18,9 @@ on load:
 		set line 7  of {_p}'s fastboard to "   &f-  %format_balance({_player::balance})%"
 		set line 8  of {_p}'s fastboard to ""
 		set line 9  of {_p}'s fastboard to {_server::domain}
-		#set line 10 of {_p}'s fastboard to ""
-		#set line 11 of {_p}'s fastboard to ""
-		#set line 12 of {_p}'s fastboard to ""
-		#set line 13 of {_p}'s fastboard to ""
+		set line 10 of {_p}'s fastboard to ""
+		set line 11 of {_p}'s fastboard to "&cFejlesztés alatt"
+		set line 12 of {_p}'s fastboard to "&cHibák előfordulhatnak!"
+		set line 13 of {_p}'s fastboard to "&cAdatok épsége nem garantált!"
 		#set line 14 of {_p}'s fastboard to ""
 		#set line 15 of {_p}'s fastboard to ""
