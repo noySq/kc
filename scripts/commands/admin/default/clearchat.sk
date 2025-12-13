@@ -11,7 +11,7 @@ command /clearchat [<text>]:
 		if arg-1 = "all":
 			# wow
 			loop 100 times:
-				send_global_message("")
+				send_global_message("", "broadcast")
 
 		else:
 			loop {-signatures::*}:

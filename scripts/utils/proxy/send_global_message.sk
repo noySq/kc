@@ -1,5 +1,5 @@
-function send_global_message(message: text, target: text = "all"):
-	set {_json} to "{""value"":""%{_message}%""}"
+function send_global_message(message: text, type: text, target: text = "all"):
+	set {_json} to "{""value"":""%{_message}%"",""type"":""%{_type}%""}"
 	send_proxy_data({-config::redis::channel::global-message}, {_json}, {_target})
 
 on custom redis message:
@@ -9,15 +9,28 @@ on custom redis message:
 		set {_server} to {_json::server::from}
 		set {_target} to {_json::server::target}
 		set {_message} to {_json::message::value}
+		set {_type} to {_json::message::type}
 
 		if {_target} = "all":
-			broadcast {_message}
+			switch {_type}:
+				case "broadcast":
+					broadcast {_message}
+				case "actionbar":
+					send actionbar {_message} to all players
 
 		else if {_target} = "others":
 			if {_server} = get_hostname():
 				stop
 
-			broadcast {_message}
+			switch {_type}:
+				case "broadcast":
+					broadcast {_message}
+				case "actionbar":
+					send actionbar {_message} to all players
 
 		else if {_target} = get_hostname():
-			broadcast {_message}
+			switch {_type}:
+				case "broadcast":
+					broadcast {_message}
+				case "actionbar":
+					send actionbar {_message} to all players

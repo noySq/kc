@@ -11,9 +11,9 @@ command /alert [<text>]:
 
 			set {_message} to feedback("warning", colored arg-1)
 
-			send_global_message("")
-			send_global_message({_message})
-			send_global_message("")
+			send_global_message("", "broadcast")
+			send_global_message({_message}, "broadcast")
+			send_global_message("", "broadcast")
 
 		else:
 			send feedback("error", "&c/alert <szöveg>")

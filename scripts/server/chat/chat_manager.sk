@@ -24,4 +24,4 @@ on async chat:
 	set {_format} to merge components {_format::*}
 
 	set async chat format to {_format}
-	send_global_message({_format}, "others")
+	send_global_message({_format}, "broadcast", "others")
