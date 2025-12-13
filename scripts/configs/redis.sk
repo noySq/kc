@@ -11,3 +11,5 @@ on load:
     set {-config::redis::channel::player-count} to "server:player-count"
     set {-config::redis::channel::fake-tablist-player} to "server:fake-tablist-player"
     set {-config::redis::channel::remove-fake-tablist-player} to "server:remove-fake-tablist-player"
+
+    set {-config::redis::channel::connection-listener} to "proxy:connection-events"

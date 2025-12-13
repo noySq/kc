@@ -1,21 +1,2 @@
 on join:
-
 	set join message to ""
-	unlist all players for all players
-
-	create_fake_player(player)
-	add_all_fake_players(player)
-	add_fake_player(player)
-
-	set_tablist(player)
-	set_tablist_name(player)
-
-	spawn(player)
-	
-	set {_name} to name of player
-	set {_hostname} to get_hostname()
-
-	set {_channel} to join ({-config::redis::channel::online-players}, {_hostname})
-	add_to_redis_list({_name}, {_channel})
-
-	set_fake_player_count()

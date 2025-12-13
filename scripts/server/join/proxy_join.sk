@@ -1,0 +1,39 @@
+on custom redis message:
+
+	if redis channel = {-config::redis::channel::connection-listener}:
+
+		encode redis message as json to {_json::*}
+
+		set {_server} to {_json::server::from}
+		if {_server} != "velocity":
+			stop
+
+		set {_event} to {_json::message::event}
+		if {_event} != "JOIN":
+			stop
+
+		set {_hostname} to get_hostname()
+		set {_target_server} to {_json::message::server}
+		if {_target_server} != {_hostname}:
+			stop
+
+		set {_p} to ({_json::message::uuid} parsed as offlineplayer)
+		set {_name} to {_json::message::username}
+
+		unlist all players for all players
+
+		create_fake_player({_p})
+		add_all_fake_players({_p})
+		add_fake_player({_p})
+
+		set_tablist({_p})
+		refresh_scoreboard({_p})
+
+		spawn({_p})
+
+		set {_channel} to join ({-config::redis::channel::online-players}, {_hostname})
+		add_to_redis_list({_name}, {_channel})
+
+		set_fake_player_count()
+
+		send_global_message("%get_displayname({_p})% &acsatlakozott!", "actionbar")
