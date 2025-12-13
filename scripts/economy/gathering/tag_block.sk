@@ -1,0 +1,13 @@
+on place:
+	if any:
+		event-block is tagged with tag "minecraft:logs"
+		event-block is tagged with tag "paper:ores"
+		event-block is tagged with tag "paper:mushrooms"
+		event-block is tagged with tag "minecraft:crops"
+		event-block = pumpkin
+		event-block = melon
+		event-block = sugar cane
+
+	then:
+		set {_nbt} to custom nbt compound of event-block
+		set byte tag "dupe" of {_nbt} to 0

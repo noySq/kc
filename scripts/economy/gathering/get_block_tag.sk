@@ -1,0 +1,8 @@
+function get_block_tag(block: object) :: boolean:
+	set {_nbt} to custom nbt compound of {_block}
+	set {_dupe} to byte tag "dupe" of {_nbt}
+
+	if {_dupe} is not set:
+		return false
+
+	return true

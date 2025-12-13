@@ -17,6 +17,10 @@ on mine with priority highest:
 		event-block = sugar cane
 
 	then:
+
+		if get_block_tag(event-block) = true:
+			stop
+
 		set {_money} to calculate_money()
 		give_money(player, {_money})
 
