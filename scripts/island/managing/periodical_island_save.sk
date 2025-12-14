@@ -2,10 +2,13 @@ every 10 minutes:
 
 	loop get_loaded_islands():
 
-		server_log("island", "&7&o%loop-value% &fsziget mentése elkezdődött")
+		set {_short_uuid} to format_short_uuid(loop-value)
+
+		server_log("MENTÉS", "&7%{_short_uuid}% &7sziget mentése elkezdődött")
 
 		set {_server} to get_islands_server(loop-value)
 		if {_server} = get_hostname():
 			run section {-section::save_island_schematic} async with arguments loop-value and wait
-			server_log("island", "&7&o%loop-value% &fsziget elmentve")
-			wait 5 second
+			server_log("MENTÉS", "&7%{_short_uuid}% &2sziget elmentve")
+
+		wait 5 second

@@ -1,5 +1,5 @@
 function add_loaded_island(ID: text):
 
 	set {_hostname} to get_hostname()
-	set {_channel} to join ({-config::redis::channel::loaded-islands}, {_hostname})
+	set {_channel} to join ({-config::island::redis::list::loaded-islands}, {_hostname})
 	add_to_redis_list({_ID}, {_channel})

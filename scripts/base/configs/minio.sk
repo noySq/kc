@@ -1,0 +1,5 @@
+on load:
+
+	set {-config::minio::address} to "minio.r1g.hu"
+	set {-config::minio::username} to "minioadmin"
+	set {-config::minio::password} to "N4tVItGzDA3EI"

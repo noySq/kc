@@ -1,0 +1,6 @@
+function format_short_uuid(uuid: text) :: text:
+
+	set {_segments::*} to {_uuid} split at "-"
+	set {_shortened} to join ({_segments::1}, "-", {_segments::2})
+	
+	return {_shortened}

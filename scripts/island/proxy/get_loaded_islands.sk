@@ -2,7 +2,7 @@ function get_loaded_islands() :: texts:
 
 	set {_servers::*} to get_servers()
 	loop {_servers::*}:
-		set {_channel} to join ({-config::redis::channel::loaded-islands}, loop-value)
+		set {_channel} to join ({-config::island::redis::list::loaded-islands}, loop-value)
 		add get_redis_list({_channel}) to {_islands::*}
 
 	return {_islands::*}

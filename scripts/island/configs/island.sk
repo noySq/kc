@@ -1,0 +1,50 @@
+on load:
+
+	#
+	# Generic
+	#
+
+	# Sets the time between island creations
+	set {-config::island::cooldown} to 1 minutes
+
+	# Sets the default size of islands
+	# Increasing this will also increase saving times
+	set {-config::island::size} to 64
+
+	#
+	# Island saving locally
+	#
+
+	# Where should the script search for island templates
+	# This is the island thats gets pasted when creating one
+	set {-config::island::template_location} to "plugins/Skript/scripts/island/schematics/data/templates/"
+	
+	# Where should the islands get saved locally before uploading them
+	set {-config::island::save_location} to "plugins/Skript/scripts/island/schematics/data/player_islands/"
+	
+	# Sets a prefix for world names so that get organized in a folder at root
+	set {-config::island::world_folder} to "islands"
+
+	#
+	# MongoDB
+	#
+
+	# Collection for player data
+	set {-config::island::collection::player} to "island_player"
+	
+	# Collection for island data
+	set {-config::island::collection::island} to "island"
+
+	#
+	# MinIO
+	#
+
+	# Bucket name for uploading and downloading islands
+	set {-config::island::minio::bucket} to "islands"
+
+	#
+	# Redis
+	#
+
+	# List for storing loaded islands
+    set {-config::island::redis::list::loaded-islands} to "server:island:loaded-islands:" 

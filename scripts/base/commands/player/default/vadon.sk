@@ -1,0 +1,14 @@
+#
+# Vadon specific
+#
+
+command /vadon:
+	trigger:
+
+		set {_target} to "kockacraft-vadon"
+		set {_environment} to "normal"
+
+		change_player_server(player, "kockacraft-vadon")
+
+		set {_json} to "{""uuid"":""%uuid of player%"",""environment"":""%{_environment}%""}"
+		send_proxy_data({-config::redis::channel::random-teleport}, {_json}, {_target})

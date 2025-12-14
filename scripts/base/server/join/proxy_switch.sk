@@ -18,6 +18,15 @@ on custom redis message:
 			stop
 
 		set {_p} to ({_json::message::uuid} parsed as offlineplayer)
+		set {_name} to {_json::message::username}
+
+		set {_previous_server} to {_json::message::previous_server}
+
+		set {_channel::old} to join ({-config::redis::channel::online-players}, {_previous_server})
+		set {_channel::new} to join ({-config::redis::channel::online-players}, {_hostname})
+
+		remove_from_redis_list({_name}, {_channel::old})
+		add_to_redis_list({_name}, {_channel::new})
 
 		unlist all players for all players
 
