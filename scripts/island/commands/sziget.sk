@@ -12,17 +12,45 @@ command /sziget [<text>] [<text>]:
 		switch arg-1:
 			
 			case "letrehoz":
-				create_island(player)
+
+				# TODO
+				# Add cross-server support between wilderness and island servers
+				if is_island_server(get_hostname()) = true:
+					create_island(player)
+				else:
+					send feedback("error", "&cEzen a szerveren jelenleg nem használható!")
+					send feedback("error", "&cVálts szervert &8(/spawn) &cés próbáld meg ott")
 
 			case "betolt":
-				load_island({_ID})
-				teleport_player_to_island(player, {_ID})
+
+				# TODO
+				# Add cross-server support between wilderness and island servers
+				if is_island_server(get_hostname()) = true:
+					load_island({_ID})
+					teleport_player_to_island(player, {_ID})
+				else:
+					send feedback("error", "&cEzen a szerveren jelenleg nem használható!")
+					send feedback("error", "&cVálts szervert &8(/spawn) &cés próbáld meg ott")
 
 			case "torol":
-				delete_island({_ID})
+
+				# TODO
+				# Add cross-server support between wilderness and island servers
+				if is_island_server(get_hostname()) = true:
+					delete_island({_ID})
+				else:
+					send feedback("error", "&cEzen a szerveren jelenleg nem használható!")
+					send feedback("error", "&cVálts szervert &8(/spawn) &cés próbáld meg ott")
 
 			case "vegleges.torles.instant":
-				delete_island({_ID}, true)
+
+				# TODO
+				# Add cross-server support between wilderness and island servers
+				if is_island_server(get_hostname()) = true:		
+					delete_island({_ID}, true)
+				else:
+					send feedback("error", "&cEzen a szerveren jelenleg nem használható!")
+					send feedback("error", "&cVálts szervert &8(/spawn) &cés próbáld meg ott")
 
 			case "teleport":
 				teleport_player_to_island(player, {_ID})
