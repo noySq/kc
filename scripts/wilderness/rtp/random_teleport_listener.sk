@@ -11,10 +11,4 @@ on custom redis message:
 		set {_p} to ({_uuid} parsed as offlineplayer)
 		set {_environment} to {_json::message::environment}
 
-		switch {_environment}:
-			case "normal":
-				random_teleport({_p}, {@normal})
-			case "nether":
-				random_teleport({_p}, {@nether})
-			case "end":
-				random_teleport({_p}, {@end})
+		random_teleport({_p}, {_environment})

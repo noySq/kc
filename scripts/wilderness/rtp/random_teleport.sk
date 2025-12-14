@@ -1,6 +1,17 @@
-function random_teleport(p: player, world: world):
+function random_teleport(p: player, environment: text):
+
+	if get_hostname() != "kockacraft-vadon":
+		stop
 
 	if {-tmp::rtp::%uuid of {_p}%} is not set:
+
+		switch {_environment}:
+			case "normal":
+				set {_world} to {-config::rtp::world::normal} 
+			case "nether":
+				set {_world} to {-config::rtp::world::nether} 
+			case "end":
+				set {_world} to {-config::rtp::world::end} 
 
 		send title "&fHely keresése..." with subtitle "&7Ez eltelhet egy kis időbe!" to {_p} for 1 minute
 
@@ -46,38 +57,32 @@ function random_teleport(p: player, world: world):
 		send feedback("error", "&cA hely keresése már folyamatban van!") to {_p}
 
 local function isSafeBlock(b: block) :: boolean:
-	if {_b} is not solid:
-		if {_b} != lava[] or water[]:
-			return true
+	if all:
+		{_b} is not solid
+		{_b} != lava[], water[] or sweet_berry_bush[]
+	then:
+		return true
 	return false
 
-local function getHighestBlock(l: location) :: location:
-	if world of {_l} = {@normal} or {@end}:
-	
+function getHighestBlock(l: location) :: location:
+	if world environment of world of {_l} = normal:
 		set {_b} to highest block at {_l}
-		if {_b} is tagged with tag "minecraft:leaves":
+		if {_b} is tagged as minecraft block tag "minecraft:leaves":
 			loop blocks below block below {_b}:
-
 				if all:
 					loop-block is solid
-					loop-block is not tagged with tag "minecraft:leaves"
+					loop-block is not tagged as minecraft block tag "minecraft:leaves"
 					isSafeBlock(block above loop-block) = true
 					isSafeBlock(block 2 above loop-block) = true
-
 				then:
 					return location 0.5 above loop-block
-
 		else if {_b} is solid:
 			return location 0.5 above {_b}
-
-	else if world of {_l} = {@nether}:
+	else if world environment of world of {_l} = nether:
 		loop blocks above {_l}:
-
 			if all:
 				loop-block is solid
 				isSafeBlock(block above loop-block) = true
 				isSafeBlock(block 2 above loop-block) = true
-			
 			then:
 				return location 0.5 above loop-block
-						

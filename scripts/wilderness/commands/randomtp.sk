@@ -20,7 +20,7 @@ command /randomtp:
 			change_player_server(player, "kockacraft-vadon")
 
 			set {_json} to "{""uuid"":""%{_uuid}%"",""environment"":""%{_environment}%""}"
-			send_proxy_data({-config::redis::channel::random-teleport}, {_json}, {_target})
+			send_proxy_data({-config::rtp::redis::channel::random-teleport}, {_json}, {_target})
 
 		else:
 			random_teleport(player, {_environment})
