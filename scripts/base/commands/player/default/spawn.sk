@@ -2,17 +2,32 @@ command /spawn:
 	executable by: players
 	usage: &f/spawn
 	description: Elteleportálás a spawnra
-	trigger:
+	trigger:	
 		spawn(player)
 
 function spawn(p: player):
 
-	set {_loc} to spawn of {-config::server::spawn_world}
+	if get_hostname() = "kockacraft-vadon":
 
+		set {_target} to get_random_server()
+		set {_location} to get_spawn_location()
+		set {_world} to "Spawn"
+
+		teleport_player_to_location({_p}, {_location}, {_world}, {_target})
+
+	else:
+		set {_location} to get_spawn_location()
+		set world of {_location} to {-config::server::spawn_world}
+		teleport {_p} to {_location}
+
+function get_spawn_location() :: location:
+
+	set {_location} to location(0, 64, 0)
+	
 	set {_randomX} to a random number between -3 and 3
 	set {_randomZ} to a random number between -3 and 3
 
-	add {_randomX} to x-coordinate of {_loc}
-	add {_randomZ} to z-coordinate of {_loc}
+	add {_randomX} to x-coordinate of {_location}
+	add {_randomZ} to z-coordinate of {_location}
 
-	teleport {_p} to {_loc}
+	return {_location}
