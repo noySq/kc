@@ -1,0 +1,25 @@
+on load:
+
+	#
+	# Generic
+	#
+
+    # Sets the number of unsuccessful attempts before giving up
+    set {-config::rtp::attempts} to 10
+    
+
+	#
+	# Worlds
+	#
+
+    # Lists of environtments and they corresponding worlds
+    set {-config::rtp::world::normal} to world("Vadon")
+    set {-config::rtp::world::nether} to world("Vadon_nether")
+    set {-config::rtp::world::end} to world("Vadon_the_end")
+
+	#
+	# Redis
+	#
+
+    # Channel for receiving random teleport request from the other servers
+    set {-config::rtp::redis::channel::random-teleport} to "server:random-teleport"

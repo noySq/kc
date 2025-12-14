@@ -1,0 +1,83 @@
+function random_teleport(p: player, world: world):
+
+	if {-tmp::rtp::%uuid of {_p}%} is not set:
+
+		send title "&fHely keresése..." with subtitle "&7Ez eltelhet egy kis időbe!" to {_p} for 1 minute
+
+		set {-tmp::rtp::%uuid of {_p}%} to true
+
+		set {_worldborder} to world border of {_world}
+		set {_radius} to (world border size of {_worldborder} / 2) - 20
+
+		set {_attempts} to {-config::rtp::attempts}
+
+		loop {_attempts} times:
+			set {_x} to random integer between ({_radius} * -1) and {_radius}
+			set {_z} to random integer between ({_radius} * -1) and {_radius}
+
+			set {_loc} to location({_x}, 1, {_z}, {_world})
+			async load chunk at {_loc}
+
+			set {_b} to getHighestBlock({_loc})
+			if {_b} is set:
+				set {_safe} to {_b}
+				exit loop
+
+		if {_safe} is set:
+
+			teleport {_p} to {_safe}
+			delete {-tmp::rtp::%uuid of {_p}%}
+
+			send title "&a✔" with subtitle "&aHely megtalálva!" to {_p} for 10 ticks
+
+			send "" to {_p}
+			send feedback("warning", "&cEbben a világban nincs levédés!") to {_p}
+			send feedback("warning", "&cÉpítkezni csak a saját szigeteden érdemes!") to {_p}
+			send feedback("warning", "&cBizonyos időközönként ez a világ újragenerálódik!") to {_p}
+			send "" to {_p}
+
+		else:
+			delete {-tmp::rtp::%uuid of {_p}%}
+
+			send title "" with subtitle "" to {_p} for 1 tick
+			send feedback("error", "&cA szerver nem talált biztonságos helyet, próbáld újra!") to {_p}
+
+	else:
+		send feedback("error", "&cA hely keresése már folyamatban van!") to {_p}
+
+local function isSafeBlock(b: block) :: boolean:
+	if {_b} is not solid:
+		if {_b} != lava[] or water[]:
+			return true
+	return false
+
+local function getHighestBlock(l: location) :: location:
+	if world of {_l} = {@normal} or {@end}:
+	
+		set {_b} to highest block at {_l}
+		if {_b} is tagged with tag "minecraft:leaves":
+			loop blocks below block below {_b}:
+
+				if all:
+					loop-block is solid
+					loop-block is not tagged with tag "minecraft:leaves"
+					isSafeBlock(block above loop-block) = true
+					isSafeBlock(block 2 above loop-block) = true
+
+				then:
+					return location 0.5 above loop-block
+
+		else if {_b} is solid:
+			return location 0.5 above {_b}
+
+	else if world of {_l} = {@nether}:
+		loop blocks above {_l}:
+
+			if all:
+				loop-block is solid
+				isSafeBlock(block above loop-block) = true
+				isSafeBlock(block 2 above loop-block) = true
+			
+			then:
+				return location 0.5 above loop-block
+						
