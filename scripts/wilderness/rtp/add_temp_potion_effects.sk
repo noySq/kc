@@ -1,0 +1,5 @@
+function add_temp_potion_effects(p: player):
+
+    apply resistance of tier 5 without any particles whilst hiding the potion icon to {_p} for 20 seconds
+    apply regeneration of tier 1 without any particles whilst hiding the potion icon to {_p} for 20 seconds
+    apply speed of tier 1 without any particles whilst hiding the potion icon to {_p} for 20 seconds

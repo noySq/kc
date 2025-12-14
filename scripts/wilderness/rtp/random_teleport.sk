@@ -13,6 +13,8 @@ function random_teleport(p: player, environment: text):
 			case "end":
 				set {_world} to {-config::rtp::world::end} 
 
+		add_temp_potion_effects({_p})
+
 		send title "&fHely keresése..." with subtitle "&7Ez eltelhet egy kis időbe!" to {_p} for 1 minute
 
 		set {-tmp::rtp::%uuid of {_p}%} to true
@@ -38,6 +40,8 @@ function random_teleport(p: player, environment: text):
 
 			teleport {_p} to {_safe}
 			delete {-tmp::rtp::%uuid of {_p}%}
+
+			add_temp_potion_effects({_p})
 
 			send title "&a✔" with subtitle "&aHely megtalálva!" to {_p} for 10 ticks
 
