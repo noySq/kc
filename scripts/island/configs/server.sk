@@ -1,0 +1,7 @@
+on load:
+
+    if get_hostname() does not match "^kockacraft-0.*$":
+        stop
+
+    set {-config::server::id} to "&7[s%get_server_id()%]"
+    set {-config::server::spawn_world} to world("Spawn")

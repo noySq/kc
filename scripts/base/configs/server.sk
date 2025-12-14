@@ -7,9 +7,6 @@ on load:
 	set {-config::server::motd} to "<gradient:#00aeff:#005dab>%{-config::server::name}%"
 	set {-config::server::domain} to "<gradient:#ffffff:#A0A0A0>play.%{-config::server::name}%.hu"
 	set {-config::server::version} to "1.19.4 - 1.21.8"
-	set {-config::server::id} to "&7[s%get_server_id()%]"
-
-	set {-config::server::spawn_world} to world("Spawn")
 
 	set {-config::server::permission::admin} to "admin"
 	set {-config::server::permission::log} to "log"

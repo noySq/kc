@@ -1,0 +1,6 @@
+on load:
+
+    if get_hostname() != "kockacraft-vadon":
+        stop
+
+    set {-config::server::id} to "&7[%get_server_id()%]"
