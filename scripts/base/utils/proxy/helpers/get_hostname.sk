@@ -1,11 +1,12 @@
 import:
-    java.nio.file.Files
-    java.nio.file.Path
+	java.nio.file.Files
+	java.nio.file.Path
 
 options:
-    location: "/etc/hostname"
+	location: "/etc/hostname"
 
+# Docker esetén fel kell csatolni az /etc mappáts
 function get_hostname() :: text:
 
-    set {_hostname} to Files.readString(Path.of({@location})).trim()
-    return {_hostname}
+	set {_hostname} to Files.readString(Path.of({@location})).trim()
+	return {_hostname}
