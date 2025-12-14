@@ -36,4 +36,8 @@ on custom redis message:
 		set_tablist({_p})
 		refresh_scoreboard({_p})
 
-		spawn({_p})
+		# TODO
+		# Kellene egy jobb megoldás
+		# Enélkül, ha teleportálsz a vadonban azonnal visszadob :D
+		if get_hostname() != "kockacraft-vadon":
+			spawn({_p})

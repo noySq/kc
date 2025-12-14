@@ -29,7 +29,11 @@ on custom redis message:
 		set_tablist({_p})
 		refresh_scoreboard({_p})
 
-		spawn({_p})
+		# TODO
+		# Kellene egy jobb megoldás
+		# Enélkül, ha teleportálsz a vadonban azonnal visszadob :D
+		if get_hostname() != "kockacraft-vadon":
+			spawn({_p})
 
 		set {_channel} to join ({-config::redis::channel::online-players}, {_hostname})
 		add_to_redis_list({_name}, {_channel})
