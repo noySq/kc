@@ -1,0 +1,29 @@
+command /randomtp:
+
+	aliases: rtp, vadon
+	prefix: kockacraft
+	executable by: players
+	usage: &f/vadon <világ>
+	description: Vadonnal kapcsolatos dolgok
+	trigger:
+
+		set {_target} to "kockacraft-vadon"
+		set {_current} to get_hostname()
+
+		# set to normal for testing
+		set {_environment} to "normal"
+
+		if {_target} != {_current}:
+
+			set {_uuid} to get_uuid(player)
+
+			change_player_server(player, "kockacraft-vadon")
+
+			set {_json} to "{""uuid"":""%{_uuid}%"",""environment"":""%{_environment}%""}"
+			send_proxy_data({-config::redis::channel::random-teleport}, {_json}, {_target})
+
+		else:
+			random_teleport(player, {_environment})
+
+on tab complete of "/randomtp", "/rtp", "/vadon":
+	set tab completions for position 1 to indices of {-config::rtp::world::*}
