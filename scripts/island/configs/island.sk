@@ -47,4 +47,4 @@ on load:
 	#
 
 	# List for storing loaded islands
-    set {-config::island::redis::list::loaded-islands} to "server:island:loaded-islands:" 
+	set {-config::island::redis::list::loaded-islands} to "server:island:loaded-islands:" 
