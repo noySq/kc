@@ -1,7 +1,5 @@
 on load:
 
-	set {-server::id} to 1
-
 	set {-config::color::main} to "<#00aeff>"
 	set {-config::color::player} to "&7"
 
@@ -9,7 +7,7 @@ on load:
 	set {-config::server::motd} to "<gradient:#00aeff:#005dab>%{-config::server::name}%"
 	set {-config::server::domain} to "<gradient:#ffffff:#A0A0A0>play.%{-config::server::name}%.hu"
 	set {-config::server::version} to "1.19.4 - 1.21.8"
-	set {-config::server::id} to "&7[s%{-server::id}%]"
+	set {-config::server::id} to "&7[s%get_server_id()%]"
 
 	set {-config::server::spawn_world} to world("Spawn")
 

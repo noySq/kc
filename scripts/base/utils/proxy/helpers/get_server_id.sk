@@ -1,0 +1,4 @@
+function get_server_id() :: text:
+
+    set {_hostname::*} to split get_hostname() at "-"
+    return {_hostname::2}

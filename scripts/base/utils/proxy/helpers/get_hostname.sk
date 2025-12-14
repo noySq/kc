@@ -1,3 +1,11 @@
+import:
+    java.nio.file.Files
+    java.nio.file.Path
+
+options:
+    location: "/etc/hostname"
+
 function get_hostname() :: text:
 
-    return join "kockacraft-0", "%{-server::id}%"
+    set {_hostname} to Files.readString(Path.of({@location})).trim()
+    return {_hostname}
