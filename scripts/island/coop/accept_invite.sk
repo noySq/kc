@@ -14,3 +14,5 @@ function accept_invite(p: player):
 
 	add_island_member({_p}, {_ID})
 	send feedback("success", "%get_displayname({_p})% csatlakozott a szigethez") to get_island_members({_ID})
+
+	debug("%get_displayname({_p})% &7joined to island &8%format_short_uuid({_ID})%", script)

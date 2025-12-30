@@ -11,6 +11,8 @@ import:
 on load:
 	create new section with arguments variables {_ID} stored in {-section::save_island_schematic}:
 
+		set {_time} to now
+
 		set {_file_location} to {-config::island::save_location}
 		set {_file_name} to "%{_ID}%.schem"
 		set {_absolute_path} to join {_file_location} and {_file_name}
@@ -35,3 +37,6 @@ on load:
 
 		upload_file({-config::island::minio::bucket}, {_file_name}, {_absolute_path})
 		Files.deleteIfExists(Paths.get({_absolute_path}))
+
+		set {_diff} to difference between {_time} and now
+		debug("&7Schematic saved for &8%format_short_uuid({_ID})%&7, took &8%{_diff}%", script)

@@ -11,8 +11,12 @@ function leave_island(p: player):
 		delete_island({_ID}, true)
 		send feedback("warning", "Kiléptél a szigetedről, ezért törölve lett") to {_p}
 
+		debug("&7Owner left its island, deleting &8%format_short_uuid({_ID})%", script)
+
 	else:
 		remove_island_member({_ID}, {_p})
 
 		send feedback("warning", "Kiléptél a szigetről") to {_p}
 		send feedback("warning", "%get_displayname({_p})% kilépett a szigetről") to get_island_members({_ID})
+
+		debug("%get_displayname({_p})% left island &8%format_short_uuid({_ID})%", script)

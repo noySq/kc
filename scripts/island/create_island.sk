@@ -7,6 +7,8 @@ options:
 
 function create_island(p: player):
 
+	debug("&7Creating island for %get_displayname({_p})%", script)
+
 	if player_has_island({_p}) = true:
 		send feedback("error", {@already-have-island}) to {_p}
 		stop
@@ -19,6 +21,7 @@ function create_island(p: player):
 	send feedback("casual", {@creating-island}) to {_p}
 
 	set {_ID} to generate_island_id()
+	debug("&7Generated island ID: &8%{_ID}%", script)
 	set {_uuid} to get_uuid({_p})
 
 	add_loaded_island({_ID})
@@ -34,3 +37,4 @@ function create_island(p: player):
 	teleport_player_to_island({_p}, {_ID})
 
 	send feedback("success", {@island-created}) to {_p}
+	debug("&7Island &8%format_short_uuid({_ID})% &7created successfully for %get_displayname({_p})%", script)

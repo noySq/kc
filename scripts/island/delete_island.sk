@@ -5,6 +5,8 @@ options:
 
 function delete_island(ID: text, deleteData: boolean = false):
 
+	debug("&7Starting island deletion for &8%format_short_uuid({_ID})%", script)
+
 	loop get_all_player_on_island({_ID}):
 		add loop-value to {_island_players::*}
 		spawn(loop-value)
@@ -18,6 +20,7 @@ function delete_island(ID: text, deleteData: boolean = false):
 	delete_world({_ID})
 
 	if {_deleteData} = true:
+		debug("&7Island &8%format_short_uuid({_ID})% &7deleted forever", script)
 
 		loop get_island_members({_ID}):
 			delete_island_player_data(loop-value)

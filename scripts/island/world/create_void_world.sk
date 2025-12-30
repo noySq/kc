@@ -1,5 +1,7 @@
 function create_void_world(ID: text):
 
+	debug("&7Creating void world for &8%format_short_uuid({_ID})%", script)
+
 	set {_creator} to world creator named "islands/%{_ID}%"
 	set world type option of {_creator} to flat
 	set generator settings option of {_creator} to "{""biome"": ""minecraft:plains"",""layers"": []}}"
@@ -13,3 +15,5 @@ function create_void_world(ID: text):
 	set gamerule disablePlayerMovementCheck of {_world} to true
 	set gamerule doImmediateRespawn of {_world} to true
 	set gamerule locatorBar of {_world} to false
+
+	debug("&7World created for &8%format_short_uuid({_ID})%", script)

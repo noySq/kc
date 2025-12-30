@@ -1,14 +1,16 @@
 function load_island(ID: text):
 
+	debug("&7Loading island: &8%format_short_uuid({_ID})%", script)
+
+	if is_island_exists({_ID}) = false:
+		debug("&7Island &8%format_short_uuid({_ID})% &7does not exists", script)
+		stop
+
 	loop get_island_members({_ID}):
 		add loop-value to {_island_players::*}
 
 	if is_island_loaded({_ID}) = true:
 		send feedback("error", "&cEz a sziget már be van töltve!") to {_island_players::*}
-		stop
-
-	if is_island_exists({_ID}) = false:
-		send feedback("error", "&cEz a sziget nem létezik!") to {_island_players::*}
 		stop
 
 	send feedback("casual", "&7Sziget betöltése...") to {_island_players::*}
@@ -21,3 +23,4 @@ function load_island(ID: text):
 	run section {-section::paste_island_schematic} async with arguments {_ID} and wait
 
 	send feedback("success", "&aSziget sikeresen betöltve!") to {_island_players::*}
+	debug("&7Island &8%format_short_uuid({_ID})% &7loaded successfully", script)

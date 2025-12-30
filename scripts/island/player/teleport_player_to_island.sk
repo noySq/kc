@@ -7,6 +7,8 @@ function teleport_player_to_island(p: player, ID: text):
 		send feedback("error", {@island-not-loaded}) to {_p}
 		stop
 
+	debug("&7Teleporting player to island &8%format_short_uuid({_ID})%", script)
+
 	set {_server} to get_islands_server({_ID})
 	set {_location} to get_island_middle({_ID})
 	set {_world} to get_island_world({_ID})

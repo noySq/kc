@@ -11,6 +11,7 @@ function invite_player(ID: text, target: player, sender: player):
 
 	set {-island::%uuid of {_target}%::invite} to {_ID}
 
+
 	send "" to {_target}
 	send feedback("casual", "%get_displayname({_sender})% meghívott a szigetére") to {_target}
 	send feedback("casual", "Fogadd el a ß/sziget elfogad &fparanccsal") to {_target}
@@ -18,9 +19,13 @@ function invite_player(ID: text, target: player, sender: player):
 
 	send feedback("casual", "%get_displayname({_target})% meg lett hívva a szigetre") to get_island_members({_ID})
 
+	debug("%get_displayname({_sender})% &7invited %get_displayname({_p})% &7to island &8%format_short_uuid({_ID})%", script)
+	
 	wait 30 seconds
 
 	if {-island::%uuid of {_target}%::invite} is set:
 
 		send feedback("warning", "&6Lejárt a meghívó") to {_target}
 		delete {-island::%uuid of {_target}%::invite}
+
+		debug("&7Invite for %get_displayname({_p})% &7expired", script)

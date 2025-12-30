@@ -3,3 +3,5 @@ function add_loaded_island(ID: text):
 	set {_hostname} to get_hostname()
 	set {_channel} to join ({-config::island::redis::list::loaded-islands}, {_hostname})
 	add_to_redis_list({_ID}, {_channel})
+
+	debug("&7Island &8%format_short_uuid({_ID})% &7got loaded", script)

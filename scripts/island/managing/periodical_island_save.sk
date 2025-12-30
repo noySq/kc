@@ -1,14 +1,15 @@
 every 10 minutes:
 
+	debug("&7Starting periodical island save task...", script)
+
 	loop get_loaded_islands():
-
-		set {_short_uuid} to format_short_uuid(loop-value)
-
-		server_log("MENTÉS", "&7%{_short_uuid}% &7sziget mentése elkezdődött")
 
 		set {_server} to get_islands_server(loop-value)
 		if {_server} = get_hostname():
 			run section {-section::save_island_schematic} async with arguments loop-value and wait
-			server_log("MENTÉS", "&7%{_short_uuid}% &2sziget elmentve")
+
+			debug("&7Saved island &8%format_short_uuid(loop-value)%", script)
 
 		wait 5 second
+
+	debug("&7Periodical save task finished.", script)

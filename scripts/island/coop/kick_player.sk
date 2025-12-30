@@ -10,3 +10,5 @@ function kick_player(ID: text, target: player):
 
 	send feedback("warning", "Ki lettél rúgva a szigetről") to {_target}
 	send feedback("warning", "%get_displayname({_target})% ki lett rúgva a szigetről") to get_island_members({_ID})
+
+	debug("%get_displayname({_target})% &7got kicked from island &8%format_short_uuid({_ID})%", script)

@@ -1,15 +1,18 @@
 using queues
 
 options:
+	permission: "%{-config::server::permission::debug}%"
 	message-format: "&c&o%{_script}% &8| &r%colored {_message}%"
 
 function debug(message: text, script: script):
 
-	set {_sendTo} to a new queue of all players where [input has permission {-config::server::permission::debug}]
+	set {_sendTo} to a new queue of all players where [input has permission {@permission}]
 	add console to {_sendTo}
 
 	# Replace special character with color code
 	replace every "ß" in {_message} with {-config::color::main}
 
 	loop {_sendTo}:
-		send_player_message(loop-value, {@message-format})
+		send "&c&lDEBUG &8| &7Script: &c%{_script}%" to loop-value
+		send "&c&lDEBUG &8| %colored {_message}%" to loop-value
+		send "" to loop-value
