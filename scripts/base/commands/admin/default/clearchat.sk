@@ -8,18 +8,15 @@ command /clearchat [<text>]:
 	permission: clearchat
 	trigger:
 
-		if arg-1 = "all":
-			# wow
-			loop 100 times:
-				send_global_message("", "broadcast")
+		switch arg-1:
+			case "global":
+				# wow
+				loop 100 times:
+					send_global_message("", "broadcast")
 
-		else:
-			loop {-signatures::*}:
-				set {_s} to loop-value
-				remove all players where [input does not have permission "chat"] from {_s}
-
-			delete {-signatures::*}
-			server_log("admin", "%get_displayname(player)% &fkitörölte a játékosok chatjét!")
+			case "local":
+				loop 100 times:
+					broadcast ""
 
 on tab complete of "/clearchat" or "/cc":
-	set tab completions for position 1 to "all"
+	set tab completions for position 1 to "global", "local"
