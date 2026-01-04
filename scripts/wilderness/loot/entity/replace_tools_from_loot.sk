@@ -1,0 +1,18 @@
+on death of mob with priority highest:
+
+    if victim = player:
+        stop
+
+    set {_items::*} to drops
+    loop {_items::*}:
+        
+        if any:
+            loop-value is tagged with tag "paper:swords"
+            loop-value is tagged with tag "paper:pickaxes"
+            loop-value is tagged with tag "paper:axes"
+            loop-value is tagged with tag "paper:shovels"
+            loop-value is tagged with tag "paper:hoes"
+
+        then:
+
+            remove loop-value from drops

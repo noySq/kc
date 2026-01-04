@@ -1,0 +1,12 @@
+on loot generate:
+
+    set {_items::*} to the loot
+    loop {_items::*}:
+
+        if loop-value is tagged with tag "paper:bows":
+
+            remove loop-value from the loot
+
+            # TODO
+            # some kind of upgrade item
+            add stone named "&fíj fejlesztő kő &7[WORK IN PROGRESS]" to loot
