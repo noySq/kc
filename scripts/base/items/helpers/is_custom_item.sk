@@ -1,0 +1,10 @@
+function is_custom_item(item: item) :: boolean:
+
+	set {_nbt} to custom nbt compound of {_item}
+
+	# zseniális
+	# de ha ez kell, hogy működjön ¯\_(ツ)_/¯
+	if "%compound tag "kockacraft" of {_nbt}%" = "{}":
+		return false
+
+	return true

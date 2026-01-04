@@ -1,0 +1,20 @@
+function can_upgrade(p: player, item: item) :: boolean:
+
+	if is_custom_item({_item}) = false:
+		return false
+
+	set {_level} to get_item_level({_item})
+	if {_level} >= {-config::items::max-level}:
+		return false
+
+	set {_material} to get_item_material({_item})
+	if {_material} is "unknown":
+		return false
+
+	set {_next_level} to {_level} + 1
+
+	set {_has_materials} to check_player_materials({_p}, {_material}, {_next_level})
+	if {_has_materials} is false:
+		return false
+
+	return true

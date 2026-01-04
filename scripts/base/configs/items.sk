@@ -1,0 +1,3 @@
+on load:
+
+	set {-config::items::max-level} to 5

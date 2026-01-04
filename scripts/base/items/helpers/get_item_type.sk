@@ -1,0 +1,20 @@
+# Determines the type of tool/weapon from an item
+# Returns: "sword", "pickaxe", "axe", "shovel", "hoe", or "unknown"
+function get_item_type(item: item) :: text:
+
+	if {_item} is tagged with tag "paper:swords":
+		return "sword"
+	
+	if {_item} is tagged with tag "paper:pickaxes":
+		return "pickaxe"
+	
+	if {_item} is tagged with tag "paper:axes":
+		return "axe"
+	
+	if {_item} is tagged with tag "paper:shovels":
+		return "shovel"
+	
+	if {_item} is tagged with tag "paper:hoes":
+		return "hoe"
+	
+	return "unknown"

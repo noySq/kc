@@ -1,0 +1,22 @@
+req:
+  - type: "material"
+    item: "oak log"
+    amount: 5
+  - type: "material"
+    item: "stone"
+    amount: 5
+  - type: "money"
+    amount: 100
+  - type: "experience"
+    amount: 100
+bonuses:
+  sword:
+    "attack speed": 0.02
+  pickaxe:
+    "block break speed": 0.02
+  axe:
+    "block break speed": 0.02
+  shovel:
+    "block break speed": 0.02
+  hoe:
+    "block break speed": 0.02

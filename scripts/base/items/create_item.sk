@@ -1,0 +1,9 @@
+function create_item(p: player, item: item, level: integer = 0) :: item:
+	
+	set {_nbt} to custom nbt compound of {_item}
+	set {_uuid} to uuid of {_p}
+
+	set_item_level({_nbt}, {_level})
+	set_item_owner({_nbt}, {_uuid})
+
+	return {_item}

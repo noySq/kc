@@ -1,0 +1,15 @@
+function remove_player_materials(p: player, material: text, level: integer):
+
+	set {_requirement::items::*} to get_upgrade_items({_material}, {_level})
+	set {_requirement::money} to get_upgrade_money({_material}, {_level})
+	set {_requirement::experience} to get_upgrade_experience({_material}, {_level})
+	
+	if {_requirement::items::*} is set:
+		loop {_requirement::items::*}:
+			remove loop-value from {_p}'s inventory
+	
+	if {_requirement::money} > 0:
+		remove_money({_p}, {_requirement::money})
+	
+	if {_requirement::experience} > 0:
+		remove {_requirement::experience} from level of {_p}

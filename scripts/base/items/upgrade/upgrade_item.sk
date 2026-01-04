@@ -1,0 +1,17 @@
+function upgrade_item(p: player, item: item) :: item:
+
+	if can_upgrade({_p}, {_item}) is false:
+		stop
+
+	set {_nbt} to custom nbt compound of {_item}
+
+	set {_level} to get_item_level({_item})
+	set {_material} to get_item_material({_item})
+	set {_next_level} to {_level} + 1
+
+	remove_player_materials({_p}, {_material}, {_next_level})
+
+	set_item_level({_nbt}, {_next_level})	
+	set {_item} to set_attributes({_item}, {_material}, {_next_level})
+
+	return {_item}

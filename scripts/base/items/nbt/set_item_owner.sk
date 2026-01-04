@@ -1,0 +1,3 @@
+function set_item_owner(nbt: nbt compound, owner: text):
+
+	set string tag "kockacraft;owner" of {_nbt} to {_owner}

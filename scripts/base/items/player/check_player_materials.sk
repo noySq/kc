@@ -1,0 +1,21 @@
+function check_player_materials(p: player, material: text, level: integer) :: boolean:
+
+	set {_requirement::items::*} to get_upgrade_items({_material}, {_level})
+	set {_requirement::money} to get_upgrade_money({_material}, {_level})
+	set {_requirement::experience} to get_upgrade_experience({_material}, {_level})
+	
+	if {_requirement::items::*} is set:
+		loop {_requirement::items::*}:
+			if {_p} doesn't have loop-value:
+				return false
+	
+	if {_requirement::money} > 0:
+		set {_balance} to get_balance({_p})
+		if {_balance} < {_requirement::money}:
+			return false
+	
+	if {_requirement::experience} > 0:
+		if level of {_p} < {_requirement::experience}:
+			return false
+
+	return true

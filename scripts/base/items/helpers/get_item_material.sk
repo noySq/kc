@@ -1,0 +1,71 @@
+function get_item_material(item: item) :: text:
+
+	# Tools
+	if {_item} is tagged with tag "paper:wooden_tools":
+		return "wood"
+
+	if {_item} is tagged with tag "paper:stone_tools":
+		return "stone"
+
+	if {_item} is tagged with tag "paper:iron_tools":
+		return "iron"
+
+	if {_item} is tagged with tag "paper:golden_tools":
+		return "gold"
+
+	if {_item} is tagged with tag "paper:diamond_tools":
+		return "diamond"
+
+	if {_item} is tagged with tag "paper:netherite_tools":
+		return "netherite"
+	
+	# Armor (nincs semmilyen tag ezeken???)
+	if any: 
+		{_item} = leather helmet
+		{_item} = leather chestplate
+		{_item} = leather leggings
+		{_item} = leather boots
+	then:
+		return "leather"
+
+	if any: 
+		{_item} = chainmail helmet
+		{_item} = chainmail chestplate
+		{_item} = chainmail leggings
+		{_item} = chainmail boots
+	then:
+		return "chainmail"
+
+	if any: 
+		{_item} = iron helmet
+		{_item} = iron chestplate
+		{_item} = iron leggings
+		{_item} = iron boots
+	then:
+		return "iron"
+
+	if any: 
+		{_item} = golden helmet
+		{_item} = golden chestplate
+		{_item} = golden leggings
+		{_item} = golden boots
+	then:
+		return "gold"
+
+	if any: 
+		{_item} = diamond helmet
+		{_item} = diamond chestplate
+		{_item} = diamond leggings
+		{_item} = diamond boots
+	then:
+		return "diamond"
+
+	if any: 
+		{_item} = netherite helmet
+		{_item} = netherite chestplate
+		{_item} = netherite leggings
+		{_item} = netherite boots
+	then:
+		return "netherite"
+	
+	return "unknown"

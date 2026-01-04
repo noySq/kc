@@ -1,0 +1,6 @@
+function get_item_level(item: item) :: integer:
+	
+	set {_nbt} to custom nbt compound of {_item}
+	set {_level} to int tag "kockacraft;level" of {_nbt}
+
+	return {_level}

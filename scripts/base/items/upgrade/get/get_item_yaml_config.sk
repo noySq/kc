@@ -1,0 +1,13 @@
+import:
+	java.nio.file.Paths
+	java.nio.file.Files
+
+options:
+	relative-path: plugins/Skript/scripts/base/items/upgrade/yamls
+
+function get_item_yaml_config(material: text, level: integer) :: text:
+
+	set {_path} to Paths.get("{@relative-path}/%{_material}%/%{_level}%.yaml")
+	set {_text} to Files.readString({_path})
+	
+	return {_text}

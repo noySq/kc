@@ -1,0 +1,31 @@
+function set_attributes(item: item, material: text, level: integer) :: item:
+
+	set {_type} to get_item_type({_item})
+	
+	if {_type} is "unknown":
+		stop
+
+	set {_bonuses::*} to keyed get_upgrade_bonuses({_type}, {_material}, {_level})
+
+	if {_bonuses::*} is not set:
+		stop
+	
+	loop indices of {_bonuses::*}:
+
+		set {_attribute} to loop-value
+		set {_value} to {_bonuses::%{_attribute}%}
+		
+		set {_current_value} to {_attribute} modifier of {_item}
+		if {_current_value} is not set:
+			set {_current_value} to 0
+		
+		set {_new_value} to {_current_value} + {_value}
+
+		apply attribute modifier to {_item}:
+			attribute: ({_attribute} parsed as attribute type)
+			id: "kockacraft:%{_attribute}%"
+			slot: mainhand_slot_group
+			amount: {_new_value}
+			operation: add_scalar
+	
+	return {_item}

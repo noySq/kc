@@ -1,0 +1,6 @@
+function get_item_owner(item: item) :: text:
+	
+	set {_nbt} to custom nbt compound of {_item}
+	set {_owner} to string tag "kockacraft;owner" of {_nbt}
+	
+	return {_owner}

@@ -1,0 +1,13 @@
+function get_upgrade_bonuses(type: text, material: text, level: integer) :: objects:
+
+	set {_content} to get_item_yaml_config({_material}, {_level})
+	encode {_content} as yaml to {_yaml::*}
+
+	loop indices of {_yaml::bonuses::%{_type}%::*}:
+
+		set {_attribute} to loop-value
+		set {_value} to {_yaml::bonuses::%{_type}%::%loop-value%}
+
+		set {_bonus::%{_attribute}%} to {_value}
+
+	return keyed {_bonus::*}
