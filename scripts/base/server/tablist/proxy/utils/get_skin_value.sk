@@ -1,0 +1,7 @@
+function get_skin_value(p: offlineplayer) :: text:
+
+	set {_profile} to {_p}.getPlayerProfile()
+	set {_properties} to {_profile}.getProperties()
+	set {_value} to {_properties}.iterator().next().getValue()
+
+	return {_value}

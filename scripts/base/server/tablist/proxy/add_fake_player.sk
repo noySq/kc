@@ -1,8 +1,9 @@
 function add_fake_player(p: offlineplayer):
 
 	set {_targets::*} to all players where [input != {_p}]
+
 	set {_uuid} to uuid of {_p}
-	set {_skin} to "ewogICJ0aW1lc3RhbXAiOiAxNzY1NTQ5NDA2ODQ4LAogICJwcm9maWxlSWQiOiAiODY2N2JhNzFiODVhNDAwNGFmNTQ0NTdhOTczNGVlZDciLAogICJwcm9maWxlTmFtZSI6ICJTdGV2ZSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIjogdHJ1ZSwKICAidGV4dHVyZXMiOiB7CiAgICAiU0tJTiI6IHsKICAgICAgInVybCI6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzYwYTViZDAxNmIzYzlhMWI5MjcyZTQ5MjllMzA4MjdhNjdiZTRlYmIyMTkwMTdhZGJiYzRhNGQyMmViZDViMSIKICAgIH0sCiAgICAiQ0FQRSI6IHsKICAgICAgInVybCI6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzk1M2NhYzhiNzc5ZmU0MTM4M2U2NzVlZTJiODYwNzFhNzE2NThmMjE4MGY1NmZiY2U4YWEzMTVlYTcwZTJlZDYiCiAgICB9CiAgfQp9Cg=="
+	set {_skin} to get_skin_value({_p})
 
 	set {_displayname} to {-proxy::tablist::%{_uuid}%::displayname}
 	set {_username} to {-proxy::tablist::%{_uuid}%::username}
