@@ -5,9 +5,11 @@ import:
 options:
 	relative-path: plugins/Skript/scripts/base/items/upgrade/yamls
 
-function get_item_yaml_config(material: text, level: integer) :: text:
+function get_item_yaml_config(material: text, type: text) :: text:
+	debug("material: %{_material}%, type: %{_type}%", script)
 
-	set {_path} to Paths.get("{@relative-path}/%{_material}%/%{_level}%.yaml")
+	set {_path} to Paths.get("{@relative-path}/%{_material}%/%{_type}%.yaml")
+	debug("Path: %{_path}%", script)
 	set {_text} to Files.readString({_path})
 	
 	return {_text}

@@ -1,15 +1,17 @@
-function get_upgrade_experience(material: text, level: integer) :: integer:
+function get_upgrade_experience(material: text, type: text, level: integer) :: integer:
+	debug("material: %{_material}%, type: %{_type}%, level: %{_level}%", script)
 
-	set {_content} to get_item_yaml_config({_material}, {_level})
+	set {_content} to get_item_yaml_config({_material}, {_type})
 	encode {_content} as yaml to {_yaml::*}
 	
-	loop indices of {_yaml::req::*}:
-		set {_type} to {_yaml::req::%loop-value%::type} 
+	loop indices of {_yaml::%{_level}%::req::*}:
+		set {_type_node} to {_yaml::%{_level}%::req::%loop-value%::type} 
 		
-		if {_type} != "experience":
+		if {_type_node} != "experience":
 			continue
 
-		set {_amount} to {_yaml::req::%loop-value%::amount}
+		set {_amount} to {_yaml::%{_level}%::req::%loop-value%::amount}
 		add {_amount} to {_experience}
 	
+	debug("upgrade experience: %{_experience}%", script)
 	return {_experience}

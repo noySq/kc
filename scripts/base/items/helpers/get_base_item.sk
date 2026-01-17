@@ -1,0 +1,6 @@
+function get_base_item(material: text, type: text) :: item:
+	
+	set {_name} to join ({_material}, " ", {_type})
+	set {_item} to ({_name} parsed as item)
+	
+	return {_item}

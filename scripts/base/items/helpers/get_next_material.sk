@@ -1,0 +1,18 @@
+function get_next_material(material: text) :: text:
+	
+	if {_material} is "wooden":
+		return "stone"
+	
+	if {_material} is "stone":
+		return "golden"
+	
+	if {_material} is "golden":
+		return "iron"
+
+	if {_material} is "iron":
+		return "diamond"
+		
+	if {_material} is "diamond":
+		return "netherite"
+		
+	return "unknown"

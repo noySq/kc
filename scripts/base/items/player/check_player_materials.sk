@@ -1,21 +1,26 @@
-function check_player_materials(p: player, material: text, level: integer) :: boolean:
+function check_player_materials(p: player, material: text, type: text, level: integer) :: boolean:
+	debug("check_player_materials called for %{_p}% with material: %{_material}%, type: %{_type}%, level: %{_level}%", script)
 
-	set {_requirement::items::*} to get_upgrade_items({_material}, {_level})
-	set {_requirement::money} to get_upgrade_money({_material}, {_level})
-	set {_requirement::experience} to get_upgrade_experience({_material}, {_level})
+	set {_requirement::items::*} to get_upgrade_items({_material}, {_type}, {_level})
+	set {_requirement::money} to get_upgrade_money({_material}, {_type}, {_level})
+	set {_requirement::experience} to get_upgrade_experience({_material}, {_type}, {_level})
 	
 	if {_requirement::items::*} is set:
 		loop {_requirement::items::*}:
 			if {_p} doesn't have loop-value:
+				debug("Player %{_p}% missing item requirement: %loop-value%", script)
 				return false
 	
 	if {_requirement::money} > 0:
 		set {_balance} to get_balance({_p})
 		if {_balance} < {_requirement::money}:
+			debug("Player %{_p}% missing money requirement. needed: %{_requirement::money}%, has: %{_balance}%", script)
 			return false
 	
 	if {_requirement::experience} > 0:
 		if level of {_p} < {_requirement::experience}:
+			debug("Player %{_p}% missing experience requirement. needed: %{_requirement::experience}%, has: %level of {_p}%", script)
 			return false
 
+	debug("Player %{_p}% has all materials for upgrade", script)
 	return true

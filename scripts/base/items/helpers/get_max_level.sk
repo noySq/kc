@@ -1,0 +1,8 @@
+function get_max_level(material: text, type: text) :: integer:
+
+	set {_content} to get_item_yaml_config({_material}, {_type})
+	encode {_content} as yaml to {_yaml::*}
+
+	set {_max_level} to last element out of (indices of {_yaml::*})
+
+	return ({_max_level} parsed as integer)

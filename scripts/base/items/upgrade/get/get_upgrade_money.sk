@@ -1,15 +1,17 @@
-function get_upgrade_money(material: text, level: integer) :: number:
+function get_upgrade_money(material: text, type: text, level: integer) :: number:
+	debug("material: %{_material}%, type: %{_type}%, level: %{_level}%", script)
 
-	set {_content} to get_item_yaml_config({_material}, {_level})
+	set {_content} to get_item_yaml_config({_material}, {_type})
 	encode {_content} as yaml to {_yaml::*}
 
-	loop indices of {_yaml::req::*}:
-		set {_type} to {_yaml::req::%loop-value%::type} 
+	loop indices of {_yaml::%{_level}%::req::*}:
+		set {_type_node} to {_yaml::%{_level}%::req::%loop-value%::type} 
 		
-		if {_type} != "money":
+		if {_type_node} != "money":
 			continue
 
-		set {_amount} to {_yaml::req::%loop-value%::amount}
+		set {_amount} to {_yaml::%{_level}%::req::%loop-value%::amount}
 		add {_amount} to {_money}
 	
+	debug("upgrade money: %{_money}%", script)
 	return {_money}

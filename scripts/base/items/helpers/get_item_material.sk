@@ -2,7 +2,7 @@ function get_item_material(item: item) :: text:
 
 	# Tools
 	if {_item} is tagged with tag "paper:wooden_tools":
-		return "wood"
+		return "wooden"
 
 	if {_item} is tagged with tag "paper:stone_tools":
 		return "stone"
@@ -11,7 +11,7 @@ function get_item_material(item: item) :: text:
 		return "iron"
 
 	if {_item} is tagged with tag "paper:golden_tools":
-		return "gold"
+		return "golden"
 
 	if {_item} is tagged with tag "paper:diamond_tools":
 		return "diamond"
@@ -50,7 +50,7 @@ function get_item_material(item: item) :: text:
 		{_item} = golden leggings
 		{_item} = golden boots
 	then:
-		return "gold"
+		return "golden"
 
 	if any: 
 		{_item} = diamond helmet

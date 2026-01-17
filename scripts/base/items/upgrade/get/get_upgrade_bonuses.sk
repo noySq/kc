@@ -1,13 +1,15 @@
 function get_upgrade_bonuses(type: text, material: text, level: integer) :: objects:
+	debug("type: %{_type}%, material: %{_material}%, level: %{_level}%", script)
 
-	set {_content} to get_item_yaml_config({_material}, {_level})
+	set {_content} to get_item_yaml_config({_material}, {_type})
 	encode {_content} as yaml to {_yaml::*}
 
-	loop indices of {_yaml::bonuses::%{_type}%::*}:
+	loop indices of {_yaml::%{_level}%::bonuses::*}:
 
 		set {_attribute} to loop-value
-		set {_value} to {_yaml::bonuses::%{_type}%::%loop-value%}
+		set {_value} to {_yaml::%{_level}%::bonuses::%loop-value%}
 
 		set {_bonus::%{_attribute}%} to {_value}
 
+	debug("upgrade bonuses: %{_bonus::*}%", script)
 	return keyed {_bonus::*}

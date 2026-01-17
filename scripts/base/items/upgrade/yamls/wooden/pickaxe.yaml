@@ -1,0 +1,12 @@
+1:
+  req:
+    - type: "money"
+      amount: 100
+  bonuses:
+    "block break speed": 0.02
+2:
+  req:
+    - type: "money"
+      amount: 100
+  bonuses:
+    "block break speed": 0.02

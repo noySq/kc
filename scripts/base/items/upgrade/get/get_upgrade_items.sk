@@ -1,17 +1,19 @@
-function get_upgrade_items(material: text, level: integer) :: items:
+function get_upgrade_items(material: text, type: text, level: integer) :: items:
+	debug("material: %{_material}%, type: %{_type}%, level: %{_level}%", script)
 
-	set {_content} to get_item_yaml_config({_material}, {_level})
+	set {_content} to get_item_yaml_config({_material}, {_type})
 	encode {_content} as yaml to {_yaml::*}
 
-	loop indices of {_yaml::req::*}:
-		set {_type} to {_yaml::req::%loop-value%::type} 
+	loop indices of {_yaml::%{_level}%::req::*}:
+		set {_type_node} to {_yaml::%{_level}%::req::%loop-value%::type} 
 		
-		if {_type} != "material":
+		if {_type_node} != "material":
 			continue
 
-		set {_item} to ({_yaml::req::%loop-value%::item} parsed as item)
-		set {_amount} to {_yaml::req::%loop-value%::amount}
+		set {_item} to ({_yaml::%{_level}%::req::%loop-value%::item} parsed as item)
+		set {_amount} to {_yaml::%{_level}%::req::%loop-value%::amount}
 
 		add {_amount} of {_item} to {_items::*}
 
+	debug("upgrade items: %{_items::*}%", script)
 	return {_items::*}

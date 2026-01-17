@@ -1,8 +1,9 @@
-function remove_player_materials(p: player, material: text, level: integer):
+function remove_player_materials(p: player, material: text, type: text, level: integer):
+	debug("remove_player_materials called for %{_p}% with material: %{_material}%, type: %{_type}%, level: %{_level}%", script)
 
-	set {_requirement::items::*} to get_upgrade_items({_material}, {_level})
-	set {_requirement::money} to get_upgrade_money({_material}, {_level})
-	set {_requirement::experience} to get_upgrade_experience({_material}, {_level})
+	set {_requirement::items::*} to get_upgrade_items({_material}, {_type}, {_level})
+	set {_requirement::money} to get_upgrade_money({_material}, {_type}, {_level})
+	set {_requirement::experience} to get_upgrade_experience({_material}, {_type}, {_level})
 	
 	if {_requirement::items::*} is set:
 		loop {_requirement::items::*}:
@@ -13,3 +14,5 @@ function remove_player_materials(p: player, material: text, level: integer):
 	
 	if {_requirement::experience} > 0:
 		remove {_requirement::experience} from level of {_p}
+	
+	debug("Materials removed for %{_p}%", script)

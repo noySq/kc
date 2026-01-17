@@ -1,17 +1,43 @@
 function upgrade_item(p: player, item: item) :: item:
+	debug("upgrade_item called for %{_p}%", script)
 
 	if can_upgrade({_p}, {_item}) is false:
+		debug("can't upgrade", script)
 		stop
 
 	set {_nbt} to custom nbt compound of {_item}
 
 	set {_level} to get_item_level({_item})
 	set {_material} to get_item_material({_item})
-	set {_next_level} to {_level} + 1
+	set {_type} to get_item_type({_item})
+	set {_max_level} to get_max_level({_material}, {_type})
 
-	remove_player_materials({_p}, {_material}, {_next_level})
+	if {_level} >= {_max_level}:
+		set {_next_material} to get_next_material({_material})
+		debug("Performing material upgrade to %{_next_material}%", script)
+		
+		# Remove materials for new item level 1
+		remove_player_materials({_p}, {_next_material}, {_type}, 0)
+		
+		# Transform item
+		set {_base_item_type} to get_base_item({_next_material}, {_type})
+		set {_item} to {_base_item_type} with nbt compound of {_item}
+		
+		# Set new level
+		set {_nbt} to custom nbt compound of {_item}
+		set_item_level({_nbt}, 0)
+		
+		set {_item} to set_attributes({_item}, {_next_material}, 0)
+		debug("Material upgrade complete. New item: %{_item}%", script)
+		
+	else:
+		set {_next_level} to {_level} + 1
+		debug("Performing standard level upgrade to %{_next_level}%", script)
 
-	set_item_level({_nbt}, {_next_level})	
-	set {_item} to set_attributes({_item}, {_material}, {_next_level})
+		remove_player_materials({_p}, {_material}, {_type}, {_next_level})
 
+		set_item_level({_nbt}, {_next_level})	
+		set {_item} to set_attributes({_item}, {_material}, {_next_level})
+
+	debug("Item upgraded successfully", script)
 	return {_item}

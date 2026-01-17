@@ -1,20 +1,41 @@
 function can_upgrade(p: player, item: item) :: boolean:
+	debug("can_upgrade called for %{_p}%", script)
 
 	if is_custom_item({_item}) = false:
-		return false
-
-	set {_level} to get_item_level({_item})
-	if {_level} >= {-config::items::max-level}:
+		debug("Item is not custom item", script)
 		return false
 
 	set {_material} to get_item_material({_item})
 	if {_material} is "unknown":
+		debug("Item material is unknown", script)
 		return false
 
-	set {_next_level} to {_level} + 1
+	set {_type} to get_item_type({_item})
+	if {_type} is "unknown":
+		debug("Item type is unknown", script)
+		return false
 
-	set {_has_materials} to check_player_materials({_p}, {_material}, {_next_level})
+	set {_level} to get_item_level({_item})
+	set {_max_level} to get_max_level({_material}, {_type})
+
+	debug("Levels check - Current: %{_level}%, Max: %{_max_level}%", script)
+
+	if {_level} >= {_max_level}:
+		set {_next_material} to get_next_material({_material})
+		
+		if {_next_material} is "unknown":
+			debug("Item is already max level and no next material: %{_level}%", script)
+			return false
+			
+		debug("Checking material upgrade to %{_next_material}%", script)
+		set {_has_materials} to check_player_materials({_p}, {_next_material}, {_type}, 0)
+	else:
+		set {_next_level} to {_level} + 1
+		set {_has_materials} to check_player_materials({_p}, {_material}, {_type}, {_next_level})
+
 	if {_has_materials} is false:
+		debug("Player does not have required materials", script)
 		return false
 
+	debug("Player can upgrade item", script)
 	return true
